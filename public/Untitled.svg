@@ -1,0 +1,11 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="craftsphere-gradient" x1="5" y1="16" x2="27" y2="16" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6756D9"/>
+      <stop offset="1" stop-color="#52BDD7"/>
+    </linearGradient>
+  </defs>
+  <rect x="5" y="12.5" width="22" height="7" rx="3.5" fill="url(#craftsphere-gradient)"/>
+  <rect x="5" y="12.5" width="22" height="7" rx="3.5" fill="url(#craftsphere-gradient)" opacity="0.76" transform="rotate(60 16 16)"/>
+  <rect x="5" y="12.5" width="22" height="7" rx="3.5" fill="url(#craftsphere-gradient)" opacity="0.5" transform="rotate(-60 16 16)"/>
+</svg>
