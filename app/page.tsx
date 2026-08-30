@@ -1,0 +1,400 @@
+import {
+  ArrowDownRight,
+  ArrowUpRight,
+  BadgeCheck,
+  BrainCircuit,
+  CalendarDays,
+  Check,
+  Cloud,
+  Code2,
+  Database,
+  ExternalLink,
+  Gauge,
+  Globe2,
+  Handshake,
+  Layers3,
+  Mail,
+  MessageCircle,
+  Network,
+  Phone,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  TerminalSquare,
+  UserRoundCheck,
+  Workflow,
+} from "lucide-react";
+import { BrandAmbient } from "./brand-ambient";
+import { SiteFooter } from "./site-footer";
+import { SiteHeader } from "./site-header";
+
+const expertise = [
+  { label: "Cloud", icon: Cloud, tone: "mint", span: 4 },
+  { label: "AI", icon: BrainCircuit, tone: "lilac", span: 3 },
+  { label: "Frontend", icon: Code2, tone: "peach", span: 2 },
+  { label: "Backend", icon: TerminalSquare, tone: "sky", span: 3 },
+  { label: "Data", icon: Database, tone: "butter", span: 3 },
+  { label: "Full Stack", icon: Layers3, tone: "rose", span: 4 },
+  { label: "DevOps", icon: Workflow, tone: "mint", span: 3 },
+  { label: "Web3", icon: Network, tone: "lilac", span: 2 },
+];
+
+const markets = [
+  {
+    name: "EMEA",
+    detail: "Deep experience across European and international technology markets.",
+    accent: "01",
+  },
+  {
+    name: "United States",
+    detail: "Searches shaped around the pace, competition and nuance of US hiring.",
+    accent: "02",
+  },
+  {
+    name: "LATAM",
+    detail: "Access to high-calibre talent across fast-growing technology hubs.",
+    accent: "03",
+  },
+];
+
+function BrandTransition({ direction = "forward" }: { direction?: "forward" | "reverse" }) {
+  return (
+    <div className={`brand-transition brand-transition-${direction}`} aria-hidden="true">
+      <span /><span /><span />
+      <i /><i /><i />
+    </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <main id="top">
+      <BrandAmbient />
+      <SiteHeader page="home" />
+
+      <section className="hero shell" aria-labelledby="hero-title">
+        <div className="hero-copy">
+          <div className="eyebrow reveal reveal-1">
+            <span className="eyebrow-dot" /> IT recruitment · Talent consulting
+          </div>
+          <h1 id="hero-title" className="reveal reveal-2">
+            Senior IT recruitment and <em>talent consulting.</em>
+          </h1>
+          <p className="hero-intro reveal reveal-3">
+            I help technology companies hire difficult-to-find specialists, improve
+            their recruitment process and deliver a candidate experience that strengthens
+            their employer brand across EMEA, the US and LATAM.
+          </p>
+          <div className="hero-benefits reveal reveal-4" aria-label="How Craftsphere Talent helps">
+            <span><Cloud size={15} /> Hard-to-find tech talent</span>
+            <span><Workflow size={15} /> Smarter hiring processes</span>
+            <span><MessageCircle size={15} /> Candidate-first communication</span>
+          </div>
+          <div className="hero-actions reveal reveal-5">
+            <a className="button button-primary" href="mailto:konrad@craftspheretalent.com?subject=20-minute%20introduction" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="hero">
+              Book a 20-minute introduction <CalendarDays size={17} aria-hidden="true" />
+            </a>
+            <a className="text-link" href="#services">
+              See how I help <ArrowDownRight size={16} aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+
+        <div className="hero-visual reveal reveal-4 hero-art-entry">
+          <div className="visual-glow" />
+          <figure className="visual-image">
+            <picture>
+              <source srcSet="/craftsphere-ai-it-talent-hero.avif" type="image/avif" />
+              <source srcSet="/craftsphere-ai-it-talent-hero.webp" type="image/webp" />
+              <img
+                src="/craftsphere-ai-it-talent-hero.webp"
+                width="1536"
+                height="1024"
+                alt="Editorial illustration connecting people with cloud, data, artificial intelligence and engineering systems"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
+            </picture>
+            <figcaption>
+              <span>Cloud · Data · AI · Engineering</span>
+              <span>Technology talent ecosystem</span>
+            </figcaption>
+          </figure>
+          <div className="value-bubble bubble-savings">
+            <span className="bubble-icon"><Sparkles size={17} /></span>
+            <div><strong>Lower recruitment costs</strong><p>Focused search without unnecessary agency overhead.</p></div>
+          </div>
+          <div className="value-bubble bubble-individual">
+            <span className="bubble-icon"><MessageCircle size={17} /></span>
+            <div><strong>Individual approach</strong><p>Direct access to one senior recruitment partner.</p></div>
+          </div>
+          <div className="value-bubble bubble-efficiency">
+            <span className="bubble-icon"><Workflow size={17} /></span>
+            <div><strong>Efficiency</strong><p>Relevant shortlists and a clear feedback rhythm.</p></div>
+          </div>
+          <div className="value-bubble bubble-candidate">
+            <span className="bubble-icon"><UserRoundCheck size={17} /></span>
+            <div><strong>Great candidate experience</strong><p>Clear communication and respect at every stage.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="proof-strip" aria-label="Craftsphere Talent experience">
+        <div className="shell proof-grid">
+          <div className="proof-intro">
+            <span>Experience that translates into better hiring</span>
+            <ArrowDownRight size={20} aria-hidden="true" />
+          </div>
+          <div className="stat"><strong>10</strong><span>years in IT recruitment</span></div>
+          <div className="stat"><strong>100s</strong><span>of successful hires</span></div>
+          <div className="stat"><strong>3</strong><span>international markets</span></div>
+        </div>
+      </section>
+
+      <section id="services" className="section shell">
+        <div className="section-heading">
+          <div>
+            <p className="kicker">Services / 01</p>
+            <h2>Three ways to strengthen your hiring.</h2>
+          </div>
+          <p>
+            Flexible support for companies that need exceptional talent, a sharper
+            hiring process, or both.
+          </p>
+        </div>
+
+        <div className="service-grid service-grid-three">
+          <article className="service-card service-card-featured service-card-lead">
+            <div className="service-number">01</div>
+            <div className="service-card-copy">
+              <div className="service-icon"><Network size={25} aria-hidden="true" /></div>
+              <h3>Permanent IT Recruitment</h3>
+              <p>
+                End-to-end search for specialist, senior and hard-to-find technology
+                talent — from market mapping and outreach to offer acceptance.
+              </p>
+            </div>
+            <ul>
+              <li><Check size={15} /> Targeted direct search</li>
+              <li><Check size={15} /> High-quality, relevant shortlists</li>
+              <li><Check size={15} /> Clear communication from brief to hire</li>
+            </ul>
+          </article>
+
+          <article className="service-card">
+            <div className="service-number">02</div>
+            <div className="service-card-copy">
+              <div className="service-icon"><Sparkles size={25} aria-hidden="true" /></div>
+              <h3>Recruitment Consulting</h3>
+              <p>
+                Practical guidance that helps hiring teams make better decisions,
+                improve their process and compete more effectively for talent.
+              </p>
+            </div>
+            <ul>
+              <li><Check size={15} /> Hiring strategy and market insight</li>
+              <li><Check size={15} /> Process and candidate journey design</li>
+              <li><Check size={15} /> Interview and feedback optimisation</li>
+            </ul>
+          </article>
+
+          <article className="service-card service-card-candidate">
+            <div className="service-number">03</div>
+            <div className="service-card-copy">
+              <div className="service-icon"><UserRoundCheck size={25} aria-hidden="true" /></div>
+              <h3>Candidate Experience Improvement</h3>
+              <p>
+                A clearer, faster and more human candidate journey that protects your
+                employer brand and keeps strong candidates engaged.
+              </p>
+            </div>
+            <ul>
+              <li><Check size={15} /> Faster, structured feedback</li>
+              <li><Check size={15} /> Transparent candidate communication</li>
+              <li><Check size={15} /> Stronger interview experience</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <BrandTransition />
+
+      <section id="expertise" className="section expertise-section">
+        <div className="shell">
+          <div className="section-heading">
+            <div>
+              <p className="kicker">Expertise / 02</p>
+              <h2>Across the technology landscape.</h2>
+            </div>
+            <p>
+              A decade of recruiting across established engineering disciplines and
+              emerging technology — with the technical fluency to understand the brief.
+            </p>
+          </div>
+          <div className="expertise-grid">
+            {expertise.map(({ label, icon: Icon, tone, span }) => (
+              <article className={`expertise-card tone-${tone} span-${span}`} key={label}>
+                <Icon size={23} aria-hidden="true" />
+                <span>{label}</span>
+                <ArrowUpRight size={17} aria-hidden="true" />
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section shell markets-section">
+        <div className="markets-copy">
+          <p className="kicker">Global reach / 03</p>
+          <h2>International search. Local market awareness.</h2>
+          <p>
+            Hiring across borders takes more than a wider LinkedIn search. It takes
+            an understanding of how talent moves, communicates and makes decisions
+            in each market.
+          </p>
+          <div className="global-badge"><Globe2 size={19} /> EMEA · US · LATAM</div>
+        </div>
+        <div className="market-list">
+          {markets.map((market) => (
+            <article className="market-item" key={market.name}>
+              <span className="market-number">{market.accent}</span>
+              <div><h3>{market.name}</h3><p>{market.detail}</p></div>
+              <ArrowUpRight size={19} aria-hidden="true" />
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <BrandTransition direction="reverse" />
+
+      <section className="section difference-section" aria-labelledby="difference-title">
+        <div className="shell">
+          <div className="section-heading">
+            <div>
+              <p className="kicker">Why Craftsphere / 04</p>
+              <h2 id="difference-title">Senior attention without the agency layers.</h2>
+            </div>
+            <p>
+              Every search is led directly by an experienced technology recruiter,
+              with a strategy shaped around your market, role and hiring team.
+            </p>
+          </div>
+          <div className="difference-grid">
+            <article><Handshake size={22} /><h3>Direct senior partnership</h3><p>You work directly with the recruiter running the search.</p></article>
+            <article><Target size={22} /><h3>Individual search strategy</h3><p>Research, outreach and messaging are tailored to each position.</p></article>
+            <article><Gauge size={22} /><h3>Faster feedback rhythm</h3><p>Clear communication keeps candidates and hiring teams moving.</p></article>
+            <article><BadgeCheck size={22} /><h3>Lower agency overhead</h3><p>A focused model without unnecessary account-management layers.</p></article>
+            <article><UserRoundCheck size={22} /><h3>Candidate-first representation</h3><p>Your company is represented with care at every candidate touchpoint.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section shell terms-section" aria-labelledby="terms-title">
+        <div className="terms-intro">
+          <p className="kicker">Simple terms / 05</p>
+          <h2 id="terms-title">Clear commitment. Less hiring risk.</h2>
+          <p>Commercial terms designed to make specialist recruitment straightforward.</p>
+        </div>
+        <div className="terms-grid">
+          <article><span><ShieldCheck size={23} /></span><div><h3>No hire - no fee</h3><p>You only pay when a candidate successfully joins your company.</p></div></article>
+          <article><span><BadgeCheck size={23} /></span><div><h3>Three-month replacement guarantee</h3><p>Additional protection after the successful placement.</p></div></article>
+          <article><span><Layers3 size={23} /></span><div><h3>Flexible multi-role terms</h3><p>Adaptable cooperation for companies recruiting several positions.</p></div></article>
+        </div>
+      </section>
+
+      <section id="contact" className="section shell about-section">
+        <div className="about-panel">
+          <div className="about-copy">
+            <p className="kicker kicker-light">Contact / 06</p>
+            <h2>Hands-on recruitment with clear communication.</h2>
+            <p>
+              I&apos;m Konrad Smuga, a Lead Talent Acquisition Specialist and Senior Tech
+              Recruiter with ten years of experience hiring across EMEA, the US and LATAM.
+              Craftsphere Talent brings that hands-on expertise to every search — with
+              the care of a specialist partner and the accountability of an in-house recruiter.
+            </p>
+            <a className="about-story-link" href="/about">
+              More about my approach <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
+          </div>
+          <blockquote>
+            “The right recruitment partner does more than fill a role. They make the
+            entire hiring experience better.”
+          </blockquote>
+          <div className="contact-block">
+            <div className="contact-person">
+              <span>Let&apos;s talk</span>
+              <strong>Konrad Smuga</strong>
+              <small>IT Recruiter &amp; Talent Consultant</small>
+            </div>
+            <div className="contact-links">
+              <a href="mailto:konrad@craftspheretalent.com" aria-label="Email Konrad Smuga" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="contact_card">
+                <span><Mail size={17} /></span>
+                <div><small>Email</small><strong>konrad@craftspheretalent.com</strong></div>
+                <ArrowUpRight size={17} />
+              </a>
+              <a href="tel:+48662073227" aria-label="Call Konrad Smuga" data-analytics-event="contact_click" data-contact-method="phone" data-contact-placement="contact_card">
+                <span><Phone size={17} /></span>
+                <div><small>Phone</small><strong>+48 662 073 227</strong></div>
+                <ArrowUpRight size={17} />
+              </a>
+              <a
+                href="https://wa.me/48662073227?text=Hello%20Konrad%2C%20I%20found%20Craftsphere%20Talent%20and%20would%20like%20to%20discuss%20a%20hiring%20need."
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Message Konrad Smuga on WhatsApp"
+                data-analytics-event="contact_click"
+                data-contact-method="whatsapp"
+                data-contact-placement="contact_card"
+              >
+                <span><MessageCircle size={17} /></span>
+                <div><small>WhatsApp</small><strong>Start a conversation</strong></div>
+                <ArrowUpRight size={17} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/konrad-smuga-1265a3b4/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="View Konrad Smuga on LinkedIn"
+                data-analytics-event="contact_click"
+                data-contact-method="linkedin"
+                data-contact-placement="contact_card"
+              >
+                <span><ExternalLink size={17} /></span>
+                <div><small>LinkedIn</small><strong>View Konrad&apos;s profile</strong></div>
+                <ArrowUpRight size={17} />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="experience-card">
+          <div className="experience-icon"><Sparkles size={22} /></div>
+          <p className="kicker">Candidate experience</p>
+          <h3>Respect at every step.</h3>
+          <p>
+            Timely feedback, honest communication and a smooth process protect your
+            employer brand while keeping exceptional candidates engaged.
+          </p>
+          <div className="experience-points">
+            <span><Check size={14} /> Clear expectations</span>
+            <span><Check size={14} /> Fast feedback</span>
+            <span><Check size={14} /> Human communication</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="closing shell" aria-label="Craftsphere Talent closing statement">
+        <span className="closing-shape" aria-hidden="true" />
+        <p className="kicker">Craftsphere Talent</p>
+        <h2>Build the team behind <em>what&apos;s next.</em></h2>
+        <a className="button button-primary" href="mailto:konrad@craftspheretalent.com" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="closing">
+          Email Me <Mail size={17} aria-hidden="true" />
+        </a>
+      </section>
+
+      <SiteFooter />
+    </main>
+  );
+}
