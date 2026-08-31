@@ -129,7 +129,7 @@ export default function Home() {
 
         <div className="hero-visual reveal reveal-4 hero-art-entry">
           <div className="visual-glow" />
-          <figure className="visual-image">
+          <figure className="visual-image visual-image-editorial">
             <picture>
               <source srcSet="/craftsphere-ai-it-talent-hero.avif" type="image/avif" />
               <source srcSet="/craftsphere-ai-it-talent-hero.webp" type="image/webp" />
@@ -148,21 +148,23 @@ export default function Home() {
               <span>Technology talent ecosystem</span>
             </figcaption>
           </figure>
-          <div className="value-bubble bubble-savings">
-            <span className="bubble-icon"><Sparkles size={17} /></span>
-            <div><strong>Lower recruitment costs</strong><p>Focused search without unnecessary agency overhead.</p></div>
+          <div className="hiring-flow" aria-label="Recruitment process">
+            {[
+              ["01", "Market mapping"],
+              ["02", "Outreach"],
+              ["03", "Shortlist"],
+              ["04", "Interview"],
+              ["05", "Hire"],
+            ].map(([step, label]) => (
+              <div className="hiring-flow-step" key={step}>
+                <span>{step}</span>
+                <strong>{label}</strong>
+              </div>
+            ))}
           </div>
-          <div className="value-bubble bubble-individual">
-            <span className="bubble-icon"><MessageCircle size={17} /></span>
-            <div><strong>Individual approach</strong><p>A search strategy shaped around every role.</p></div>
-          </div>
-          <div className="value-bubble bubble-efficiency">
-            <span className="bubble-icon"><Workflow size={17} /></span>
-            <div><strong>Efficiency</strong><p>Relevant shortlists and a clear feedback rhythm.</p></div>
-          </div>
-          <div className="value-bubble bubble-candidate">
-            <span className="bubble-icon"><UserRoundCheck size={17} /></span>
-            <div><strong>Great candidate experience</strong><p>Clear communication and respect at every stage.</p></div>
+          <div className="hero-side-note">
+            <span>Search principle</span>
+            <p>Fewer profiles. Better fit. Clearer decisions.</p>
           </div>
         </div>
       </section>
@@ -278,33 +280,39 @@ export default function Home() {
             <p className="kicker">Client feedback / 02</p>
             <h2 id="testimonials-title">Trusted for complex technology hiring.</h2>
           </div>
-          <p>
-            Feedback from founders, technology leaders and hiring teams who have worked
-            with the recruitment expertise behind Craftsphere Talent.
-          </p>
+          <p>Feedback from leaders who worked directly with the recruitment expertise behind Craftsphere Talent.</p>
         </div>
-        <div className="testimonials-window">
-          <div className="testimonials-track">
-            {[0, 1, 2].map((copyIndex) => (
-              <div className="testimonial-set" aria-hidden={copyIndex > 0 || undefined} key={`testimonial-set-${copyIndex}`}>
-                {testimonials.map((testimonial) => (
-                  <article className="testimonial-card" key={`${copyIndex}-${testimonial.role}`}>
-                    <Quote size={22} aria-hidden="true" />
-                    <blockquote>{testimonial.quote}</blockquote>
-                    <footer>
-                      <strong>{testimonial.role}</strong>
-                      <span>{testimonial.company}</span>
-                    </footer>
-                  </article>
-                ))}
-              </div>
-            ))}
-          </div>
+        <div className="shell testimonials-editorial-grid">
+          {testimonials.map((testimonial, index) => (
+            <article className={`testimonial-editorial testimonial-editorial-${index + 1}`} key={testimonial.role}>
+              <div className="testimonial-index">0{index + 1}</div>
+              <Quote size={24} aria-hidden="true" />
+              <blockquote>{testimonial.quote}</blockquote>
+              <footer>
+                <strong>{testimonial.role}</strong>
+                <span>{testimonial.company}</span>
+              </footer>
+            </article>
+          ))}
         </div>
-        <div className="shell delivery-proof">
+        <div className="shell delivery-proof delivery-proof-flat">
           <span><Handshake size={19} aria-hidden="true" /></span>
           <p><strong>Delivery-focused recruitment.</strong> Accurate shortlists, responsive communication and a process designed to keep hiring moving.</p>
           <small>What delivery teams can expect</small>
+        </div>
+      </section>
+
+      <section className="senior-attention" aria-labelledby="senior-attention-title">
+        <div className="shell senior-attention-layout">
+          <div className="senior-attention-copy">
+            <p className="kicker kicker-light">Direct senior delivery</p>
+            <h2 id="senior-attention-title">Senior recruitment attention. <em>Without agency layers.</em></h2>
+          </div>
+          <div className="senior-attention-points">
+            <article><span>01</span><h3>Direct ownership</h3><p>The person understanding the brief is the person running the search.</p></article>
+            <article><span>02</span><h3>Sharper shortlists</h3><p>Search effort is concentrated on candidates who genuinely match the role and market.</p></article>
+            <article><span>03</span><h3>Faster decisions</h3><p>Clear communication and market feedback keep candidates and hiring teams moving.</p></article>
+          </div>
         </div>
       </section>
 

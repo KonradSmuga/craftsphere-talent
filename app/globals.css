@@ -1805,3 +1805,211 @@ main { max-width: 100%; overflow-x: clip; }
   .expertise-card:nth-child(3n+2),
   .testimonial-set .testimonial-card { transform: none !important; }
 }
+
+/* 2026-08-31 premium editorial pass */
+.hero {
+  grid-template-columns: minmax(0, 1.12fr) minmax(420px, .88fr);
+  gap: clamp(44px, 5vw, 86px);
+  padding-block: 74px 104px;
+}
+.hero h1 {
+  max-width: 800px;
+  font-size: clamp(62px, 6.25vw, 94px);
+  line-height: .91;
+  letter-spacing: -.064em;
+}
+.hero-copy { position: relative; z-index: 2; }
+.hero-intro { max-width: 650px; }
+.hero-benefits {
+  max-width: 650px;
+  border-radius: 4px;
+  box-shadow: none;
+  background: transparent;
+  border-inline: 0;
+}
+.hero-benefits span { background: rgba(255,255,255,.5); }
+.hero-visual { min-height: 610px; display: grid; align-content: center; }
+.visual-image-editorial {
+  width: calc(100% - 30px);
+  margin-left: 30px;
+  border-radius: 6px;
+  transform: rotate(1.2deg);
+  box-shadow: 24px 28px 0 rgba(50,42,99,.07), 0 28px 70px rgba(47,39,96,.15);
+}
+.visual-image-editorial img { border-radius: 2px; }
+.hiring-flow {
+  width: calc(100% + 34px);
+  margin: 34px 0 0 -34px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0,1fr));
+  position: relative;
+}
+.hiring-flow::before {
+  content: "";
+  height: 1px;
+  position: absolute;
+  top: 16px;
+  right: 0;
+  left: 0;
+  background: linear-gradient(90deg, #5a49b9, #55b7c7);
+  transform-origin: left;
+  animation: flowLine 2.4s .7s cubic-bezier(.2,.8,.2,1) both;
+}
+.hiring-flow-step { min-width: 0; position: relative; padding-top: 37px; }
+.hiring-flow-step::before {
+  content: "";
+  width: 9px; height: 9px;
+  position: absolute; top: 12px; left: 0;
+  border-radius: 50%; background: #fff; border: 2px solid #6957c9;
+  box-shadow: 0 0 0 5px rgba(105,87,201,.09);
+}
+.hiring-flow-step span { color: #8a84a0; font-size: 8px; font-weight: 800; letter-spacing: .1em; }
+.hiring-flow-step strong { display: block; margin-top: 5px; color: #332e53; font-size: 10px; line-height: 1.25; }
+.hero-side-note {
+  width: 210px;
+  margin: 24px 0 0 auto;
+  padding-left: 15px;
+  border-left: 2px solid #6856cf;
+}
+.hero-side-note span { color: #827c99; font-size: 8px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+.hero-side-note p { margin: 6px 0 0; color: #37334f; font-family: Georgia, serif; font-size: 16px; line-height: 1.35; }
+@keyframes flowLine { from { transform: scaleX(0); opacity: .2; } to { transform: scaleX(1); opacity: 1; } }
+
+/* Three testimonials should feel curated, not artificially infinite. */
+.testimonials-section { padding-block: 100px; }
+.testimonials-editorial-grid {
+  display: grid;
+  grid-template-columns: 1.12fr .88fr;
+  grid-template-rows: repeat(2, minmax(220px, auto));
+  gap: 1px;
+  background: rgba(73,60,139,.14);
+  border-top: 1px solid rgba(73,60,139,.15);
+  border-bottom: 1px solid rgba(73,60,139,.15);
+}
+.testimonial-editorial {
+  padding: clamp(28px, 3vw, 42px);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px 22px;
+  align-content: start;
+  position: relative;
+  background: rgba(249,249,253,.96);
+}
+.testimonial-editorial-1 { grid-row: 1 / 3; align-content: center; background: #f2effc; }
+.testimonial-editorial-1 blockquote { font-size: clamp(27px, 2.65vw, 39px); line-height: 1.3; }
+.testimonial-index { position: absolute; top: 18px; right: 20px; color: #9a94b0; font-size: 9px; font-weight: 800; letter-spacing: .14em; }
+.testimonial-editorial > svg { color: #6856cf; }
+.testimonial-editorial blockquote { grid-column: 2; margin: 0; color: #312e47; font-family: Georgia, serif; font-size: 18px; line-height: 1.52; }
+.testimonial-editorial footer { grid-column: 2; margin-top: 18px; padding-top: 14px; display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid rgba(79,65,148,.13); }
+.testimonial-editorial footer strong { font-size: 11px; }
+.testimonial-editorial footer span { color: #7a7591; font-size: 10px; text-align: right; }
+.delivery-proof-flat { border-radius: 0; border-inline: 0; box-shadow: none; background: transparent; }
+
+.senior-attention {
+  padding-block: 110px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(125deg, #15132d 0%, #24204d 52%, #44327d 100%);
+  color: #fff;
+}
+.senior-attention::after {
+  content: "";
+  width: 460px; height: 460px;
+  position: absolute; right: -180px; top: -210px;
+  border: 1px solid rgba(255,255,255,.11); border-radius: 50%;
+  box-shadow: 0 0 0 70px rgba(255,255,255,.025), 0 0 0 140px rgba(255,255,255,.018);
+}
+.senior-attention-layout { display: grid; grid-template-columns: .92fr 1.08fr; gap: 90px; align-items: end; position: relative; z-index: 1; }
+.senior-attention-copy h2 { max-width: 620px; margin: 16px 0 0; font-family: Georgia, serif; font-size: clamp(50px, 5.4vw, 76px); line-height: .98; letter-spacing: -.05em; font-weight: 400; }
+.senior-attention-copy h2 em { color: #bcebf1; font-weight: 400; }
+.senior-attention-points { border-top: 1px solid rgba(255,255,255,.2); }
+.senior-attention-points article { min-height: 116px; padding: 24px 0; display: grid; grid-template-columns: 44px 1fr 1.2fr; gap: 18px; align-items: start; border-bottom: 1px solid rgba(255,255,255,.16); }
+.senior-attention-points span { color: #9fe0e8; font-size: 9px; font-weight: 800; letter-spacing: .12em; }
+.senior-attention-points h3 { margin: 0; font-size: 18px; font-weight: 650; }
+.senior-attention-points p { margin: 0; color: #d0cde2; font-size: 12px; line-height: 1.6; }
+
+/* Fewer pillowy cards: use lines, flatter corners, and stronger hierarchy. */
+.service-card,
+.expertise-card,
+.difference-grid article,
+.terms-grid article,
+.principle-card,
+.scope-panel,
+.company-profile-flat { border-radius: 6px !important; box-shadow: none !important; }
+.service-grid-three { gap: 1px; background: rgba(81,66,150,.12); }
+.service-card { border-color: transparent !important; background: rgba(250,250,253,.96) !important; }
+.service-card-featured { background: #f0edf9 !important; }
+.expertise-grid { gap: 1px; background: rgba(76,63,143,.12); }
+.expertise-card { border: 0; }
+.difference-grid { gap: 1px; background: rgba(255,255,255,.13); }
+.difference-grid article { border: 0; }
+.terms-grid { gap: 1px; background: rgba(82,68,148,.11); }
+.terms-grid article { border: 0; background: rgba(255,255,255,.94); }
+
+/* Premium About page */
+.about-story { padding-block: 108px 90px; display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(56px, 7vw, 110px); align-items: start; }
+.about-story-heading { position: sticky; top: 120px; }
+.about-story-heading h2 { max-width: 470px; margin: 15px 0 22px; font-family: Georgia, serif; font-size: clamp(44px, 4.6vw, 64px); line-height: 1; letter-spacing: -.045em; font-weight: 500; }
+.about-story-heading > p:last-child { max-width: 430px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.72; }
+.career-timeline { border-top: 1px solid rgba(83,68,152,.17); }
+.career-timeline article { min-height: 150px; padding: 27px 0; display: grid; grid-template-columns: 42px 90px 1fr; gap: 18px; align-items: start; border-bottom: 1px solid rgba(83,68,152,.14); }
+.timeline-marker { width: 26px; height: 26px; display: grid; place-items: center; border: 1px solid rgba(93,76,173,.23); border-radius: 50%; }
+.timeline-marker span { color: #6656bf; font-size: 7px; font-weight: 800; }
+.career-timeline time { color: #6a5bc0; font-family: Georgia, serif; font-size: 18px; }
+.career-timeline h3 { margin: 0 0 8px; color: #2f2b49; font-size: 20px; }
+.career-timeline p { margin: 0; max-width: 560px; color: #68657a; font-size: 13px; line-height: 1.65; }
+.company-profile-flat { margin-top: 12px; padding: 28px 0; border-inline: 0 !important; border-radius: 0 !important; background: transparent !important; }
+.company-profile-flat .company-profile-heading > span { border-radius: 50%; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero h1 { max-width: 760px; }
+  .hero-visual { min-height: 0; }
+  .visual-image-editorial { width: calc(100% - 24px); margin-left: 24px; }
+  .hiring-flow { width: 100%; margin-left: 0; }
+  .senior-attention-layout { grid-template-columns: 1fr; gap: 52px; }
+  .about-story { grid-template-columns: 1fr; }
+  .about-story-heading { position: static; }
+}
+
+@media (max-width: 650px) {
+  .hero { padding-top: 28px; }
+  .hero h1 { font-size: clamp(46px, 13.4vw, 60px); line-height: .95; }
+  .visual-image-editorial { width: 100%; margin: 0; transform: none; box-shadow: 12px 14px 0 rgba(50,42,99,.06), 0 22px 55px rgba(47,39,96,.12); }
+  .hiring-flow { grid-template-columns: 1fr; margin-top: 27px; border-left: 1px solid rgba(105,87,201,.35); }
+  .hiring-flow::before { display: none; }
+  .hiring-flow-step { min-height: 42px; padding: 0 0 0 24px; display: grid; grid-template-columns: 28px 1fr; align-items: center; }
+  .hiring-flow-step::before { width: 7px; height: 7px; top: 17px; left: -4px; box-shadow: 0 0 0 4px rgba(105,87,201,.08); }
+  .hiring-flow-step span, .hiring-flow-step strong { margin: 0; }
+  .hero-side-note { width: auto; margin: 16px 0 0 24px; }
+
+  .testimonials-section { padding-block: 68px; }
+  .testimonials-editorial-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .testimonial-editorial-1 { grid-row: auto; }
+  .testimonial-editorial-1 blockquote { font-size: 22px; }
+  .testimonial-editorial { padding: 25px 20px; grid-template-columns: 24px 1fr; }
+  .testimonial-editorial blockquote { font-size: 16px; }
+  .testimonial-editorial footer { flex-direction: column; gap: 4px; }
+  .testimonial-editorial footer span { text-align: left; }
+
+  .senior-attention { padding-block: 72px; }
+  .senior-attention-copy h2 { font-size: 43px; }
+  .senior-attention-points article { grid-template-columns: 30px 1fr; gap: 7px 12px; }
+  .senior-attention-points p { grid-column: 2; }
+
+  .service-grid-three, .expertise-grid, .difference-grid, .terms-grid { gap: 1px; }
+  .service-grid-three .service-card,
+  .service-grid-three .service-card-lead,
+  .service-grid-three .service-card:not(.service-card-lead) { border-radius: 2px !important; }
+
+  .about-story { padding-block: 70px 58px; gap: 38px; }
+  .about-story-heading h2 { font-size: 40px; }
+  .career-timeline article { min-height: 0; grid-template-columns: 32px 64px 1fr; gap: 12px; }
+  .career-timeline h3 { font-size: 18px; }
+  .career-timeline p { font-size: 12px; }
+  .company-profile-flat { width: calc(100% - 28px); padding: 24px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hiring-flow::before { animation: none; transform: none; }
+}

@@ -49,6 +49,14 @@ const principles = [
   },
 ];
 
+
+const careerTimeline = [
+  { year: "2016", title: "Agency foundations", copy: "Started in technology recruitment, building direct-search discipline and closing more than 30 hires in the first year." },
+  { year: "2019", title: "High-volume delivery", copy: "Recognised for top hiring performance and delivered a personal best of nine hires in a single month." },
+  { year: "2021", title: "International technology search", copy: "Moved deeper into cloud and AWS consulting recruitment across the US, EMEA and LATAM." },
+  { year: "2024–25", title: "Sole recruitment ownership", copy: "Led the end-to-end recruitment function for an international technology consultancy across technical and leadership hiring." },
+  { year: "Now", title: "Craftsphere Talent", copy: "A direct, senior-led recruitment model focused on specialist technology hiring and better candidate experience." },
+];
 const technologyAreas = ["Cloud", "AI", "Frontend", "Backend", "Data", "Full Stack", "DevOps", "Web3"];
 
 export default function AboutPage() {
@@ -100,7 +108,24 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="company-profile shell" aria-labelledby="company-profile-title">
+      <section className="about-story shell" aria-labelledby="about-story-title">
+        <div className="about-story-heading">
+          <p className="kicker">Experience / timeline</p>
+          <h2 id="about-story-title">Built through delivery, not layers.</h2>
+          <p>Ten years of recruitment work across agencies, consulting businesses and international technology teams shaped the operating model behind Craftsphere Talent.</p>
+        </div>
+        <div className="career-timeline">
+          {careerTimeline.map((item, index) => (
+            <article key={item.year}>
+              <div className="timeline-marker"><span>{String(index + 1).padStart(2, "0")}</span></div>
+              <time>{item.year}</time>
+              <div><h3>{item.title}</h3><p>{item.copy}</p></div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="company-profile company-profile-flat shell" aria-labelledby="company-profile-title">
         <div className="company-profile-heading">
           <span><Building2 size={22} aria-hidden="true" /></span>
           <div>
