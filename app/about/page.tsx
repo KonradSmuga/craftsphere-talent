@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import {
   ArrowDownRight,
   CalendarDays,
+  Building2,
   Check,
+  ExternalLink,
   Globe2,
   Handshake,
   Mail,
@@ -93,9 +95,28 @@ export default function AboutPage() {
       <section className="about-proof" aria-label="Craftsphere Talent experience">
         <div className="shell about-proof-grid">
           <div><strong>10</strong><span>years in IT recruitment</span></div>
-          <div><strong>100s</strong><span>of successful hires</span></div>
-          <div><strong>3</strong><span>international markets</span></div>
+          <div><strong className="proof-word">Hundreds</strong><span>of successful technology hires</span></div>
+          <div><strong className="proof-word">Tailored</strong><span>search strategy for every role</span></div>
         </div>
+      </section>
+
+      <section className="company-profile shell" aria-labelledby="company-profile-title">
+        <div className="company-profile-heading">
+          <span><Building2 size={22} aria-hidden="true" /></span>
+          <div>
+            <p className="kicker">Company information</p>
+            <h2 id="company-profile-title">Craftsphere Talent Ltd</h2>
+          </div>
+        </div>
+        <dl className="company-details">
+          <div><dt>Company number</dt><dd>16965978</dd></div>
+          <div><dt>Company status</dt><dd>Active · Private limited company</dd></div>
+          <div><dt>Registered office</dt><dd>27 Old Gloucester Street, London, United Kingdom, WC1N 3AX</dd></div>
+          <div><dt>Incorporated</dt><dd>15 January 2026</dd></div>
+        </dl>
+        <a className="company-registry-link" href="https://find-and-update.company-information.service.gov.uk/company/16965978" target="_blank" rel="noreferrer">
+          View official Companies House record <ExternalLink size={15} aria-hidden="true" />
+        </a>
       </section>
 
       <section className="section shell about-principles" aria-labelledby="principles-title">

@@ -54,6 +54,11 @@ export function SiteHeader({ page }: { page: HeaderPage }) {
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.classList.toggle("mobile-nav-open", mobileOpen);
+    return () => document.documentElement.classList.remove("mobile-nav-open");
+  }, [mobileOpen]);
+
   const activeItem: NavKey | null = page === "about" ? "about" : scrollSection;
   const homePrefix = page === "home" ? "" : "/";
   const contactHref = page === "home" ? "#contact" : "/#contact";
