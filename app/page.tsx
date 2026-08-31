@@ -77,7 +77,7 @@ export default function Home() {
             <span className="eyebrow-dot" /> IT recruitment · Talent consulting
           </div>
           <h1 id="hero-title" className="reveal reveal-2">
-            Senior IT recruitment and <em>talent consulting.</em>
+            Senior IT recruitment and talent consulting.
           </h1>
           <p className="hero-intro reveal reveal-3">
             I help technology companies hire difficult-to-find specialists, improve
@@ -140,15 +140,33 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="proof-strip" aria-label="Craftsphere Talent experience">
-        <div className="shell proof-grid">
-          <div className="proof-intro">
-            <span>Experience that translates into better hiring</span>
-            <ArrowDownRight size={20} aria-hidden="true" />
+      <section className="track-record" aria-labelledby="track-record-title">
+        <div className="shell track-record-shell">
+          <div className="record-intro">
+            <div className="record-brand-mark" aria-hidden="true"><i /><i /><i /><i /></div>
+            <div>
+              <p>Craftsphere track record</p>
+              <h2 id="track-record-title">Experience measured in outcomes.</h2>
+            </div>
           </div>
-          <div className="stat"><strong>10</strong><span>years in IT recruitment</span></div>
-          <div className="stat"><strong>100s</strong><span>of successful hires</span></div>
-          <div className="stat"><strong>3</strong><span>international markets</span></div>
+
+          <div className="record-grid">
+            <article className="record-card">
+              <div className="record-card-top"><span><BadgeCheck size={18} /></span><small>01</small></div>
+              <div className="record-value"><strong>10</strong><em>years</em></div>
+              <p>Hands-on IT recruitment</p>
+            </article>
+            <article className="record-card">
+              <div className="record-card-top"><span><Gauge size={18} /></span><small>02</small></div>
+              <div className="record-value"><strong>100s</strong><em>hires</em></div>
+              <p>Successful placements</p>
+            </article>
+            <article className="record-card">
+              <div className="record-card-top"><span><Globe2 size={18} /></span><small>03</small></div>
+              <div className="record-value"><strong>3</strong><em>markets</em></div>
+              <p>EMEA · US · LATAM</p>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -165,7 +183,7 @@ export default function Home() {
         </div>
 
         <div className="service-grid service-grid-three">
-          <article className="service-card service-card-featured service-card-lead">
+          <article className="service-card service-card-featured">
             <div className="service-number">01</div>
             <div className="service-card-copy">
               <div className="service-icon"><Network size={25} aria-hidden="true" /></div>
@@ -426,4 +444,3 @@ export default function Home() {
     </main>
   );
 }
- 
