@@ -3,7 +3,6 @@ import {
   ArrowUpRight,
   BadgeCheck,
   BrainCircuit,
-  CalendarDays,
   Check,
   Cloud,
   Code2,
@@ -91,13 +90,14 @@ export default function Home() {
             <span><MessageCircle size={15} /> Candidate-first communication</span>
           </div>
           <div className="hero-actions reveal reveal-5">
-            <a className="button button-primary" href="mailto:konrad@craftspheretalent.com?subject=20-minute%20introduction" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="hero">
-              Book a 20-minute introduction <CalendarDays size={17} aria-hidden="true" />
+            <a className="button button-primary" href="mailto:konrad@craftspheretalent.com?subject=Hiring%20support%20for%20our%20team" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="hero">
+              Discuss a hiring need <ArrowUpRight size={17} aria-hidden="true" />
             </a>
-            <a className="text-link" href="#services">
-              See how I help <ArrowDownRight size={16} aria-hidden="true" />
+            <a className="button button-secondary" href="https://wa.me/48662073227?text=Hello%20Konrad%2C%20I%20would%20like%20to%20discuss%20a%20hiring%20need." target="_blank" rel="noreferrer" data-analytics-event="contact_click" data-contact-method="whatsapp" data-contact-placement="hero">
+              WhatsApp <MessageCircle size={17} aria-hidden="true" />
             </a>
           </div>
+          <p className="hero-response reveal reveal-5"><span /> Direct contact with the recruiter leading your search.</p>
         </div>
 
         <div className="hero-visual reveal reveal-4 hero-art-entry">
@@ -180,6 +180,9 @@ export default function Home() {
               <li><Check size={15} /> High-quality, relevant shortlists</li>
               <li><Check size={15} /> Clear communication from brief to hire</li>
             </ul>
+            <a className="card-cta" href="mailto:konrad@craftspheretalent.com?subject=Permanent%20IT%20recruitment" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="service_permanent">
+              Discuss a search <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
           </article>
 
           <article className="service-card">
@@ -197,6 +200,9 @@ export default function Home() {
               <li><Check size={15} /> Process and candidate journey design</li>
               <li><Check size={15} /> Interview and feedback optimisation</li>
             </ul>
+            <a className="card-cta" href="mailto:konrad@craftspheretalent.com?subject=Recruitment%20consulting" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="service_consulting">
+              Improve the process <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
           </article>
 
           <article className="service-card service-card-candidate">
@@ -214,7 +220,23 @@ export default function Home() {
               <li><Check size={15} /> Transparent candidate communication</li>
               <li><Check size={15} /> Stronger interview experience</li>
             </ul>
+            <a className="card-cta" href="mailto:konrad@craftspheretalent.com?subject=Candidate%20experience%20improvement" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="service_candidate_experience">
+              Talk about candidate experience <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
           </article>
+        </div>
+      </section>
+
+      <section className="conversion-band shell" aria-label="Start a hiring conversation">
+        <div>
+          <p className="kicker">Have an active role?</p>
+          <h2>Get a clearer search strategy before you spend more on recruitment.</h2>
+        </div>
+        <div className="conversion-actions">
+          <a className="button button-light" href="mailto:konrad@craftspheretalent.com?subject=Hiring%20support%20for%20an%20active%20role" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="mid_page">
+            Email the role details <Mail size={17} aria-hidden="true" />
+          </a>
+          <a className="conversion-link" href="#contact">View all contact options <ArrowDownRight size={16} aria-hidden="true" /></a>
         </div>
       </section>
 
@@ -269,16 +291,17 @@ export default function Home() {
       <BrandTransition direction="reverse" />
 
       <section className="section difference-section" aria-labelledby="difference-title">
-        <div className="shell">
-          <div className="section-heading">
-            <div>
-              <p className="kicker">Why Craftsphere / 04</p>
-              <h2 id="difference-title">Senior attention without the agency layers.</h2>
-            </div>
+        <div className="shell difference-layout">
+          <div className="difference-copy">
+            <p className="kicker">Why Craftsphere / 04</p>
+            <h2 id="difference-title">Senior attention without the agency layers.</h2>
             <p>
               Every search is led directly by an experienced technology recruiter,
               with a strategy shaped around your market, role and hiring team.
             </p>
+            <a className="button button-light" href="mailto:konrad@craftspheretalent.com?subject=Technology%20recruitment%20partnership" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="why_craftsphere">
+              Start a conversation <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
           </div>
           <div className="difference-grid">
             <article><Handshake size={22} /><h3>Direct senior partnership</h3><p>You work directly with the recruiter running the search.</p></article>
@@ -295,6 +318,7 @@ export default function Home() {
           <p className="kicker">Simple terms / 05</p>
           <h2 id="terms-title">Clear commitment. Less hiring risk.</h2>
           <p>Commercial terms designed to make specialist recruitment straightforward.</p>
+          <a className="text-link terms-link" href="#contact">Ask about terms <ArrowDownRight size={16} aria-hidden="true" /></a>
         </div>
         <div className="terms-grid">
           <article><span><ShieldCheck size={23} /></span><div><h3>No hire - no fee</h3><p>You only pay when a candidate successfully joins your company.</p></div></article>
@@ -303,32 +327,32 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="section shell about-section">
-        <div className="about-panel">
-          <div className="about-copy">
-            <p className="kicker kicker-light">Contact / 06</p>
-            <h2>Hands-on recruitment with clear communication.</h2>
-            <p>
-              I&apos;m Konrad Smuga, a Lead Talent Acquisition Specialist and Senior Tech
-              Recruiter with ten years of experience hiring across EMEA, the US and LATAM.
-              Craftsphere Talent brings that hands-on expertise to every search — with
-              the care of a specialist partner and the accountability of an in-house recruiter.
-            </p>
-            <a className="about-story-link" href="/about">
-              More about my approach <ArrowUpRight size={17} aria-hidden="true" />
+      <section id="contact" className="section shell contact-section">
+        <div className="contact-lead">
+          <p className="kicker kicker-light">Contact / 06</p>
+          <h2>Tell me what your team needs.</h2>
+          <p>
+            Share the role, market and hiring challenge. You will speak directly with
+            the recruiter who will assess and lead the search.
+          </p>
+          <div className="contact-primary-actions">
+            <a className="button button-light" href="mailto:konrad@craftspheretalent.com?subject=Hiring%20support%20for%20our%20team" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="contact_lead">
+              Email role details <Mail size={17} aria-hidden="true" />
+            </a>
+            <a className="button button-ghost-light" href="https://wa.me/48662073227?text=Hello%20Konrad%2C%20I%20would%20like%20to%20discuss%20a%20hiring%20need." target="_blank" rel="noreferrer" data-analytics-event="contact_click" data-contact-method="whatsapp" data-contact-placement="contact_lead">
+              WhatsApp <MessageCircle size={17} aria-hidden="true" />
             </a>
           </div>
-          <blockquote>
-            “The right recruitment partner does more than fill a role. They make the
-            entire hiring experience better.”
-          </blockquote>
-          <div className="contact-block">
-            <div className="contact-person">
-              <span>Let&apos;s talk</span>
-              <strong>Konrad Smuga</strong>
-              <small>IT Recruiter &amp; Talent Consultant</small>
-            </div>
-            <div className="contact-links">
+          <blockquote>“The right recruitment partner should make the entire hiring experience better.”</blockquote>
+        </div>
+
+        <div className="contact-card">
+          <div className="contact-person">
+            <span>Direct contact</span>
+            <strong>Konrad Smuga</strong>
+            <small>IT Recruiter &amp; Talent Consultant</small>
+          </div>
+          <div className="contact-links">
               <a href="mailto:konrad@craftspheretalent.com" aria-label="Email Konrad Smuga" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="contact_card">
                 <span><Mail size={17} /></span>
                 <div><small>Email</small><strong>konrad@craftspheretalent.com</strong></div>
@@ -365,22 +389,14 @@ export default function Home() {
                 <div><small>LinkedIn</small><strong>View Konrad&apos;s profile</strong></div>
                 <ArrowUpRight size={17} />
               </a>
-            </div>
           </div>
-        </div>
-
-        <div className="experience-card">
-          <div className="experience-icon"><Sparkles size={22} /></div>
-          <p className="kicker">Candidate experience</p>
-          <h3>Respect at every step.</h3>
-          <p>
-            Timely feedback, honest communication and a smooth process protect your
-            employer brand while keeping exceptional candidates engaged.
-          </p>
-          <div className="experience-points">
-            <span><Check size={14} /> Clear expectations</span>
-            <span><Check size={14} /> Fast feedback</span>
-            <span><Check size={14} /> Human communication</span>
+          <div className="candidate-promise">
+            <div className="experience-icon"><Sparkles size={19} /></div>
+            <div>
+              <p className="kicker">Candidate experience</p>
+              <h3>Respect at every step.</h3>
+              <p>Clear expectations, fast feedback and human communication.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -389,10 +405,22 @@ export default function Home() {
         <span className="closing-shape" aria-hidden="true" />
         <p className="kicker">Craftsphere Talent</p>
         <h2>Build the team behind <em>what&apos;s next.</em></h2>
-        <a className="button button-primary" href="mailto:konrad@craftspheretalent.com" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="closing">
-          Email Me <Mail size={17} aria-hidden="true" />
-        </a>
+        <div className="closing-actions">
+          <a className="button button-primary" href="mailto:konrad@craftspheretalent.com?subject=Hiring%20support%20for%20our%20team" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="closing">
+            Discuss a hiring need <Mail size={17} aria-hidden="true" />
+          </a>
+          <a className="text-link" href="/about">About my approach <ArrowUpRight size={16} aria-hidden="true" /></a>
+        </div>
       </section>
+
+      <nav className="mobile-quick-actions" aria-label="Quick contact">
+        <a href="mailto:konrad@craftspheretalent.com?subject=Hiring%20support%20for%20our%20team" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="mobile_sticky">
+          <Mail size={17} aria-hidden="true" /> Email
+        </a>
+        <a href="https://wa.me/48662073227?text=Hello%20Konrad%2C%20I%20would%20like%20to%20discuss%20a%20hiring%20need." target="_blank" rel="noreferrer" data-analytics-event="contact_click" data-contact-method="whatsapp" data-contact-placement="mobile_sticky">
+          <MessageCircle size={17} aria-hidden="true" /> WhatsApp
+        </a>
+      </nav>
 
       <SiteFooter />
     </main>
