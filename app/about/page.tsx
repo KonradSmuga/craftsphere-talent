@@ -49,7 +49,6 @@ const principles = [
   },
 ];
 
-
 const careerTimeline = [
   { year: "2016", title: "Agency foundations", copy: "Started in technology recruitment, building direct-search discipline and closing more than 30 hires in the first year." },
   { year: "2019", title: "High-volume delivery", copy: "Recognised for top hiring performance and delivered a personal best of nine hires in a single month." },
@@ -57,6 +56,7 @@ const careerTimeline = [
   { year: "2024–25", title: "Sole recruitment ownership", copy: "Led the end-to-end recruitment function for an international technology consultancy across technical and leadership hiring." },
   { year: "Now", title: "Craftsphere Talent", copy: "A direct, senior-led recruitment model focused on specialist technology hiring and better candidate experience." },
 ];
+
 const technologyAreas = ["Cloud", "AI", "Frontend", "Backend", "Data", "Full Stack", "DevOps", "Web3"];
 
 export default function AboutPage() {
@@ -125,7 +125,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="company-profile company-profile-flat shell" aria-labelledby="company-profile-title">
+      <section className="company-profile company-profile-secondary shell" aria-labelledby="company-profile-title">
         <div className="company-profile-heading">
           <span><Building2 size={22} aria-hidden="true" /></span>
           <div>

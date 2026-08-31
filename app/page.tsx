@@ -16,7 +16,6 @@ import {
   MessageCircle,
   Network,
   Phone,
-  Quote,
   ShieldCheck,
   Sparkles,
   Target,
@@ -27,6 +26,7 @@ import {
 import { BrandAmbient } from "./brand-ambient";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
+import { TestimonialGrid } from "./testimonial-grid";
 
 const expertise = [
   { label: "Cloud", icon: Cloud, tone: "mint", span: 4 },
@@ -148,23 +148,21 @@ export default function Home() {
               <span>Technology talent ecosystem</span>
             </figcaption>
           </figure>
-          <div className="hiring-flow" aria-label="Recruitment process">
-            {[
-              ["01", "Market mapping"],
-              ["02", "Outreach"],
-              ["03", "Shortlist"],
-              ["04", "Interview"],
-              ["05", "Hire"],
-            ].map(([step, label]) => (
-              <div className="hiring-flow-step" key={step}>
-                <span>{step}</span>
-                <strong>{label}</strong>
-              </div>
-            ))}
+          <div className="value-bubble bubble-savings">
+            <span className="bubble-icon"><Sparkles size={17} /></span>
+            <div><strong>Lower recruitment costs</strong><p>Focused search without unnecessary agency overhead.</p></div>
           </div>
-          <div className="hero-side-note">
-            <span>Search principle</span>
-            <p>Fewer profiles. Better fit. Clearer decisions.</p>
+          <div className="value-bubble bubble-individual">
+            <span className="bubble-icon"><MessageCircle size={17} /></span>
+            <div><strong>Individual approach</strong><p>A search strategy shaped around every role.</p></div>
+          </div>
+          <div className="value-bubble bubble-efficiency">
+            <span className="bubble-icon"><Workflow size={17} /></span>
+            <div><strong>Efficiency</strong><p>Relevant shortlists and a clear feedback rhythm.</p></div>
+          </div>
+          <div className="value-bubble bubble-candidate">
+            <span className="bubble-icon"><UserRoundCheck size={17} /></span>
+            <div><strong>Great candidate experience</strong><p>Clear communication and respect at every stage.</p></div>
           </div>
         </div>
       </section>
@@ -280,22 +278,13 @@ export default function Home() {
             <p className="kicker">Client feedback / 02</p>
             <h2 id="testimonials-title">Trusted for complex technology hiring.</h2>
           </div>
-          <p>Feedback from leaders who worked directly with the recruitment expertise behind Craftsphere Talent.</p>
+          <p>
+            Three perspectives from leaders who worked directly with the recruitment
+            expertise behind Craftsphere Talent.
+          </p>
         </div>
-        <div className="shell testimonials-editorial-grid">
-          {testimonials.map((testimonial, index) => (
-            <article className={`testimonial-editorial testimonial-editorial-${index + 1}`} key={testimonial.role}>
-              <div className="testimonial-index">0{index + 1}</div>
-              <Quote size={24} aria-hidden="true" />
-              <blockquote>{testimonial.quote}</blockquote>
-              <footer>
-                <strong>{testimonial.role}</strong>
-                <span>{testimonial.company}</span>
-              </footer>
-            </article>
-          ))}
-        </div>
-        <div className="shell delivery-proof delivery-proof-flat">
+        <TestimonialGrid testimonials={testimonials} />
+        <div className="shell delivery-proof">
           <span><Handshake size={19} aria-hidden="true" /></span>
           <p><strong>Delivery-focused recruitment.</strong> Accurate shortlists, responsive communication and a process designed to keep hiring moving.</p>
           <small>What delivery teams can expect</small>
