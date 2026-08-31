@@ -7,5 +7,5 @@ export const SOCIAL_IMAGE = {
   url: "/og.png",
   width: 1200,
   height: 630,
-  alt: "Craftsphere Talent — Senior IT Recruitment and Talent Consulting",
+  alt: "Craftsphere Talent — Strategic IT Recruitment & Talent Consulting",
 };

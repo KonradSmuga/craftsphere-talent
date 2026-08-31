@@ -110,9 +110,7 @@ export default function AboutPage() {
         </div>
         <dl className="company-details">
           <div><dt>Company number</dt><dd>16965978</dd></div>
-          <div><dt>Company status</dt><dd>Active · Private limited company</dd></div>
           <div><dt>Registered office</dt><dd>27 Old Gloucester Street, London, United Kingdom, WC1N 3AX</dd></div>
-          <div><dt>Incorporated</dt><dd>15 January 2026</dd></div>
         </dl>
         <a className="company-registry-link" href="https://find-and-update.company-information.service.gov.uk/company/16965978" target="_blank" rel="noreferrer">
           View official Companies House record <ExternalLink size={15} aria-hidden="true" />

@@ -99,7 +99,7 @@ export default function Home() {
             <span className="eyebrow-dot" /> IT recruitment · Talent consulting
           </div>
           <h1 id="hero-title" className="reveal reveal-2">
-            Senior IT recruitment and talent consulting.
+            Strategic IT Recruitment & Talent Consulting
           </h1>
           <div className="hero-expertise-line reveal reveal-3" aria-label="Experts in IT hiring">
             <span />
@@ -279,16 +279,16 @@ export default function Home() {
             <h2 id="testimonials-title">Trusted for complex technology hiring.</h2>
           </div>
           <p>
-            Feedback adapted for brevity from recommendations for the recruitment
-            expertise behind Craftsphere Talent.
+            Feedback from founders, technology leaders and hiring teams who have worked
+            with the recruitment expertise behind Craftsphere Talent.
           </p>
         </div>
         <div className="testimonials-window">
           <div className="testimonials-track">
-            {[false, true].map((duplicate) => (
-              <div className="testimonial-set" aria-hidden={duplicate || undefined} key={duplicate ? "duplicate" : "primary"}>
+            {[0, 1, 2].map((copyIndex) => (
+              <div className="testimonial-set" aria-hidden={copyIndex > 0 || undefined} key={`testimonial-set-${copyIndex}`}>
                 {testimonials.map((testimonial) => (
-                  <article className="testimonial-card" key={`${duplicate}-${testimonial.role}`}>
+                  <article className="testimonial-card" key={`${copyIndex}-${testimonial.role}`}>
                     <Quote size={22} aria-hidden="true" />
                     <blockquote>{testimonial.quote}</blockquote>
                     <footer>
