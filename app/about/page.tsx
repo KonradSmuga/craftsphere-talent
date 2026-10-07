@@ -103,7 +103,7 @@ export default function AboutPage() {
       <section className="about-proof" aria-label="Craftsphere Talent experience">
         <div className="shell about-proof-grid">
           <div><strong>10</strong><span>years in IT recruitment</span></div>
-          <div><strong className="proof-word">Hundreds</strong><span>of successful technology hires</span></div>
+          <div><strong>160+</strong><span>successful technology hires</span></div>
           <div><strong className="proof-word">Tailored</strong><span>search strategy for every role</span></div>
         </div>
       </section>

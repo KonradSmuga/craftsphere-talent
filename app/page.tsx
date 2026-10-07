@@ -39,6 +39,36 @@ const expertise = [
   { label: "Web3", icon: Network, tone: "lilac", span: 2 },
 ];
 
+// Track record shown under the hero. Keep these numbers factual — they are client-facing claims.
+const trackRecord = [
+  { value: "10", unit: "years", label: "Hands-on IT recruitment", icon: BadgeCheck },
+  { value: "160+", unit: "hires", label: "Successful technology placements", icon: Gauge },
+  { value: "3", unit: "markets", label: "EMEA, the US and LATAM", icon: Globe2 },
+]
+
+const whyCraftsphere = [
+  {
+    title: "Direct ownership",
+    detail: "The person who understands the brief is the person running the search.",
+    icon: Handshake,
+  },
+  {
+    title: "Sharper shortlists",
+    detail: "Research and outreach are tailored to each role, so you only meet candidates who genuinely fit.",
+    icon: Target,
+  },
+  {
+    title: "Faster decisions",
+    detail: "A clear feedback rhythm and honest market input keep candidates and hiring teams moving.",
+    icon: Gauge,
+  },
+  {
+    title: "Candidate-first representation",
+    detail: "Your company is represented with care at every candidate touchpoint.",
+    icon: UserRoundCheck,
+  },
+];
+
 const markets = [
   {
     name: "EMEA",
@@ -99,13 +129,8 @@ export default function Home() {
             <span className="eyebrow-dot" /> IT recruitment · Talent consulting
           </div>
           <h1 id="hero-title" className="reveal reveal-2">
-            IT Recruitment
+            Specialist IT recruitment for Cloud, Data &amp; AI teams
           </h1>
-          <div className="hero-expertise-line reveal reveal-3" aria-label="Experts in IT hiring">
-            <span />
-            <strong>Experts in IT hiring</strong>
-            <span />
-          </div>
           <p className="hero-intro reveal reveal-3">
             Craftsphere Talent helps technology companies hire difficult-to-find specialists,
             improve recruitment processes and deliver a candidate experience that strengthens
@@ -150,7 +175,7 @@ export default function Home() {
           </figure>
           <div className="value-bubble bubble-savings">
             <span className="bubble-icon"><Sparkles size={17} /></span>
-            <div><strong>Lower recruitment costs</strong><p>Focused search without unnecessary agency overhead.</p></div>
+            <div><strong>Lower recruitment costs</strong><p>You pay only when a candidate joins.</p></div>
           </div>
           <div className="value-bubble bubble-individual">
             <span className="bubble-icon"><MessageCircle size={17} /></span>
@@ -178,21 +203,13 @@ export default function Home() {
           </div>
 
           <div className="record-grid">
-            <article className="record-card">
-              <div className="record-card-top"><span><BadgeCheck size={18} /></span><small>01</small></div>
-              <div className="record-value"><strong>10</strong><em>years</em></div>
-              <p>Hands-on IT recruitment</p>
-            </article>
-            <article className="record-card">
-              <div className="record-card-top"><span><Gauge size={18} /></span><small>02</small></div>
-              <div className="record-value record-value-word"><strong>Hundreds</strong><em>of hires</em></div>
-              <p>Successful technology placements</p>
-            </article>
-            <article className="record-card">
-              <div className="record-card-top"><span><Handshake size={18} /></span><small>03</small></div>
-              <div className="record-value record-value-word"><strong>Individual</strong><em>approach</em></div>
-              <p>Each search shaped around the role</p>
-            </article>
+            {trackRecord.map(({ value, unit, label, icon: Icon }, index) => (
+              <article className="record-card" key={label}>
+                <div className="record-card-top"><span><Icon size={18} /></span><small>{String(index + 1).padStart(2, "0")}</small></div>
+                <div className="record-value"><strong>{value}</strong><em>{unit}</em></div>
+                <p>{label}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -284,26 +301,26 @@ export default function Home() {
           </p>
         </div>
         <TestimonialGrid testimonials={testimonials} />
-        <div className="shell delivery-proof">
-          <span><Handshake size={19} aria-hidden="true" /></span>
-          <p><strong>Delivery-focused recruitment.</strong> Accurate shortlists, responsive communication and a process designed to keep hiring moving.</p>
-          <small>What delivery teams can expect</small>
+      </section>
+
+      <section id="why" className="section difference-section" aria-labelledby="difference-title">
+        <div className="shell difference-layout">
+          <div className="difference-copy">
+            <p className="kicker">Why Craftsphere / 03</p>
+            <h2 id="difference-title">Senior recruitment attention. <em>Without agency layers.</em></h2>
+            <p>
+              One experienced recruiter owns your search from brief to signed offer —
+              no account managers, no hand-offs, no junior sourcers in between.
+            </p>
+          </div>
+          <div className="difference-grid">
+            {whyCraftsphere.map(({ title, detail, icon: Icon }) => (
+              <article key={title}><Icon size={22} /><h3>{title}</h3><p>{detail}</p></article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="senior-attention" aria-labelledby="senior-attention-title">
-        <div className="shell senior-attention-layout">
-          <div className="senior-attention-copy">
-            <p className="kicker kicker-light">Direct senior delivery</p>
-            <h2 id="senior-attention-title">Senior recruitment attention. <em>Without agency layers.</em></h2>
-          </div>
-          <div className="senior-attention-points">
-            <article><span>01</span><h3>Direct ownership</h3><p>The person understanding the brief is the person running the search.</p></article>
-            <article><span>02</span><h3>Sharper shortlists</h3><p>Search effort is concentrated on candidates who genuinely match the role and market.</p></article>
-            <article><span>03</span><h3>Faster decisions</h3><p>Clear communication and market feedback keep candidates and hiring teams moving.</p></article>
-          </div>
-        </div>
-      </section>
 
       <section className="conversion-band shell" aria-label="Start a hiring conversation">
         <div>
@@ -324,7 +341,7 @@ export default function Home() {
         <div className="shell">
           <div className="section-heading">
             <div>
-            <p className="kicker">Expertise / 03</p>
+            <p className="kicker">Expertise / 04</p>
               <h2>Across the technology landscape.</h2>
             </div>
             <p>
@@ -346,7 +363,7 @@ export default function Home() {
 
       <section className="section shell markets-section">
         <div className="markets-copy">
-          <p className="kicker">Global reach / 04</p>
+          <p className="kicker">Global reach / 05</p>
           <h2>International search. Local market awareness.</h2>
           <p>
             Hiring across borders takes more than a wider LinkedIn search. It takes
@@ -367,29 +384,6 @@ export default function Home() {
       </section>
 
       <BrandTransition direction="reverse" />
-
-      <section className="section difference-section" aria-labelledby="difference-title">
-        <div className="shell difference-layout">
-          <div className="difference-copy">
-            <p className="kicker">Why Craftsphere / 05</p>
-            <h2 id="difference-title">Senior expertise without the agency layers.</h2>
-            <p>
-              Every search is built around your market, role and hiring team, with
-              experienced technology recruitment support throughout the process.
-            </p>
-            <a className="button button-light" href="mailto:konrad@craftspheretalent.com?subject=Technology%20recruitment%20partnership" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="why_craftsphere">
-              Start a conversation <ArrowUpRight size={17} aria-hidden="true" />
-            </a>
-          </div>
-          <div className="difference-grid">
-            <article><Handshake size={22} /><h3>Experienced partnership</h3><p>Focused recruitment support stays close to your hiring team.</p></article>
-            <article><Target size={22} /><h3>Individual search strategy</h3><p>Research, outreach and messaging are tailored to each position.</p></article>
-            <article><Gauge size={22} /><h3>Faster feedback rhythm</h3><p>Clear communication keeps candidates and hiring teams moving.</p></article>
-            <article><BadgeCheck size={22} /><h3>Lower agency overhead</h3><p>A focused model without unnecessary account-management layers.</p></article>
-            <article><UserRoundCheck size={22} /><h3>Candidate-first representation</h3><p>Your company is represented with care at every candidate touchpoint.</p></article>
-          </div>
-        </div>
-      </section>
 
       <section className="section shell terms-section" aria-labelledby="terms-title">
         <div className="terms-intro">
@@ -413,14 +407,6 @@ export default function Home() {
             Share the role, market and hiring challenge. Craftsphere Talent will assess
             the search and recommend a focused way forward.
           </p>
-          <div className="contact-primary-actions">
-            <a className="button button-light" href="mailto:konrad@craftspheretalent.com?subject=Hiring%20support%20for%20our%20team" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="contact_lead">
-              Email role details <Mail size={17} aria-hidden="true" />
-            </a>
-            <a className="button button-ghost-light" href="https://wa.me/48662073227?text=Hello%20Konrad%2C%20I%20would%20like%20to%20discuss%20a%20hiring%20need." target="_blank" rel="noreferrer" data-analytics-event="contact_click" data-contact-method="whatsapp" data-contact-placement="contact_lead">
-              WhatsApp <MessageCircle size={17} aria-hidden="true" />
-            </a>
-          </div>
           <blockquote>“The right recruitment partner should make the entire hiring experience better.”</blockquote>
         </div>
 
@@ -484,10 +470,9 @@ export default function Home() {
         <p className="kicker">Craftsphere Talent</p>
         <h2>Build the team behind <em>what&apos;s next.</em></h2>
         <div className="closing-actions">
-          <a className="button button-primary" href="mailto:konrad@craftspheretalent.com?subject=Hiring%20support%20for%20our%20team" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="closing">
-            Discuss a hiring need <Mail size={17} aria-hidden="true" />
+          <a className="button button-primary" href="/about">
+            About the approach <ArrowUpRight size={17} aria-hidden="true" />
           </a>
-          <a className="text-link" href="/about">About the approach <ArrowUpRight size={16} aria-hidden="true" /></a>
         </div>
       </section>
 
