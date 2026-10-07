@@ -1,11 +1,8 @@
 import {
   ArrowUpRight,
   BadgeCheck,
-  BrainCircuit,
   Check,
   Cloud,
-  Code2,
-  Database,
   ExternalLink,
   Gauge,
   Handshake,
@@ -14,11 +11,9 @@ import {
   MessageCircle,
   Network,
   Phone,
-  Plane,
   ShieldCheck,
   Sparkles,
   Target,
-  TerminalSquare,
   UserRoundCheck,
   Workflow,
 } from "lucide-react";
@@ -28,6 +23,7 @@ import { ScreenScroller } from "./screen-scroller";
 import { SiteHeader } from "./site-header";
 import { ContactForm } from "./site-forms";
 import { LocalTime } from "./local-time";
+import { TechIcon, type TechKey } from "./tech-icons";
 
 const EMAIL = "konrad@craftspheretalent.com";
 const WHATSAPP = "https://wa.me/48662073227?text=Hello%20Konrad%2C%20I%20would%20like%20to%20discuss%20a%20hiring%20need.";
@@ -121,15 +117,15 @@ const approach = [
   },
 ];
 
-const expertise = [
-  { label: "Cloud", icon: Cloud, tone: "indigo" },
-  { label: "AI", icon: BrainCircuit, tone: "blue" },
-  { label: "Frontend", icon: Code2, tone: "violet" },
-  { label: "Backend", icon: TerminalSquare, tone: "teal" },
-  { label: "Data", icon: Database, tone: "violet" },
-  { label: "Full Stack", icon: Layers3, tone: "teal" },
-  { label: "DevOps", icon: Workflow, tone: "indigo" },
-  { label: "Web3", icon: Network, tone: "blue" },
+const expertise: Array<{ label: string; icon: TechKey; tone: string }> = [
+  { label: "Cloud", icon: "cloud", tone: "indigo" },
+  { label: "AI", icon: "ai", tone: "blue" },
+  { label: "Frontend", icon: "frontend", tone: "violet" },
+  { label: "Backend", icon: "backend", tone: "teal" },
+  { label: "Data", icon: "data", tone: "violet" },
+  { label: "Full Stack", icon: "full-stack", tone: "teal" },
+  { label: "DevOps", icon: "devops", tone: "indigo" },
+  { label: "Web3", icon: "web3", tone: "blue" },
 ];
 
 const markets = [
@@ -174,11 +170,10 @@ function WorldTile({ x }: { x: number }) {
   );
 }
 
-/** Cartoon globe: the world scrolls inside a circle while a small plane orbits it. */
+/** Cartoon globe: the world scrolls inside a circle. */
 function Globe() {
   return (
     <div className="globe" aria-hidden="true">
-      <div className="globe-orbit"><span className="globe-plane"><Plane size={20} /></span></div>
       <div className="globe-ball">
         <svg className="globe-map" viewBox="0 0 800 200" preserveAspectRatio="none">
           <WorldTile x={0} />
@@ -331,9 +326,9 @@ export default function Home() {
             </p>
           </header>
           <ul className="stack-grid">
-            {expertise.map(({ label, icon: Icon, tone }) => (
-              <li className={`stack-${tone} tech-${label.toLowerCase().replace(/\s+/g, "-")}`} key={label}>
-                <span className="tech-icon"><Icon size={26} aria-hidden="true" /></span>
+            {expertise.map(({ label, icon, tone }) => (
+              <li className={`stack-${tone}`} key={label}>
+                <TechIcon name={icon} />
                 {label}
               </li>
             ))}
