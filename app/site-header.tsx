@@ -6,14 +6,13 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-type HeaderPage = "home" | "about" | "privacy";
-type NavKey = "services" | "approach" | "expertise" | "terms" | "about";
+type HeaderPage = "home" | "about" | "privacy" | "candidates";
+type NavKey = "services" | "approach" | "expertise" | "candidates" | "about";
 
 const observedSections: Array<{ id: string; nav: NavKey }> = [
   { id: "services", nav: "services" },
   { id: "approach", nav: "approach" },
   { id: "expertise", nav: "expertise" },
-  { id: "terms", nav: "terms" },
 ];
 
 export function SiteHeader({ page }: { page: HeaderPage }) {
@@ -61,7 +60,8 @@ export function SiteHeader({ page }: { page: HeaderPage }) {
     return () => document.documentElement.classList.remove("mobile-nav-open");
   }, [mobileOpen]);
 
-  const activeItem: NavKey | null = page === "about" ? "about" : scrollSection;
+  const activeItem: NavKey | null =
+    page === "about" ? "about" : page === "candidates" ? "candidates" : scrollSection;
   const homePrefix = page === "home" ? "" : "/";
   const contactHref = page === "home" ? "#contact" : "/#contact";
 
@@ -69,7 +69,7 @@ export function SiteHeader({ page }: { page: HeaderPage }) {
     { key: "services", label: "Services", href: `${homePrefix}#services` },
     { key: "approach", label: "Approach", href: `${homePrefix}#approach` },
     { key: "expertise", label: "Expertise", href: `${homePrefix}#expertise` },
-    { key: "terms", label: "Terms", href: `${homePrefix}#terms` },
+    { key: "candidates", label: "Candidates", href: "/candidates" },
     { key: "about", label: "About", href: "/about" },
   ];
 
@@ -96,11 +96,11 @@ export function SiteHeader({ page }: { page: HeaderPage }) {
               href={href}
               data-label={label}
               aria-current={
-                activeItem === key && (key !== "about" || page === "about")
-                  ? key === "about"
+                activeItem !== key
+                  ? undefined
+                  : key === "about" || key === "candidates"
                     ? "page"
                     : "location"
-                  : undefined
               }
               key={key}
             >

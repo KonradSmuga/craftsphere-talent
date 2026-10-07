@@ -25,6 +25,7 @@ import { SiteFooter } from "./site-footer";
 import { BrandAmbient } from "./brand-ambient";
 import { ScreenScroller } from "./screen-scroller";
 import { SiteHeader } from "./site-header";
+import { ContactForm } from "./site-forms";
 
 const EMAIL = "konrad@craftspheretalent.com";
 const WHATSAPP = "https://wa.me/48662073227?text=Hello%20Konrad%2C%20I%20would%20like%20to%20discuss%20a%20hiring%20need.";
@@ -32,7 +33,7 @@ const WHATSAPP = "https://wa.me/48662073227?text=Hello%20Konrad%2C%20I%20would%2
 // Client-facing claims: keep these factual.
 const stats = [
   { value: "10", label: "years in IT recruitment" },
-  { value: "160+", label: "technology hires" },
+  { value: "160+", label: "candidates hired" },
   { value: "3", label: "markets: EMEA, the US and LATAM" },
 ];
 
@@ -167,7 +168,7 @@ export default function Home() {
               <li><MessageCircle size={15} aria-hidden="true" /> Candidate-first communication</li>
             </ul>
             <div className="intro-actions">
-              <a className="button button-primary" href={mailto("Hiring support for our team")} data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="hero">
+              <a className="button button-primary" href="#contact" data-analytics-event="contact_click" data-contact-method="form" data-contact-placement="hero">
                 Discuss a hiring need
               </a>
               <a className="button button-secondary" href={WHATSAPP} target="_blank" rel="noreferrer" data-analytics-event="contact_click" data-contact-method="whatsapp" data-contact-placement="hero">
@@ -226,7 +227,7 @@ export default function Home() {
                     <li key={point}><Check size={16} aria-hidden="true" /> {point}</li>
                   ))}
                 </ul>
-                <a href={mailto(subject)} data-analytics-event="contact_click" data-contact-method="email" data-contact-placement={placement}>
+                <a href="#contact" data-analytics-event="contact_click" data-contact-method="form" data-contact-placement={placement} data-service={subject}>
                   {cta}
                 </a>
               </article>
@@ -334,16 +335,16 @@ export default function Home() {
 
       <section id="contact" className="screen" aria-labelledby="contact-title">
         <div className="shell talk">
-          <div className="talk-lead">
+          <div className="talk-form">
             <h2 id="contact-title">Tell us what your team needs.</h2>
             <p>
               Share the role, market and hiring challenge. Craftsphere Talent will assess the
               search and recommend a focused way forward.
             </p>
-            <blockquote>“The right recruitment partner should make the entire hiring experience better.”</blockquote>
+            <ContactForm />
           </div>
 
-          <div className="talk-card">
+          <aside className="talk-card" aria-label="Direct contact">
             <p className="talk-person">
               <strong>Konrad Smuga</strong>
               <span>IT Recruiter &amp; Talent Consultant</span>
@@ -368,7 +369,9 @@ export default function Home() {
               <span><small>LinkedIn</small>View Konrad&apos;s profile</span>
               <ArrowUpRight size={18} aria-hidden="true" />
             </a>
-          </div>
+            <blockquote>“The right recruitment partner should make the entire hiring experience better.”</blockquote>
+            <a className="talk-candidates" href="/candidates">Looking for a new role? Send your CV</a>
+          </aside>
         </div>
       </section>
 

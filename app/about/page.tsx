@@ -1,35 +1,44 @@
 import type { Metadata } from "next";
-import {
-  ArrowDownRight,
-  CalendarDays,
-  Building2,
-  Check,
-  ExternalLink,
-  Globe2,
-  Handshake,
-  Mail,
-  MessageCircle,
-  UserRoundCheck,
-} from "lucide-react";
-import { SiteFooter } from "../site-footer";
+import { Building2, Check, ExternalLink, Handshake, MessageCircle, UserRoundCheck } from "lucide-react";
 import { BrandAmbient } from "../brand-ambient";
+import { SiteFooter } from "../site-footer";
 import { SiteHeader } from "../site-header";
 import { SOCIAL_IMAGE } from "../site-config";
 
+const DESCRIPTION =
+  "Learn about the experience and practical approach behind Craftsphere Talent's IT recruitment and talent consulting across EMEA, the US and LATAM.";
+
 export const metadata: Metadata = {
   title: "About | Craftsphere Talent",
-  description:
-    "Learn about the experience and practical approach behind Craftsphere Talent's IT recruitment and talent consulting across EMEA, the US and LATAM.",
+  description: DESCRIPTION,
   alternates: { canonical: "/about" },
   openGraph: {
     type: "website",
     url: "/about",
     title: "About | Craftsphere Talent",
-    description:
-      "Learn about the experience and practical approach behind Craftsphere Talent's IT recruitment and talent consulting across EMEA, the US and LATAM.",
+    description: DESCRIPTION,
     images: [SOCIAL_IMAGE],
   },
 };
+
+// Set to the photo's path in /public (e.g. "/konrad-smuga.webp") once it's added.
+const PROFILE_PHOTO: string | null = null;
+
+const facts = ["Permanent & contract recruitment", "EMEA, US & LATAM markets", "Candidate-first process"];
+
+const stats = [
+  { value: "10", label: "years in IT recruitment" },
+  { value: "160+", label: "candidates hired" },
+  { value: "9", label: "hires in a single month, personal best" },
+];
+
+const careerTimeline = [
+  { year: "2016", title: "Agency foundations", copy: "Started in technology recruitment, building direct-search discipline and closing more than 30 hires in the first year." },
+  { year: "2019", title: "High-volume delivery", copy: "Recognised for top hiring performance and delivered a personal best of nine hires in a single month." },
+  { year: "2021", title: "International technology search", copy: "Moved deeper into cloud and AWS consulting recruitment across the US, EMEA and LATAM." },
+  { year: "2024–25", title: "Sole recruitment ownership", copy: "Led the end-to-end recruitment function for an international technology consultancy across technical and leadership hiring." },
+  { year: "Now", title: "Craftsphere Talent", copy: "A direct, senior-led recruitment model focused on specialist technology hiring and better candidate experience." },
+];
 
 const principles = [
   {
@@ -49,153 +58,155 @@ const principles = [
   },
 ];
 
-const careerTimeline = [
-  { year: "2016", title: "Agency foundations", copy: "Started in technology recruitment, building direct-search discipline and closing more than 30 hires in the first year." },
-  { year: "2019", title: "High-volume delivery", copy: "Recognised for top hiring performance and delivered a personal best of nine hires in a single month." },
-  { year: "2021", title: "International technology search", copy: "Moved deeper into cloud and AWS consulting recruitment across the US, EMEA and LATAM." },
-  { year: "2024–25", title: "Sole recruitment ownership", copy: "Led the end-to-end recruitment function for an international technology consultancy across technical and leadership hiring." },
-  { year: "Now", title: "Craftsphere Talent", copy: "A direct, senior-led recruitment model focused on specialist technology hiring and better candidate experience." },
-];
-
+const markets = ["EMEA", "US", "LATAM"];
 const technologyAreas = ["Cloud", "AI", "Frontend", "Backend", "Data", "Full Stack", "DevOps", "Web3"];
 
 export default function AboutPage() {
   return (
-    <main id="top" className="about-page">
+    <main id="top" className="home page">
       <BrandAmbient />
       <SiteHeader page="about" />
 
-      <section className="about-hero shell" aria-labelledby="about-title">
-        <div className="about-hero-copy">
-          <p className="eyebrow reveal reveal-1"><span className="eyebrow-dot" /> About me</p>
-          <h1 id="about-title" className="reveal reveal-2">
-            Recruitment experience built across <em>agencies, startups and global tech teams.</em>
-          </h1>
-          <p className="reveal reveal-3">
-            I&apos;m a senior technology recruiter and talent partner with ten years of
-            experience in permanent and contract recruitment. My background combines
-            hands-on sourcing, recruitment leadership, hiring-process improvement and
-            direct partnership with international hiring teams.
-          </p>
-          <div className="hero-actions reveal reveal-4">
-            <a className="button button-primary" href="mailto:konrad@craftspheretalent.com?subject=20-minute%20introduction" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="about_hero">
-              Book a 20-minute introduction <CalendarDays size={17} />
-            </a>
-            <a className="text-link" href="/#services">Explore services <ArrowDownRight size={16} /></a>
-          </div>
-        </div>
-
-        <aside className="profile-summary reveal reveal-3" aria-label="About me">
-          <div className="profile-monogram">KS</div>
+      <section className="block about-intro" aria-labelledby="about-title">
+        <div className="shell about-intro-grid">
           <div>
-            <p className="kicker">IT recruitment &amp; talent consulting</p>
-            <h2>Konrad Smuga</h2>
-            <p>Ten years of experience in technology recruitment.</p>
+            <h1 id="about-title">Recruitment experience built across agencies, startups and global tech teams.</h1>
+            <p className="page-lead">
+              I&apos;m a senior technology recruiter and talent partner with ten years of experience in
+              permanent and contract recruitment. My background combines hands-on sourcing,
+              recruitment leadership, hiring-process improvement and direct partnership with
+              international hiring teams.
+            </p>
+            <div className="intro-actions">
+              <a className="button button-primary" href="/#contact" data-analytics-event="contact_click" data-contact-method="form" data-contact-placement="about_hero">
+                Discuss a hiring need
+              </a>
+              <a className="button button-secondary" href="/#services">Explore services</a>
+            </div>
           </div>
-          <div className="profile-facts">
-            <span><Check size={18} /><b>Permanent &amp; contract recruitment</b></span>
-            <span><Check size={18} /><b>EMEA, US &amp; LATAM markets</b></span>
-            <span><Check size={18} /><b>Candidate-first process</b></span>
+
+          <aside className="profile" aria-label="Konrad Smuga">
+            {PROFILE_PHOTO ? (
+              <img className="profile-photo" src={PROFILE_PHOTO} width="640" height="760" alt="Konrad Smuga" />
+            ) : (
+              <div className="profile-photo profile-placeholder" aria-hidden="true">KS</div>
+            )}
+            <div className="profile-body">
+              <h2>Konrad Smuga</h2>
+              <p>IT Recruiter &amp; Talent Consultant</p>
+              <ul>
+                {facts.map((fact) => (
+                  <li key={fact}><Check size={16} aria-hidden="true" /> {fact}</li>
+                ))}
+              </ul>
+            </div>
+          </aside>
+        </div>
+
+        <div className="shell stats" aria-labelledby="about-stats-title">
+          <h2 id="about-stats-title">A decade in technology recruitment.</h2>
+          <dl>
+            {stats.map(({ value, label }) => (
+              <div key={label}>
+                <dt>{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <section className="block" aria-labelledby="story-title">
+        <div className="shell story">
+          <div className="story-copy">
+            <h2 id="story-title">Built through delivery, not layers.</h2>
+            <p>
+              Ten years of recruitment work across agencies, consulting businesses and international
+              technology teams shaped the operating model behind Craftsphere Talent.
+            </p>
           </div>
-        </aside>
-      </section>
-
-      <section className="about-proof" aria-label="Craftsphere Talent experience">
-        <div className="shell about-proof-grid">
-          <div><strong>10</strong><span>years in IT recruitment</span></div>
-          <div><strong>160+</strong><span>successful technology hires</span></div>
-          <div><strong className="proof-word">Tailored</strong><span>search strategy for every role</span></div>
+          <ol className="timeline">
+            {careerTimeline.map(({ year, title, copy }) => (
+              <li key={year}>
+                <time>{year}</time>
+                <div>
+                  <h3>{title}</h3>
+                  <p>{copy}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      <section className="about-story shell" aria-labelledby="about-story-title">
-        <div className="about-story-heading">
-          <p className="kicker">Experience / timeline</p>
-          <h2 id="about-story-title">Built through delivery, not layers.</h2>
-          <p>Ten years of recruitment work across agencies, consulting businesses and international technology teams shaped the operating model behind Craftsphere Talent.</p>
-        </div>
-        <div className="career-timeline">
-          {careerTimeline.map((item, index) => (
-            <article key={item.year}>
-              <div className="timeline-marker"><span>{String(index + 1).padStart(2, "0")}</span></div>
-              <time>{item.year}</time>
-              <div><h3>{item.title}</h3><p>{item.copy}</p></div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="company-profile company-profile-secondary shell" aria-labelledby="company-profile-title">
-        <div className="company-profile-heading">
-          <span><Building2 size={22} aria-hidden="true" /></span>
-          <div>
-            <p className="kicker">Company information</p>
-            <h2 id="company-profile-title">Craftsphere Talent Ltd</h2>
-          </div>
-        </div>
-        <dl className="company-details">
-          <div><dt>Company number</dt><dd>16965978</dd></div>
-          <div><dt>Registered office</dt><dd>27 Old Gloucester Street, London, United Kingdom, WC1N 3AX</dd></div>
-        </dl>
-        <a className="company-registry-link" href="https://find-and-update.company-information.service.gov.uk/company/16965978" target="_blank" rel="noreferrer">
-          View official Companies House record <ExternalLink size={15} aria-hidden="true" />
-        </a>
-      </section>
-
-      <section className="section shell about-principles" aria-labelledby="principles-title">
-        <div className="section-heading">
-          <div>
-            <p className="kicker">My approach / 01</p>
+      <section className="block" aria-labelledby="principles-title">
+        <div className="shell">
+          <header className="screen-head">
             <h2 id="principles-title">Recruitment that feels clear and personal.</h2>
+            <p>
+              Craftsphere Talent is built around close cooperation, practical advice and a strong
+              experience for both hiring teams and candidates.
+            </p>
+          </header>
+          <div className="offer-grid">
+            {principles.map(({ title, copy, icon: Icon }) => (
+              <article className="offer" key={title}>
+                <h3><Icon size={22} aria-hidden="true" /> {title}</h3>
+                <p>{copy}</p>
+              </article>
+            ))}
           </div>
-          <p>
-            Craftsphere Talent is built around close cooperation, practical advice and
-            a strong experience for both hiring teams and candidates.
-          </p>
-        </div>
-        <div className="principles-grid">
-          {principles.map(({ title, copy, icon: Icon }, index) => (
-            <article className="principle-card" key={title}>
-              <div className="principle-top"><span>0{index + 1}</span><Icon size={24} aria-hidden="true" /></div>
-              <h3>{title}</h3>
-              <p>{copy}</p>
-            </article>
-          ))}
         </div>
       </section>
 
-      <section className="section shell about-scope" aria-labelledby="scope-title">
-        <div className="scope-copy">
-          <p className="kicker">Experience / 02</p>
-          <h2 id="scope-title">International reach. Technology focus.</h2>
-          <p>
-            I recruit across EMEA, the United States and LATAM, adapting each search
-            to the local talent market while keeping communication consistent.
-          </p>
-          <div className="scope-markets" aria-label="Recruitment markets">
-            <span><Globe2 size={16} /> EMEA</span>
-            <span><Globe2 size={16} /> United States</span>
-            <span><Globe2 size={16} /> LATAM</span>
+      <section className="block" aria-labelledby="scope-title">
+        <div className="shell scope">
+          <div>
+            <h2 id="scope-title">International reach. Technology focus.</h2>
+            <p>
+              I recruit across EMEA, the US and LATAM, adapting each search to the local talent
+              market while keeping communication consistent.
+            </p>
+          </div>
+          <div className="scope-lists">
+            <h3>Markets</h3>
+            <ul className="tag-list tag-list-strong">
+              {markets.map((market) => <li key={market}>{market}</li>)}
+            </ul>
+            <h3>Technology areas</h3>
+            <ul className="tag-list">
+              {technologyAreas.map((area) => <li key={area}>{area}</li>)}
+            </ul>
           </div>
         </div>
-        <div className="scope-panel">
-          <p>Technology areas</p>
-          <div className="scope-labels">
-            {technologyAreas.map((area) => <span key={area}>{area}</span>)}
+      </section>
+
+      <section className="block" aria-labelledby="company-title">
+        <div className="shell company">
+          <Building2 size={26} aria-hidden="true" />
+          <div>
+            <h2 id="company-title">Craftsphere Talent Ltd</h2>
+            <dl>
+              <div><dt>Company number</dt><dd>16965978</dd></div>
+              <div><dt>Registered office</dt><dd>27 Old Gloucester Street, London, United Kingdom, WC1N 3AX</dd></div>
+            </dl>
           </div>
-          <a className="text-link" href="/#expertise">
-            Explore recruitment expertise <ArrowDownRight size={16} aria-hidden="true" />
+          <a href="https://find-and-update.company-information.service.gov.uk/company/16965978" target="_blank" rel="noreferrer">
+            Companies House record <ExternalLink size={15} aria-hidden="true" />
           </a>
         </div>
       </section>
 
-      <section className="closing shell" aria-label="Contact Craftsphere Talent">
-        <span className="closing-shape" aria-hidden="true" />
-        <p className="kicker">Start a conversation</p>
-        <h2>Bring senior recruitment attention to <em>your next hire.</em></h2>
-        <a className="button button-primary" href="mailto:konrad@craftspheretalent.com" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="about_closing">
-          Email Me <Mail size={17} />
-        </a>
+      <section className="block" aria-labelledby="about-cta-title">
+        <div className="shell cta-band">
+          <h2 id="about-cta-title">Bring senior recruitment attention to your next hire.</h2>
+          <div className="cta-band-actions">
+            <a className="button button-light" href="/#contact" data-analytics-event="contact_click" data-contact-method="form" data-contact-placement="about_closing">
+              Discuss a hiring need
+            </a>
+            <a href="/candidates">Looking for a role? Send your CV</a>
+          </div>
+        </div>
       </section>
 
       <SiteFooter />
