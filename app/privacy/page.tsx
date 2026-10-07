@@ -30,7 +30,7 @@ export default function PrivacyPage() {
           <p className="eyebrow"><span className="eyebrow-dot" /> Privacy</p>
           <h1 id="privacy-title">Your privacy, explained <em>clearly.</em></h1>
           <p>This page explains what information Craftsphere Talent processes when you visit the website or choose to get in touch.</p>
-          <span className="privacy-updated">Last updated: 30 August 2026</span>
+          <span className="privacy-updated">Last updated: 7 October 2026</span>
         </div>
         <span className="privacy-shield" aria-hidden="true"><ShieldCheck size={54} /></span>
       </section>
@@ -46,18 +46,26 @@ export default function PrivacyPage() {
         </article>
         <article>
           <span>03</span>
-          <div><h2>Optional website analytics</h2><p>Google Analytics is loaded only after you select “Allow analytics”. It may process page views, interactions, approximate location, browser and device information, along with contact-button events and Core Web Vitals. Advertising storage, Google Signals and personalised advertising are disabled on this website.</p></div>
+          <div><h2>Website forms</h2><p>The hiring brief form on the homepage and the CV form on the candidates page send what you enter (and, for the CV form, the file you attach) by email to Craftsphere Talent. Delivery is handled by the email provider Resend, and the website runs on Cloudflare. Hiring briefs are used to reply to you and discuss the role.</p></div>
         </article>
         <article>
           <span>04</span>
-          <div><h2>Cookies and your preference</h2><p>Your analytics choice is saved in your browser’s local storage. If analytics are allowed, Google Analytics may use analytics storage. You can change or withdraw your choice at any time.</p><button className="privacy-settings-button" type="button" data-analytics-settings>Open analytics settings</button></div>
+          <div><h2>CVs from candidates</h2><p>If you send your CV, it is processed on the basis of your consent to assess your fit for current and future roles and to contact you about them. Your CV is shared with a hiring company only after you have agreed to be put forward for that specific role. It is kept for as long as it is useful for recruitment, and you can withdraw consent and ask for it to be deleted at any time by emailing <a href="mailto:konrad@craftspheretalent.com">konrad@craftspheretalent.com</a>.</p></div>
         </article>
         <article>
           <span>05</span>
-          <div><h2>Sharing and retention</h2><p>Information is shared only with service providers needed to operate communications, website hosting and optional analytics, or where required by law. Contact information is kept only for as long as needed for the enquiry, cooperation and applicable legal obligations. Analytics information follows the retention settings of the Google Analytics property.</p></div>
+          <div><h2>Optional website analytics</h2><p>Google Analytics is loaded only after you select “Allow analytics”. It may process page views, interactions, approximate location, browser and device information, along with contact-button events and Core Web Vitals. Advertising storage, Google Signals and personalised advertising are disabled on this website.</p></div>
         </article>
         <article>
           <span>06</span>
+          <div><h2>Cookies and your preference</h2><p>Your analytics choice is saved in your browser’s local storage. If analytics are allowed, Google Analytics may use analytics storage. You can change or withdraw your choice at any time.</p><button className="privacy-settings-button" type="button" data-analytics-settings>Open analytics settings</button></div>
+        </article>
+        <article>
+          <span>07</span>
+          <div><h2>Sharing and retention</h2><p>Information is shared only with service providers needed to operate communications (including email delivery for the website forms), website hosting and optional analytics, or where required by law. Contact information is kept only for as long as needed for the enquiry, cooperation and applicable legal obligations. Analytics information follows the retention settings of the Google Analytics property.</p></div>
+        </article>
+        <article>
+          <span>08</span>
           <div><h2>Your rights</h2><p>Depending on the circumstances, you may request access, correction, erasure, restriction or portability of your personal data, object to processing, or withdraw consent. You may also lodge a complaint with the <a href="https://uodo.gov.pl/en/680/1402" target="_blank" rel="noreferrer">Polish Personal Data Protection Office</a>. Start by contacting Craftsphere Talent using the email address above.</p></div>
         </article>
       </section>
