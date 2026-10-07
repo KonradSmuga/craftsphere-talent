@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import type { FormEvent, ReactNode } from "react";
+import { Children, cloneElement, isValidElement, useEffect, useRef, useState } from "react";
+import type { FormEvent, ReactElement, ReactNode } from "react";
 import { CheckCircle2, Paperclip } from "lucide-react";
 
 const EMAIL = "konrad@craftspheretalent.com";
@@ -18,6 +18,15 @@ function useSiteForm(endpoint: string, analyticsName: string) {
   useEffect(() => {
     if (startedAt.current) startedAt.current.value = String(Date.now());
   }, []);
+
+  const formRef = useRef<HTMLFormElement | null>(null);
+
+  // Move focus to the first problem so keyboard and screen-reader users land on it.
+  useEffect(() => {
+    if (status !== "invalid" || !invalid.length) return;
+    const first = formRef.current?.querySelector<HTMLElement>(`[name="${invalid[0]}"]`);
+    first?.focus();
+  }, [status, invalid]);
 
   async function submit(event: FormEvent<HTMLFormElement>, check?: (form: FormData) => string[]) {
     event.preventDefault();
@@ -61,8 +70,17 @@ function useSiteForm(endpoint: string, analyticsName: string) {
     </>
   );
 
-  return { status, invalid, submit, spamFields };
+  return { status, invalid, submit, spamFields, formRef };
 }
+
+const ERRORS: Record<string, string> = {
+  name: "Enter your name.",
+  email: "Enter a valid email address, e.g. name@company.com.",
+  role: "Enter the role you're hiring for.",
+  location: "Enter where you're based.",
+  cv: "Attach your CV as a PDF or Word file up to 5 MB.",
+  consent: "Tick the box to agree to your CV being stored.",
+};
 
 function Field({
   label,
@@ -79,18 +97,38 @@ function Field({
   children: ReactNode;
   wide?: boolean;
 }) {
+  const isInvalid = invalid.includes(name);
+  const hintId = hint ? `${name}-hint` : undefined;
+  const errorId = isInvalid ? `${name}-error` : undefined;
+  const describedBy = [hintId, errorId].filter(Boolean).join(" ") || undefined;
+
+  // Give the control (or the file input inside its wrapper) aria-invalid and aria-describedby.
+  const wire = (node: ReactNode): ReactNode =>
+    Children.map(node, (child) => {
+      if (!isValidElement(child)) return child;
+      const element = child as ReactElement<Record<string, unknown>>;
+      if (["input", "select", "textarea"].includes(element.type as string)) {
+        return cloneElement(element, { "aria-invalid": isInvalid || undefined, "aria-describedby": describedBy });
+      }
+      if (element.props.children) return cloneElement(element, {}, wire(element.props.children as ReactNode));
+      return element;
+    });
+
   return (
-    <label className={`form-field${wide ? " form-field-wide" : ""}${invalid.includes(name) ? " is-invalid" : ""}`}>
+    <label className={`form-field${wide ? " form-field-wide" : ""}${isInvalid ? " is-invalid" : ""}`}>
       <span>{label}</span>
-      {children}
-      {hint ? <small>{hint}</small> : null}
+      {wire(children)}
+      {hint ? <small id={hintId}>{hint}</small> : null}
+      {isInvalid ? <small id={errorId} className="form-error">{ERRORS[name] ?? "Check this field."}</small> : null}
     </label>
   );
 }
 
 function Sent({ title, children }: { title: string; children: ReactNode }) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  useEffect(() => ref.current?.focus(), []);
   return (
-    <div className="form-sent" role="status">
+    <div ref={ref} className="form-sent" role="status" tabIndex={-1}>
       <CheckCircle2 size={28} aria-hidden="true" />
       <h3>{title}</h3>
       <p>{children}</p>
@@ -99,8 +137,7 @@ function Sent({ title, children }: { title: string; children: ReactNode }) {
 }
 
 export function ContactForm() {
-  const { status, invalid, submit, spamFields } = useSiteForm("/api/contact", "hiring_brief");
-  const formRef = useRef<HTMLFormElement | null>(null);
+  const { status, invalid, submit, spamFields, formRef } = useSiteForm("/api/contact", "hiring_brief");
 
   if (status === "sent") {
     return (
@@ -179,7 +216,7 @@ export function ContactForm() {
 }
 
 export function CvForm() {
-  const { status, invalid, submit, spamFields } = useSiteForm("/api/cv", "candidate_cv");
+  const { status, invalid, submit, spamFields, formRef } = useSiteForm("/api/cv", "candidate_cv");
   const [fileName, setFileName] = useState("");
 
   if (status === "sent") {
@@ -201,7 +238,7 @@ export function CvForm() {
   };
 
   return (
-    <form className="site-form" onSubmit={(event) => submit(event, checkFile)} noValidate>
+    <form ref={formRef} className="site-form" onSubmit={(event) => submit(event, checkFile)} noValidate>
       {spamFields}
       <div className="form-grid">
         <Field label="Full name" name="name" invalid={invalid}>
@@ -246,11 +283,19 @@ export function CvForm() {
       </div>
 
       <label className={`form-consent${invalid.includes("consent") ? " is-invalid" : ""}`}>
-        <input type="checkbox" name="consent" value="yes" required />
+        <input
+          type="checkbox"
+          name="consent"
+          value="yes"
+          required
+          aria-invalid={invalid.includes("consent") || undefined}
+          aria-describedby={invalid.includes("consent") ? "consent-error" : undefined}
+        />
         <span>
           I agree to Craftsphere Talent storing and processing my CV and details to contact me about
           relevant roles, as described in the <a href="/privacy">Privacy Policy</a>. I can ask for them
           to be deleted at any time.
+          {invalid.includes("consent") ? <small id="consent-error" className="form-error">{ERRORS.consent}</small> : null}
         </span>
       </label>
 
@@ -271,7 +316,7 @@ export function CvForm() {
 
 function FormStatus({ status, children }: { status: Status; children?: ReactNode }) {
   let message: ReactNode = null;
-  if (status === "invalid") message = "Please check the highlighted fields.";
+  if (status === "invalid") message = "Some fields need attention. Each one is explained below the field.";
   if (status === "error") {
     message = (
       <>Something went wrong while sending. Please try again, or email <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</>
