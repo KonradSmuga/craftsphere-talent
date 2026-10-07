@@ -22,6 +22,7 @@ import {
   Workflow,
 } from "lucide-react";
 import { SiteFooter } from "./site-footer";
+import { ScreenScroller } from "./screen-scroller";
 import { SiteHeader } from "./site-header";
 
 const EMAIL = "konrad@craftspheretalent.com";
@@ -32,6 +33,14 @@ const stats = [
   { value: "10", label: "years in IT recruitment" },
   { value: "160+", label: "technology hires" },
   { value: "3", label: "markets: EMEA, the US and LATAM" },
+];
+
+// Key selling points shown floating around the hero image.
+const heroNotes = [
+  { title: "Lower recruitment costs", detail: "You pay only when a candidate joins.", icon: Sparkles, position: "top-right" },
+  { title: "Great candidate experience", detail: "Clear communication and respect at every stage.", icon: UserRoundCheck, position: "mid-left" },
+  { title: "Individual approach", detail: "A search strategy shaped around every role.", icon: MessageCircle, position: "bottom-left" },
+  { title: "Efficiency", detail: "Relevant shortlists and a clear feedback rhythm.", icon: Workflow, position: "bottom-right" },
 ];
 
 const services = [
@@ -139,6 +148,7 @@ export default function Home() {
   return (
     <main id="top" className="home">
       <SiteHeader page="home" />
+      <ScreenScroller />
 
       <section className="screen intro" aria-labelledby="intro-title">
         <div className="shell intro-grid">
@@ -158,19 +168,29 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <picture className="intro-image">
-            <source srcSet="/craftsphere-ai-it-talent-hero.avif" type="image/avif" />
-            <source srcSet="/craftsphere-ai-it-talent-hero.webp" type="image/webp" />
-            <img
-              src="/craftsphere-ai-it-talent-hero.webp"
-              width="1536"
-              height="1024"
-              alt="Illustration connecting people with cloud, data, artificial intelligence and engineering systems"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-            />
-          </picture>
+          <div className="intro-visual">
+            <picture className="intro-image">
+              <source srcSet="/craftsphere-ai-it-talent-hero.avif" type="image/avif" />
+              <source srcSet="/craftsphere-ai-it-talent-hero.webp" type="image/webp" />
+              <img
+                src="/craftsphere-ai-it-talent-hero.webp"
+                width="1536"
+                height="1024"
+                alt="Illustration connecting people with cloud, data, artificial intelligence and engineering systems"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
+            </picture>
+            <ul className="intro-notes">
+              {heroNotes.map(({ title, detail, icon: Icon, position }) => (
+                <li className={`intro-note note-${position}`} key={title}>
+                  <span><Icon size={18} aria-hidden="true" /></span>
+                  <div><strong>{title}</strong><p>{detail}</p></div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="shell stats" aria-labelledby="stats-title">

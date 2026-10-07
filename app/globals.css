@@ -775,7 +775,7 @@ body {
 
 /* Responsive clarity pass */
 html,
-body { width: 100%; max-width: 100%; overflow-x: hidden; }
+body { width: 100%; max-width: 100%; overflow-x: clip; }
 main { max-width: 100%; overflow-x: clip; }
 
 @keyframes testimonialMarquee { to { transform: translateX(-50%); } }
@@ -1050,19 +1050,17 @@ body { background: var(--c-paper); }
   .site-header .desktop-nav { gap: 16px; font-size: 13px; }
 }
 
-/* Screen-by-screen scrolling on large screens; normal scrolling elsewhere. */
+/* Full-height screens on large displays; the jump between them is handled
+   by app/screen-scroller.tsx. Normal scrolling elsewhere. */
 .home .screen { padding-block: 80px; scroll-margin-top: calc(var(--header-space) + 8px); }
 @media (min-width: 1024px) and (min-height: 700px) {
-  html:has(main.home) { scroll-snap-type: y mandatory; scroll-padding-top: var(--header-space); }
   .home .screen {
     min-height: calc(100svh - var(--header-space));
     display: flex;
     flex-direction: column;
     justify-content: center;
-    scroll-margin-top: 0;
-    scroll-snap-align: start;
+    scroll-margin-top: var(--header-space);
   }
-  .home > footer { scroll-snap-align: end; }
 }
 
 /* Shared type */
@@ -1102,6 +1100,32 @@ body { background: var(--c-paper); }
 .intro-copy > p { max-width: 34em; margin: 0 0 30px; color: var(--c-muted); font-size: 19px; line-height: 1.6; }
 .intro-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .intro-image { display: block; }
+.intro-visual { position: relative; }
+.intro-notes { margin: 0; padding: 0; list-style: none; }
+.intro-note {
+  width: 250px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: absolute;
+  z-index: 2;
+  border: 1px solid var(--c-line);
+  border-radius: 16px;
+  background: rgba(255,255,255,.94);
+  box-shadow: 0 14px 34px rgba(28,27,51,.12);
+  animation: bubbleReveal .6s cubic-bezier(.2,.8,.2,1) both, float 5.5s ease-in-out infinite;
+}
+.intro-note > span { width: 36px; height: 36px; flex: none; display: grid; place-items: center; border-radius: 11px; background: #eeeafc; color: var(--c-violet); }
+.intro-note strong { display: block; color: var(--c-ink); font-size: 15px; line-height: 1.3; }
+.intro-note p { margin: 4px 0 0; color: var(--c-muted); font-size: 13.5px; line-height: 1.45; }
+.note-top-right { top: -22px; right: -28px; animation-delay: .5s, 1.1s; }
+.note-mid-left { top: 5%; left: -44px; animation-delay: .62s, 1.6s; animation-duration: .6s, 6.1s; }
+.note-bottom-left { bottom: -30px; left: -28px; animation-delay: .74s, .9s; animation-duration: .6s, 5.8s; }
+.note-bottom-right { right: -24px; bottom: 20%; animation-delay: .86s, 1.3s; animation-duration: .6s, 6.4s; }
+@media (prefers-reduced-motion: reduce) {
+  .intro-note { animation: none; }
+}
 .intro-image img { width: 100%; height: auto; display: block; border-radius: 20px; }
 
 .stats {
@@ -1282,7 +1306,9 @@ body { background: var(--c-paper); }
 @media (max-width: 960px) {
   .screen-head { grid-template-columns: 1fr; gap: 16px; }
   .intro-grid, .approach, .reach, .terms-panel, .talk { grid-template-columns: 1fr; gap: 36px; }
-  .intro-image { max-width: 640px; }
+  .intro-visual { max-width: 640px; }
+  .intro-notes { margin-top: 12px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .intro-note { width: auto; position: static; animation: none; box-shadow: none; }
   .stats { grid-template-columns: 1fr; gap: 20px; }
   .offer-grid, .voices { grid-template-columns: 1fr; }
   .stack-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1294,6 +1320,10 @@ body { background: var(--c-paper); }
   .intro { padding-top: 24px; }
   .intro-copy > p { font-size: 17px; }
   .intro-actions .button { flex: 1 1 auto; white-space: nowrap; }
+  .intro-note { padding: 12px 14px; }
+  .intro-note > span { display: none; }
+  .intro-note strong { font-size: 14px; }
+  .intro-note p { font-size: 13px; }
   .stats { margin-top: 32px; padding: 22px 18px; }
   .stats dl { grid-template-columns: 1fr; gap: 8px; }
   .stats dl > div { padding: 14px 16px; flex-direction: row-reverse; justify-content: flex-end; align-items: center; gap: 16px; }
