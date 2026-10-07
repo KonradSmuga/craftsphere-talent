@@ -76,6 +76,7 @@ export function SiteHeader({ page }: { page: HeaderPage }) {
 
   return (
     <>
+      <a className="skip-link" href="#main-content">Skip to main content</a>
       <header className={`site-header${mobileOpen ? " mobile-menu-open" : ""}`}>
         <Link className="brand brand-lockup" href="/" aria-label="Craftsphere Talent home" onClick={closeMobileMenu}>
           {/* Two transparent pieces so the mark can spin and the wordmark can shine on hover. */}
@@ -155,6 +156,7 @@ export function SiteHeader({ page }: { page: HeaderPage }) {
         tabIndex={mobileOpen ? 0 : -1}
         onClick={closeMobileMenu}
       />
+      <span id="main-content" className="skip-target" tabIndex={-1} />
     </>
   );
 }

@@ -109,6 +109,7 @@ export function SiteAnalytics({ measurementId }: { measurementId: string }) {
       const target = event.target;
       if (!(target instanceof Element) || !target.closest("[data-analytics-settings]")) return;
       setConsent("unset");
+      window.setTimeout(() => document.querySelector<HTMLElement>(".analytics-consent")?.focus(), 0);
     };
 
     document.addEventListener("click", openPreferences);
@@ -125,7 +126,7 @@ export function SiteAnalytics({ measurementId }: { measurementId: string }) {
   if (consent !== "unset") return null;
 
   return (
-    <aside className="analytics-consent" role="dialog" aria-labelledby="analytics-title" aria-describedby="analytics-copy">
+    <aside className="analytics-consent" role="dialog" tabIndex={-1} aria-labelledby="analytics-title" aria-describedby="analytics-copy">
       <div className="analytics-consent-copy">
         <span>Optional analytics</span>
         <strong id="analytics-title">Help improve this website</strong>
