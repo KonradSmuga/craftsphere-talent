@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Award, Building2, Check, ExternalLink, GraduationCap, Handshake, Languages, MapPin, MessageCircle, UserRoundCheck } from "lucide-react";
+import { Award, Building2, Check, ExternalLink, GraduationCap } from "lucide-react";
 import { BrandAmbient } from "../brand-ambient";
 import { SiteFooter } from "../site-footer";
 import { SiteHeader } from "../site-header";
@@ -43,55 +43,11 @@ const highlights = [
   "Ran the entire recruitment function as the sole recruiter for an AWS consulting company, covering the US and EMEA.",
   "Closed three executive hires in my first month at ClearScale.",
   "Closed 30+ hires in my first year at Link Group, one of Poland's largest recruitment agencies.",
-  "Won the award for best hiring performance in a team of eight recruiters at ProData Consult.",
-  "Designed a hiring process that was rolled out across every external hiring pipeline.",
-  "Trained three interns, all of whom went on to become senior recruiters.",
-];
-
-const career = [
-  {
-    years: "2016",
-    company: "Diebold Nixdorf",
-    role: "IT Helpdesk Analyst",
-    copy: "Network and incident support for customers in the UK and Australia: WAN/LAN, routers, firewalls and Windows Server tooling. The technical grounding behind every brief I take today.",
-  },
-  {
-    years: "2016–2017",
-    company: "Link Group",
-    role: "IT Research Consultant",
-    copy: "Direct search for IT talent across Poland and Europe, closing more than 30 hires in my first year.",
-  },
-  {
-    years: "2017–2021",
-    company: "ProData Consult",
-    role: "Recruitment Consultant → Senior Consultant → Recruitment Manager",
-    copy: "End-to-end recruitment for backend, frontend, full stack, DevOps, data and leadership roles. Market mapping, compliance checks and managing a team of consultants.",
-  },
-  {
-    years: "2021–2023",
-    company: "ClearScale",
-    role: "Senior IT Technical Recruiter",
-    copy: "International hiring for an AWS consultancy: building cloud teams from scratch in EMEA, LATAM and the US, and bringing in tools such as Calendly to speed up the process.",
-  },
-  {
-    years: "2024–2025",
-    company: "ClearScale",
-    role: "Lead IT Technical Recruiter",
-    copy: "Sole recruiter for the company, owning sourcing, screening, interviewing and onboarding for data engineers, full stack, DevOps, AI/ML, architects and executive roles.",
-  },
-  {
-    years: "2026",
-    company: "Craftsphere Talent",
-    role: "Founder",
-    copy: "A direct, senior-led recruitment model for specialist technology hiring with a better candidate experience.",
-  },
 ];
 
 const credentials = [
   { title: "BSc Information Technology", detail: "University of Łódź, specialisation: IT in business", icon: GraduationCap },
   { title: "AWS Certified Cloud Practitioner", detail: "Amazon Web Services, 2024", icon: Award },
-  { title: "Junior Java Developer bootcamp", detail: "Kodilla: Java 8, Spring, JUnit, SQL and Hibernate", icon: Award },
-  { title: "Polish and English", detail: "Native Polish, advanced English (C1)", icon: Languages },
 ];
 
 const tools = ["LinkedIn Recruiter", "Greenhouse", "Loxo", "Recruitee", "Zoho Recruit", "Calendly", "Jira", "HeroHunt", "Hiretual", "ChatGPT, Claude, Gemini"];
@@ -103,24 +59,6 @@ const roles = [
   "DevOps, cloud and solutions architects",
   "Network engineering and information security",
   "Team leads, directors and C-level",
-];
-
-const principles = [
-  {
-    title: "Direct cooperation",
-    copy: "You work directly with the recruiter handling your search, from the first brief to the accepted offer.",
-    icon: Handshake,
-  },
-  {
-    title: "Clear communication",
-    copy: "Regular updates, honest market feedback and a simple process keep everyone aligned and moving.",
-    icon: MessageCircle,
-  },
-  {
-    title: "Candidate experience",
-    copy: "Every candidate receives respectful communication that represents your company in the right way.",
-    icon: UserRoundCheck,
-  },
 ];
 
 export default function AboutPage() {
@@ -139,10 +77,6 @@ export default function AboutPage() {
               studied IT and worked in IT support, so I understand the briefs I take and speak the
               language of the engineers I hire, from individual contributors to C-level leaders.
             </p>
-            <p className="page-lead">
-              I&apos;ve hired for global financial institutions, FinTechs, AWS consultancies and
-              startups across EMEA, the US and LATAM.
-            </p>
             <div className="intro-actions">
               <a className="button button-primary" href="/#contact" data-analytics-event="contact_click" data-contact-method="form" data-contact-placement="about_hero">
                 Discuss a hiring need
@@ -154,13 +88,11 @@ export default function AboutPage() {
           </div>
 
           <aside className="profile" aria-label="Konrad Smuga">
-            <img className="profile-photo" src="/konrad-smuga.webp" width="800" height="915" alt="Konrad Smuga, smiling, wearing glasses" />
+            <img className="profile-photo" src="/konrad-smuga.webp" width="800" height="840" alt="Konrad Smuga" />
             <div className="profile-body">
               <h2>Konrad Smuga</h2>
               <p>Senior Tech Recruiter &amp; Talent Partner</p>
               <ul>
-                <li><MapPin size={16} aria-hidden="true" /> Based in Warsaw, Poland</li>
-                <li><Languages size={16} aria-hidden="true" /> Polish (native), English (C1)</li>
                 <li><Check size={16} aria-hidden="true" /> Permanent, contract and executive search</li>
               </ul>
             </div>
@@ -191,35 +123,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="block" aria-labelledby="story-title">
-        <div className="shell story">
-          <div className="story-copy">
-            <h2 id="story-title">From IT support to running the hiring function.</h2>
-            <p>
-              Agency recruitment taught me direct search and pace. In-house work taught me what
-              hiring managers need. Both shaped how Craftsphere Talent works.
-            </p>
-          </div>
-          <ol className="timeline">
-            {career.map(({ years, company, role, copy }) => (
-              <li key={`${years}-${role}`}>
-                <time>{years}</time>
-                <div>
-                  <h3>{company}</h3>
-                  <p className="timeline-role">{role}</p>
-                  <p>{copy}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
       <section className="block" aria-labelledby="creds-title">
         <div className="shell">
           <header className="screen-head">
             <h2 id="creds-title">Technical foundation.</h2>
-            <p>An IT degree, cloud certification and hands-on programming basics: enough to read a stack, ask the right questions and assess technical fit early.</p>
+            <p>An IT degree and AWS certification: enough to read a stack, ask the right questions and assess technical fit early.</p>
           </header>
           <div className="creds">
             {credentials.map(({ title, detail, icon: Icon }) => (
@@ -256,24 +164,6 @@ export default function AboutPage() {
               {["EMEA", "US", "LATAM"].map((market) => <li key={market}>{market}</li>)}
             </ul>
           </div>
-        </div>
-      </section>
-
-      <section className="block" aria-labelledby="principles-title">
-        <div className="shell">
-          <header className="screen-head">
-            <h2 id="principles-title">How I work.</h2>
-            <p>Close cooperation, practical advice and a strong experience for hiring teams and candidates alike.</p>
-          </header>
-          <div className="offer-grid">
-            {principles.map(({ title, copy, icon: Icon }) => (
-              <article className="offer" key={title}>
-                <h3><Icon size={22} aria-hidden="true" /> {title}</h3>
-                <p>{copy}</p>
-              </article>
-            ))}
-          </div>
-          <p className="outside-work">Outside work: drums, board games, Eastern cultures and whatever is new in AI.</p>
         </div>
       </section>
 
