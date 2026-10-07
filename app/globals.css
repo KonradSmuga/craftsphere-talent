@@ -1051,7 +1051,7 @@ body { background: var(--c-paper); }
 }
 
 /* Screen-by-screen scrolling on large screens; normal scrolling elsewhere. */
-.home .screen { padding-block: 80px; scroll-margin-top: 0; }
+.home .screen { padding-block: 80px; scroll-margin-top: calc(var(--header-space) + 8px); }
 @media (min-width: 1024px) and (min-height: 700px) {
   html:has(main.home) { scroll-snap-type: y mandatory; scroll-padding-top: var(--header-space); }
   .home .screen {
@@ -1059,6 +1059,7 @@ body { background: var(--c-paper); }
     display: flex;
     flex-direction: column;
     justify-content: center;
+    scroll-margin-top: 0;
     scroll-snap-align: start;
   }
   .home > footer { scroll-snap-align: end; }
@@ -1289,10 +1290,10 @@ body { background: var(--c-paper); }
 
 /* Phone */
 @media (max-width: 650px) {
-  .home .screen { padding-block: 56px; }
+  .home .screen { padding-block: 56px; scroll-margin-top: 84px; }
   .intro { padding-top: 24px; }
   .intro-copy > p { font-size: 17px; }
-  .intro-actions .button { flex: 1 1 0; }
+  .intro-actions .button { flex: 1 1 auto; white-space: nowrap; }
   .stats { margin-top: 32px; padding: 22px 18px; }
   .stats dl { grid-template-columns: 1fr; gap: 8px; }
   .stats dl > div { padding: 14px 16px; flex-direction: row-reverse; justify-content: flex-end; align-items: center; gap: 16px; }
