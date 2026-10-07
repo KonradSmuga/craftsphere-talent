@@ -1108,7 +1108,7 @@ body { background: var(--c-paper); }
   font-size: 26px;
   letter-spacing: -.02em;
 }
-.stack-grid svg { opacity: .85; }
+
 .stack-indigo { background: var(--c-indigo); }
 .stack-violet { background: var(--c-violet); }
 .stack-blue { background: var(--c-blue); }
@@ -1144,7 +1144,7 @@ body { background: var(--c-paper); }
 @keyframes skyTwinkle { from { opacity: .25; } to { opacity: 1; } }
 
 /* Cartoon globe: the map scrolls inside the ball (GPU-composited transform). */
-.globe { width: 230px; height: 230px; margin: 70px 0 40px 30px; position: relative; }
+.globe { width: 230px; height: 230px; margin: 48px 0 40px; position: relative; }
 .globe-ball {
   position: absolute;
   inset: 0;
@@ -1170,7 +1170,7 @@ body { background: var(--c-paper); }
   height: 100%;
   display: block;
   will-change: transform;
-  animation: globeScroll 36s linear infinite;
+  animation: globeScroll 14s linear infinite;
 }
 @keyframes globeScroll { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
 .globe-land { fill: #7fdcb5; stroke: var(--c-ink); stroke-width: 2.4; stroke-linejoin: round; }
@@ -1178,35 +1178,62 @@ body { background: var(--c-paper); }
 .globe-pin circle { fill: #fff; }
 .globe-pin text { fill: #fff; stroke: var(--c-ink); stroke-width: 3px; paint-order: stroke; font-size: 11px; font-weight: 800; letter-spacing: .02em; }
 .globe-shadow { width: 70%; height: 14px; position: absolute; left: 15%; bottom: -26px; border-radius: 50%; background: rgba(28,27,51,.12); }
-.globe-orbit {
-  position: absolute;
-  inset: -26px;
-  z-index: 2;
-  border: 2px dashed rgba(59,46,145,.25);
-  border-radius: 50%;
-  will-change: transform;
-  animation: orbitSpin 14s linear infinite;
-}
-.globe-plane {
-  width: 34px;
-  height: 34px;
-  display: grid;
-  place-items: center;
-  position: absolute;
-  top: -17px;
-  left: calc(50% - 17px);
-  border: 2.5px solid var(--c-ink);
-  border-radius: 50%;
-  background: #fff;
-  color: var(--c-indigo);
-  transform: rotate(45deg);
-}
-@keyframes orbitSpin { to { transform: rotate(360deg); } }
 
-/* Expertise: tiles stay still; only the icons move. Animations run on an HTML
-   wrapper (transform/opacity only) so the browser can composite them smoothly. */
+/* Expertise: tiles stay still; only the drawings inside the icons move. */
+/* Animated tech icons (app/tech-icons.tsx) */
+.ti { width: 46px; height: 46px; display: block; overflow: visible; }
+.ti * { transform-box: fill-box; }
+.ti-line { fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.ti-soft { fill: rgba(255,255,255,.1); }
+.ti-fill { fill: #fff; }
+
+.ti-cloud-body { transform-origin: center; animation: tiBob 3s ease-in-out infinite alternate; }
+.ti-cloud-arrow { animation: tiUpload 1.8s cubic-bezier(.4, 0, .2, 1) infinite; }
+@keyframes tiUpload { 0% { transform: translateY(6px); opacity: 0; } 25%, 70% { opacity: 1; } 100% { transform: translateY(-9px); opacity: 0; } }
+@keyframes tiBob { from { transform: translateY(1px); } to { transform: translateY(-2px); } }
+
+.ti-spark { transform-origin: center; animation: tiSpark 2.4s ease-in-out infinite; }
+@keyframes tiSpark { 0% { transform: rotate(0) scale(.55); } 50% { transform: rotate(90deg) scale(1.15); } 100% { transform: rotate(180deg) scale(.55); } }
+.ti-pins { animation: tiPins 2.4s ease-in-out infinite; }
+.ti-pins-2 { animation-delay: .6s; }
+.ti-pins-3 { animation-delay: 1.2s; }
+.ti-pins-4 { animation-delay: 1.8s; }
+@keyframes tiPins { 0%, 100% { opacity: .3; } 25% { opacity: 1; } 50% { opacity: .3; } }
+
+.ti-code { transform-origin: left center; animation: tiType 3.6s ease-out infinite; }
+.ti-code-2 { animation-delay: .45s; }
+.ti-code-3 { animation-delay: .9s; }
+@keyframes tiType { 0% { transform: scaleX(0); opacity: 1; } 22%, 78% { transform: scaleX(1); opacity: 1; } 92%, 100% { transform: scaleX(1); opacity: 0; } }
+
+.ti-command { transform-origin: left center; animation: tiCommand 3.2s steps(7, end) infinite; }
+@keyframes tiCommand { 0% { transform: scaleX(0); } 45%, 85% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+.ti-cursor { animation: tiBlink 1s steps(2, jump-none) infinite; }
+@keyframes tiBlink { 0% { opacity: 1; } 100% { opacity: 0; } }
+
+.ti-bar { transform-origin: center bottom; animation: tiBar 2.2s ease-in-out infinite alternate; }
+.ti-bar-1 { animation-delay: -.3s; }
+.ti-bar-2 { animation-delay: -1.1s; animation-duration: 2.6s; }
+.ti-bar-3 { animation-delay: -1.8s; animation-duration: 1.9s; }
+@keyframes tiBar { from { transform: scaleY(.25); } to { transform: scaleY(1); } }
+
+.ti-layer { animation: tiLayer 3.2s cubic-bezier(.3, 1.4, .5, 1) infinite; }
+.ti-layer-2 { animation-delay: .3s; }
+.ti-layer-3 { animation-delay: .6s; }
+@keyframes tiLayer { 0% { transform: translateY(-12px); opacity: 0; } 18%, 80% { transform: translateY(0); opacity: 1; } 95%, 100% { transform: translateY(0); opacity: 0; } }
+
+.ti-loop-track { stroke: rgba(255,255,255,.4); }
+.ti-loop-run { fill: none; stroke: #fff; stroke-width: 3.4; stroke-linecap: round; stroke-dasharray: 16 84; animation: tiLoop 1.8s linear infinite; }
+@keyframes tiLoop { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+
+.ti-block { opacity: 0; animation: tiBlock 2.4s ease-in-out infinite; }
+.ti-block-2 { animation-delay: .5s; }
+.ti-block-3 { animation-delay: 1s; }
+@keyframes tiBlock { 0%, 100% { opacity: 0; } 20%, 40% { opacity: .9; } 60% { opacity: 0; } }
+.ti-link { stroke-dasharray: 2 2; animation: tiLink 1s linear infinite; }
+@keyframes tiLink { to { stroke-dashoffset: -8; } }
+
 .stack-grid li { cursor: default; }
-.tech-icon, .approach-icon {
+.approach-icon {
   width: fit-content;
   display: inline-flex;
   will-change: transform;
@@ -1216,14 +1243,6 @@ body { background: var(--c-paper); }
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
-.tech-cloud .tech-icon { animation-name: moveSide; animation-duration: 4.6s; }
-.tech-ai .tech-icon { animation-name: breathe; animation-duration: 2.8s; }
-.tech-frontend .tech-icon { animation-name: tilt; animation-duration: 3.4s; }
-.tech-backend .tech-icon { animation-name: nudge; animation-duration: 1.8s; }
-.tech-data .tech-icon { animation-name: float; animation-duration: 3s; }
-.tech-full-stack .tech-icon { animation-name: breathe; animation-duration: 3.6s; }
-.tech-devops .tech-icon { animation-name: tiltWide; animation-duration: 4.2s; }
-.tech-web3 .tech-icon { animation-name: spinPulse; animation-duration: 3.8s; }
 .approach-grid article:nth-child(1) .approach-icon { animation-name: tilt; animation-duration: 3.2s; }
 .approach-grid article:nth-child(2) .approach-icon { animation-name: breathe; animation-duration: 2.6s; }
 .approach-grid article:nth-child(3) .approach-icon { animation-name: tiltWide; animation-duration: 3.6s; }
@@ -1274,8 +1293,8 @@ body { background: var(--c-paper); }
 @keyframes logoGleam { 0% { opacity: 1; background-position: 120% 0; } 85% { opacity: 1; } 100% { opacity: 0; background-position: -20% 0; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .globe-map, .globe-orbit, .sky-sun-rays, .sky-moon, .sky-moon-star,
-  .tech-icon, .approach-icon, .terms-list li:hover h3 { animation: none !important; }
+  .globe-map, .sky-sun-rays, .ti *, .sky-moon, .sky-moon-star,
+  .approach-icon, .terms-list li:hover h3 { animation: none !important; }
   .brand-lockup:hover .logo-mark img, .brand-lockup:hover .logo-word::after { animation: none; }
 }
 
@@ -1377,7 +1396,7 @@ body { background: var(--c-paper); }
   .reach-list > div { padding: 22px 4px; grid-template-columns: 1fr; gap: 8px; }
   .reach-list dt { font-size: 28px; }
   .reach-list dd { font-size: 16px; }
-  .globe { width: 170px; height: 170px; margin: 40px 0 30px 26px; }
+  .globe { width: 170px; height: 170px; margin: 28px 0 30px; }
   .terms-list li { padding: 22px 0; gap: 16px; }
   .terms-list li > span { width: 44px; height: 44px; }
   .home .terms-list h3 { font-size: 23px; }
