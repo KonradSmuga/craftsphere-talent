@@ -313,23 +313,41 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="terms" className="screen" aria-labelledby="terms-title">
+      <section id="terms" className="screen screen-indigo" aria-labelledby="terms-title">
         <div className="shell terms-panel">
           <div className="terms-copy">
             <h2 id="terms-title">Clear commitment. Less hiring risk.</h2>
             <p>Commercial terms designed to make specialist recruitment straightforward.</p>
+            <a className="button button-light" href="#contact" data-analytics-event="contact_click" data-contact-method="form" data-contact-placement="terms">
+              Ask about your terms
+            </a>
+            <svg className="terms-seal" viewBox="0 0 200 200" aria-hidden="true">
+              <defs>
+                <path id="terms-seal-path" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0" />
+              </defs>
+              <g className="terms-seal-ring">
+                <circle cx="100" cy="100" r="97" />
+                <text>
+                  <textPath href="#terms-seal-path" textLength="474" lengthAdjust="spacing">
+                    No hire, no fee · Three-month guarantee ·
+                  </textPath>
+                </text>
+              </g>
+              <circle className="terms-seal-core" cx="100" cy="100" r="50" />
+              <path className="terms-seal-check" d="M78 101l15 15 30-32" />
+            </svg>
           </div>
-          <div className="terms-list">
+          <ul className="terms-list">
             {terms.map(({ title, detail, icon: Icon }) => (
-              <article key={title}>
-                <Icon size={24} aria-hidden="true" />
+              <li key={title}>
+                <span><Icon size={24} aria-hidden="true" /></span>
                 <div>
                   <h3>{title}</h3>
                   <p>{detail}</p>
                 </div>
-              </article>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
