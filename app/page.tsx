@@ -22,6 +22,7 @@ import {
   Workflow,
 } from "lucide-react";
 import { SiteFooter } from "./site-footer";
+import { BrandAmbient } from "./brand-ambient";
 import { ScreenScroller } from "./screen-scroller";
 import { SiteHeader } from "./site-header";
 
@@ -147,6 +148,7 @@ function mailto(subject: string) {
 export default function Home() {
   return (
     <main id="top" className="home">
+      <BrandAmbient />
       <SiteHeader page="home" />
       <ScreenScroller />
 
@@ -159,6 +161,11 @@ export default function Home() {
               EMEA, the US and LATAM. One senior recruiter runs every search, from brief to
               signed offer.
             </p>
+            <ul className="intro-benefits" aria-label="How Craftsphere Talent helps">
+              <li><Cloud size={18} aria-hidden="true" /> Hard-to-find tech talent</li>
+              <li><Workflow size={18} aria-hidden="true" /> Smarter hiring processes</li>
+              <li><MessageCircle size={18} aria-hidden="true" /> Candidate-first communication</li>
+            </ul>
             <div className="intro-actions">
               <a className="button button-primary" href={mailto("Hiring support for our team")} data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="hero">
                 Discuss a hiring need
@@ -169,19 +176,16 @@ export default function Home() {
             </div>
           </div>
           <div className="intro-visual">
-            <picture className="intro-image">
-              <source srcSet="/craftsphere-ai-it-talent-hero.avif" type="image/avif" />
-              <source srcSet="/craftsphere-ai-it-talent-hero.webp" type="image/webp" />
-              <img
-                src="/craftsphere-ai-it-talent-hero.webp"
-                width="1536"
-                height="1024"
-                alt="Illustration connecting people with cloud, data, artificial intelligence and engineering systems"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-              />
-            </picture>
+            <img
+              className="intro-image"
+              src="/craftsphere-hero-recruiter.webp"
+              width="1536"
+              height="1024"
+              alt="Illustration of a recruiter at a laptop next to a verified candidate profile"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
             <ul className="intro-notes">
               {heroNotes.map(({ title, detail, icon: Icon, position }) => (
                 <li className={`intro-note note-${position}`} key={title}>
