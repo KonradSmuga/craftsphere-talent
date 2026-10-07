@@ -1683,3 +1683,52 @@ html.motion-paused *::after { animation-play-state: paused !important; }
 .screen[data-offscreen] *,
 .screen[data-offscreen] *::before,
 .screen[data-offscreen] *::after { animation-play-state: paused !important; }
+
+/* ==========================================================================
+   About page (CV-based)
+   ========================================================================== */
+.about-intro .page-lead + .page-lead { margin-top: -10px; }
+.profile-photo { width: 100%; height: auto; aspect-ratio: 8 / 8.4; object-fit: cover; object-position: 50% 30%; background: #e6e6ee; }
+.profile-body li svg { flex: none; }
+
+.highlights { display: grid; grid-template-columns: .55fr 1.45fr; gap: 56px; align-items: start; }
+.highlights ul { margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; list-style: none; }
+.highlights li {
+  padding: 20px 22px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+  border: 1px solid var(--c-line);
+  border-radius: 16px;
+  background: #fff;
+  color: #2f2e48;
+  font-size: 16.5px;
+  line-height: 1.5;
+}
+.highlights li svg { margin-top: 2px; color: var(--c-teal); }
+
+.timeline .timeline-role { margin: 4px 0 0; color: var(--c-indigo); font-size: 15px; font-weight: 650; }
+.timeline .timeline-role + p { margin-top: 6px; }
+
+.creds { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.creds article { padding: 24px; border: 1px solid var(--c-line); border-radius: 18px; background: #fff; }
+.creds svg { color: var(--c-violet); }
+.home .creds h3 { margin: 14px 0 6px; color: var(--c-ink); font-size: 21px; line-height: 1.2; }
+.creds p { margin: 0; color: var(--c-muted); font-size: 15px; line-height: 1.5; }
+.home .tools-title { margin: 36px 0 14px; font-family: inherit; font-size: 15px; font-weight: 700; letter-spacing: 0; color: var(--c-ink); }
+
+.role-list { margin: 0 0 26px; padding: 0; display: grid; gap: 10px; list-style: none; }
+.role-list li { display: flex; align-items: flex-start; gap: 10px; color: #2f2e48; font-size: 17px; line-height: 1.45; }
+.role-list svg { flex: none; margin-top: 3px; color: var(--c-teal); }
+
+.outside-work { margin: 28px 0 0; color: var(--c-muted); font-size: 16px; }
+
+@media (max-width: 960px) {
+  .highlights { grid-template-columns: 1fr; gap: 24px; }
+  .creds { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 650px) {
+  .highlights ul, .creds { grid-template-columns: 1fr; }
+  .highlights li { padding: 16px 18px; font-size: 15.5px; }
+}

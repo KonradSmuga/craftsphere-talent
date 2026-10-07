@@ -1,30 +1,36 @@
 import type { Metadata } from "next";
-import { Building2, Check, ExternalLink, Handshake, MessageCircle, UserRoundCheck } from "lucide-react";
+import { Award, Building2, Check, ExternalLink, GraduationCap, Handshake, Languages, MapPin, MessageCircle, UserRoundCheck } from "lucide-react";
 import { BrandAmbient } from "../brand-ambient";
 import { SiteFooter } from "../site-footer";
 import { SiteHeader } from "../site-header";
-import { SOCIAL_IMAGE } from "../site-config";
+import { SITE_URL, SOCIAL_IMAGE } from "../site-config";
 
+const TITLE = "About Konrad Smuga, Senior Tech Recruiter | Craftsphere Talent";
 const DESCRIPTION =
-  "Learn about the experience and practical approach behind Craftsphere Talent's IT recruitment and talent consulting across EMEA, the US and LATAM.";
+  "Konrad Smuga: senior tech recruiter with ten years in IT recruitment, an IT degree and AWS certification. Cloud, data, AI and engineering hiring across EMEA, the US and LATAM.";
+const LINKEDIN = "https://www.linkedin.com/in/konrad-smuga-1265a3b4/";
 
 export const metadata: Metadata = {
-  title: "About | Craftsphere Talent",
+  title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/about" },
-  openGraph: {
-    type: "website",
-    url: "/about",
-    title: "About | Craftsphere Talent",
-    description: DESCRIPTION,
-    images: [SOCIAL_IMAGE],
-  },
+  openGraph: { type: "profile", url: "/about", title: TITLE, description: DESCRIPTION, images: [SOCIAL_IMAGE] },
 };
 
-// Set to the photo's path in /public (e.g. "/konrad-smuga.webp") once it's added.
-const PROFILE_PHOTO: string | null = null;
-
-const facts = ["Permanent & contract recruitment", "EMEA, US & LATAM markets", "Candidate-first process"];
+const personData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Konrad Smuga",
+  jobTitle: "Senior Tech Recruiter",
+  url: `${SITE_URL}/about`,
+  image: `${SITE_URL}/konrad-smuga.webp`,
+  worksFor: { "@id": `${SITE_URL}/#business` },
+  sameAs: [LINKEDIN],
+  alumniOf: { "@type": "CollegeOrUniversity", name: "University of Łódź" },
+  hasCredential: { "@type": "EducationalOccupationalCredential", name: "AWS Certified Cloud Practitioner" },
+  knowsLanguage: ["Polish", "English"],
+  knowsAbout: ["IT recruitment", "Executive search", "AWS", "Data engineering", "AI/ML hiring", "DevOps hiring"],
+};
 
 const stats = [
   { value: "10", label: "years in IT recruitment" },
@@ -32,12 +38,71 @@ const stats = [
   { value: "9", label: "hires in a single month, personal best" },
 ];
 
-const careerTimeline = [
-  { year: "2016", title: "Agency foundations", copy: "Started in technology recruitment, building direct-search discipline and closing more than 30 hires in the first year." },
-  { year: "2019", title: "High-volume delivery", copy: "Recognised for top hiring performance and delivered a personal best of nine hires in a single month." },
-  { year: "2021", title: "International technology search", copy: "Moved deeper into cloud and AWS consulting recruitment across the US, EMEA and LATAM." },
-  { year: "2024–25", title: "Sole recruitment ownership", copy: "Led the end-to-end recruitment function for an international technology consultancy across technical and leadership hiring." },
-  { year: "Now", title: "Craftsphere Talent", copy: "A direct, senior-led recruitment model focused on specialist technology hiring and better candidate experience." },
+const highlights = [
+  "Built AWS cloud teams from scratch across EMEA, LATAM and the US.",
+  "Ran the entire recruitment function as the sole recruiter for an AWS consulting company, covering the US and EMEA.",
+  "Closed three executive hires in my first month at ClearScale.",
+  "Closed 30+ hires in my first year at Link Group, one of Poland's largest recruitment agencies.",
+  "Won the award for best hiring performance in a team of eight recruiters at ProData Consult.",
+  "Designed a hiring process that was rolled out across every external hiring pipeline.",
+  "Trained three interns, all of whom went on to become senior recruiters.",
+];
+
+const career = [
+  {
+    years: "2016",
+    company: "Diebold Nixdorf",
+    role: "IT Helpdesk Analyst",
+    copy: "Network and incident support for customers in the UK and Australia: WAN/LAN, routers, firewalls and Windows Server tooling. The technical grounding behind every brief I take today.",
+  },
+  {
+    years: "2016–2017",
+    company: "Link Group",
+    role: "IT Research Consultant",
+    copy: "Direct search for IT talent across Poland and Europe, closing more than 30 hires in my first year.",
+  },
+  {
+    years: "2017–2021",
+    company: "ProData Consult",
+    role: "Recruitment Consultant → Senior Consultant → Recruitment Manager",
+    copy: "End-to-end recruitment for backend, frontend, full stack, DevOps, data and leadership roles. Market mapping, compliance checks and managing a team of consultants.",
+  },
+  {
+    years: "2021–2023",
+    company: "ClearScale",
+    role: "Senior IT Technical Recruiter",
+    copy: "International hiring for an AWS consultancy: building cloud teams from scratch in EMEA, LATAM and the US, and bringing in tools such as Calendly to speed up the process.",
+  },
+  {
+    years: "2024–2025",
+    company: "ClearScale",
+    role: "Lead IT Technical Recruiter",
+    copy: "Sole recruiter for the company, owning sourcing, screening, interviewing and onboarding for data engineers, full stack, DevOps, AI/ML, architects and executive roles.",
+  },
+  {
+    years: "2026",
+    company: "Craftsphere Talent",
+    role: "Founder",
+    copy: "A direct, senior-led recruitment model for specialist technology hiring with a better candidate experience.",
+  },
+];
+
+const credentials = [
+  { title: "BSc Information Technology", detail: "University of Łódź, specialisation: IT in business", icon: GraduationCap },
+  { title: "AWS Certified Cloud Practitioner", detail: "Amazon Web Services, 2024", icon: Award },
+  { title: "Junior Java Developer bootcamp", detail: "Kodilla: Java 8, Spring, JUnit, SQL and Hibernate", icon: Award },
+  { title: "Polish and English", detail: "Native Polish, advanced English (C1)", icon: Languages },
+];
+
+const tools = ["LinkedIn Recruiter", "Greenhouse", "Loxo", "Recruitee", "Zoho Recruit", "Calendly", "Jira", "HeroHunt", "Hiretual", "ChatGPT, Claude, Gemini"];
+
+const roles = [
+  "Backend, frontend and full stack engineers",
+  "Data engineers and analysts",
+  "AI and machine learning",
+  "DevOps, cloud and solutions architects",
+  "Network engineering and information security",
+  "Team leads, directors and C-level",
 ];
 
 const principles = [
@@ -58,9 +123,6 @@ const principles = [
   },
 ];
 
-const markets = ["EMEA", "US", "LATAM"];
-const technologyAreas = ["Cloud", "AI", "Frontend", "Backend", "Data", "Full Stack", "DevOps", "Web3"];
-
 export default function AboutPage() {
   return (
     <main id="top" className="home page">
@@ -70,34 +132,36 @@ export default function AboutPage() {
       <section className="block about-intro" aria-labelledby="about-title">
         <div className="shell about-intro-grid">
           <div>
-            <h1 id="about-title">Recruitment experience built across agencies, startups and global tech teams.</h1>
+            <h1 id="about-title">A tech recruiter who started in IT.</h1>
             <p className="page-lead">
-              I&apos;m a senior technology recruiter and talent partner with ten years of experience in
-              permanent and contract recruitment. My background combines hands-on sourcing,
-              recruitment leadership, hiring-process improvement and direct partnership with
-              international hiring teams.
+              I&apos;m Konrad Smuga, a senior tech recruiter and talent partner with ten years in
+              permanent and contract IT recruitment, agency-side and in-house. Before recruiting I
+              studied IT and worked in IT support, so I understand the briefs I take and speak the
+              language of the engineers I hire, from individual contributors to C-level leaders.
+            </p>
+            <p className="page-lead">
+              I&apos;ve hired for global financial institutions, FinTechs, AWS consultancies and
+              startups across EMEA, the US and LATAM.
             </p>
             <div className="intro-actions">
               <a className="button button-primary" href="/#contact" data-analytics-event="contact_click" data-contact-method="form" data-contact-placement="about_hero">
                 Discuss a hiring need
               </a>
-              <a className="button button-secondary" href="/#services">Explore services</a>
+              <a className="button button-secondary" href={LINKEDIN} target="_blank" rel="noreferrer" data-analytics-event="contact_click" data-contact-method="linkedin" data-contact-placement="about_hero">
+                LinkedIn profile
+              </a>
             </div>
           </div>
 
           <aside className="profile" aria-label="Konrad Smuga">
-            {PROFILE_PHOTO ? (
-              <img className="profile-photo" src={PROFILE_PHOTO} width="640" height="760" alt="Konrad Smuga" />
-            ) : (
-              <div className="profile-photo profile-placeholder" aria-hidden="true">KS</div>
-            )}
+            <img className="profile-photo" src="/konrad-smuga.webp" width="800" height="915" alt="Konrad Smuga, smiling, wearing glasses" />
             <div className="profile-body">
               <h2>Konrad Smuga</h2>
-              <p>IT Recruiter &amp; Talent Consultant</p>
+              <p>Senior Tech Recruiter &amp; Talent Partner</p>
               <ul>
-                {facts.map((fact) => (
-                  <li key={fact}><Check size={16} aria-hidden="true" /> {fact}</li>
-                ))}
+                <li><MapPin size={16} aria-hidden="true" /> Based in Warsaw, Poland</li>
+                <li><Languages size={16} aria-hidden="true" /> Polish (native), English (C1)</li>
+                <li><Check size={16} aria-hidden="true" /> Permanent, contract and executive search</li>
               </ul>
             </div>
           </aside>
@@ -116,21 +180,33 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="block" aria-labelledby="highlights-title">
+        <div className="shell highlights">
+          <h2 id="highlights-title">Track record.</h2>
+          <ul>
+            {highlights.map((item) => (
+              <li key={item}><Check size={20} aria-hidden="true" /> {item}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section className="block" aria-labelledby="story-title">
         <div className="shell story">
           <div className="story-copy">
-            <h2 id="story-title">Built through delivery, not layers.</h2>
+            <h2 id="story-title">From IT support to running the hiring function.</h2>
             <p>
-              Ten years of recruitment work across agencies, consulting businesses and international
-              technology teams shaped the operating model behind Craftsphere Talent.
+              Agency recruitment taught me direct search and pace. In-house work taught me what
+              hiring managers need. Both shaped how Craftsphere Talent works.
             </p>
           </div>
           <ol className="timeline">
-            {careerTimeline.map(({ year, title, copy }) => (
-              <li key={year}>
-                <time>{year}</time>
+            {career.map(({ years, company, role, copy }) => (
+              <li key={`${years}-${role}`}>
+                <time>{years}</time>
                 <div>
-                  <h3>{title}</h3>
+                  <h3>{company}</h3>
+                  <p className="timeline-role">{role}</p>
                   <p>{copy}</p>
                 </div>
               </li>
@@ -139,14 +215,55 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="block" aria-labelledby="creds-title">
+        <div className="shell">
+          <header className="screen-head">
+            <h2 id="creds-title">Technical foundation.</h2>
+            <p>An IT degree, cloud certification and hands-on programming basics: enough to read a stack, ask the right questions and assess technical fit early.</p>
+          </header>
+          <div className="creds">
+            {credentials.map(({ title, detail, icon: Icon }) => (
+              <article key={title}>
+                <Icon size={24} aria-hidden="true" />
+                <h3>{title}</h3>
+                <p>{detail}</p>
+              </article>
+            ))}
+          </div>
+          <h3 className="tools-title">Tools I work with</h3>
+          <ul className="tag-list">
+            {tools.map((tool) => <li key={tool}>{tool}</li>)}
+          </ul>
+        </div>
+      </section>
+
+      <section className="block" aria-labelledby="scope-title">
+        <div className="shell scope">
+          <div>
+            <h2 id="scope-title">Who I hire.</h2>
+            <p>
+              Specialist and senior technology roles across EMEA, the US and LATAM, adapting each
+              search to the local market while keeping communication consistent.
+            </p>
+          </div>
+          <div className="scope-lists">
+            <h3>Roles</h3>
+            <ul className="role-list">
+              {roles.map((role) => <li key={role}><Check size={18} aria-hidden="true" /> {role}</li>)}
+            </ul>
+            <h3>Markets</h3>
+            <ul className="tag-list tag-list-strong">
+              {["EMEA", "US", "LATAM"].map((market) => <li key={market}>{market}</li>)}
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <section className="block" aria-labelledby="principles-title">
         <div className="shell">
           <header className="screen-head">
-            <h2 id="principles-title">Recruitment that feels clear and personal.</h2>
-            <p>
-              Craftsphere Talent is built around close cooperation, practical advice and a strong
-              experience for both hiring teams and candidates.
-            </p>
+            <h2 id="principles-title">How I work.</h2>
+            <p>Close cooperation, practical advice and a strong experience for hiring teams and candidates alike.</p>
           </header>
           <div className="offer-grid">
             {principles.map(({ title, copy, icon: Icon }) => (
@@ -156,28 +273,7 @@ export default function AboutPage() {
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="block" aria-labelledby="scope-title">
-        <div className="shell scope">
-          <div>
-            <h2 id="scope-title">International reach. Technology focus.</h2>
-            <p>
-              I recruit across EMEA, the US and LATAM, adapting each search to the local talent
-              market while keeping communication consistent.
-            </p>
-          </div>
-          <div className="scope-lists">
-            <h3>Markets</h3>
-            <ul className="tag-list tag-list-strong">
-              {markets.map((market) => <li key={market}>{market}</li>)}
-            </ul>
-            <h3>Technology areas</h3>
-            <ul className="tag-list">
-              {technologyAreas.map((area) => <li key={area}>{area}</li>)}
-            </ul>
-          </div>
+          <p className="outside-work">Outside work: drums, board games, Eastern cultures and whatever is new in AI.</p>
         </div>
       </section>
 
@@ -209,6 +305,10 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personData).replace(/</g, "\\u003c") }}
+      />
       <SiteFooter />
     </main>
   );
