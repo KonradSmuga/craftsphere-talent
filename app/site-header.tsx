@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import type { CSSProperties } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 type HeaderPage = "home" | "about" | "privacy";
 type NavKey = "services" | "expertise" | "about";
@@ -74,13 +75,6 @@ export function SiteHeader({ page }: { page: HeaderPage }) {
   return (
     <>
       <header className={`site-header${mobileOpen ? " mobile-menu-open" : ""}`}>
-        <Link className="brand" href="/" aria-label="Craftsphere Talent home" onClick={closeMobileMenu}>
-          <span className="brand-mark" aria-hidden="true"><i /><i /><i /></span>
-          <span className="brand-copy">
-            <span><span>Craftsphere</span><strong>Talent</strong></span>
-            <small>IT Recruitment · Talent Consulting</small>
-          </span>
-        </Link>
         <nav className="desktop-nav" aria-label="Main navigation">
           {items.map(({ key, label, href }) => (
             <a
@@ -103,6 +97,17 @@ export function SiteHeader({ page }: { page: HeaderPage }) {
         <a className="header-cta" href={contactHref} data-analytics-event="contact_navigation" data-contact-method="contact_section" data-contact-placement={`${page}_header`}>
           Contact <ArrowUpRight size={16} aria-hidden="true" />
         </a>
+        <Link className="brand brand-lockup" href="/" aria-label="Craftsphere Talent home" onClick={closeMobileMenu}>
+          <Image
+            className="brand-lockup-image"
+            src="/craftsphere-talent-lockup-white.png"
+            alt="Craftsphere Talent | IT Recruitment"
+            width={1340}
+            height={250}
+            priority
+            unoptimized
+          />
+        </Link>
         <button
           className="mobile-menu-toggle"
           type="button"

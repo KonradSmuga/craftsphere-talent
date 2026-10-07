@@ -1959,3 +1959,32 @@ main { max-width: 100%; overflow-x: clip; }
   .testimonial-static-card { opacity: 1 !important; transform: none !important; }
   .testimonial-static-card::before { transform: scaleX(1) !important; }
 }
+
+/* Supplied white brand lockup: prominent, readable and right-aligned. */
+.site-header {
+  height: 116px;
+  gap: 28px;
+  background: #fff;
+}
+.site-header:hover { background: #fff; }
+.site-header .desktop-nav { flex-shrink: 0; gap: 26px; }
+.site-header .header-cta { flex-shrink: 0; }
+.site-header .brand-lockup {
+  width: clamp(360px, 43vw, 560px);
+  min-width: 0;
+  margin-left: auto;
+  flex-shrink: 1;
+}
+.brand-lockup-image { display: block; width: 100%; height: auto; }
+@media (min-width: 651px) and (max-width: 1000px) {
+  .site-header { gap: 16px; padding-inline: 18px; }
+  .site-header .desktop-nav { gap: 18px; }
+  .site-header .header-cta { display: none; }
+}
+@media (max-width: 650px) {
+  .site-header { height: 90px; gap: 12px; padding-inline: 12px; }
+  .site-header .brand-lockup { width: min(480px, calc(100% - 54px)); }
+  .site-header .mobile-menu-toggle { order: -1; flex-shrink: 0; }
+  main { padding-top: calc(104px + env(safe-area-inset-top)); }
+  .mobile-navigation { max-height: calc(100dvh - 116px - env(safe-area-inset-top)); }
+}

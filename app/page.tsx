@@ -99,7 +99,7 @@ export default function Home() {
             <span className="eyebrow-dot" /> IT recruitment · Talent consulting
           </div>
           <h1 id="hero-title" className="reveal reveal-2">
-            Strategic IT Recruitment & Talent Consulting
+            IT Recruitment
           </h1>
           <div className="hero-expertise-line reveal reveal-3" aria-label="Experts in IT hiring">
             <span />
