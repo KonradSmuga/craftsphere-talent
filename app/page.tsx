@@ -3,17 +3,11 @@ import {
   BadgeCheck,
   Check,
   Cloud,
-  ExternalLink,
-  Gauge,
-  Handshake,
   Layers3,
   Mail,
   MessageCircle,
-  Network,
-  Phone,
   ShieldCheck,
   Sparkles,
-  Target,
   UserRoundCheck,
   Workflow,
 } from "lucide-react";
@@ -24,6 +18,7 @@ import { SiteHeader } from "./site-header";
 import { ContactForm } from "./site-forms";
 import { LocalTime } from "./local-time";
 import { TechIcon, type TechKey } from "./tech-icons";
+import { ApproachIcon, ContactIcon, ServiceIcon, type ApproachKey, type ServiceKey } from "./animated-icons";
 
 const EMAIL = "konrad@craftspheretalent.com";
 const WHATSAPP = "https://wa.me/48662073227?text=Hello%20Konrad%2C%20I%20would%20like%20to%20discuss%20a%20hiring%20need.";
@@ -46,7 +41,7 @@ const heroNotes = [
 const services = [
   {
     title: "Permanent IT recruitment",
-    icon: Network,
+    icon: "search" as ServiceKey,
     copy: "End-to-end search for specialist, senior and hard-to-find technology talent, from market mapping and outreach to offer acceptance.",
     points: ["Targeted direct search", "High-quality, relevant shortlists", "Clear communication from brief to hire"],
     cta: "Discuss a search",
@@ -55,7 +50,7 @@ const services = [
   },
   {
     title: "Recruitment consulting",
-    icon: Sparkles,
+    icon: "idea" as ServiceKey,
     copy: "Practical guidance that helps hiring teams make better decisions, improve their process and compete more effectively for talent.",
     points: ["Hiring strategy and market insight", "Process and candidate journey design", "Interview and feedback optimisation"],
     cta: "Improve the process",
@@ -64,7 +59,7 @@ const services = [
   },
   {
     title: "Candidate experience",
-    icon: UserRoundCheck,
+    icon: "chat" as ServiceKey,
     copy: "A clearer, faster and more human candidate journey that protects your employer brand and keeps strong candidates engaged.",
     points: ["Faster, structured feedback", "Transparent candidate communication", "Stronger interview experience"],
     cta: "Talk about candidate experience",
@@ -98,22 +93,22 @@ const approach = [
   {
     title: "Direct ownership",
     detail: "The person who understands the brief is the person running the search.",
-    icon: Handshake,
+    icon: "direct" as ApproachKey,
   },
   {
     title: "Sharper shortlists",
     detail: "Research and outreach are tailored to each role, so you only meet candidates who genuinely fit.",
-    icon: Target,
+    icon: "target" as ApproachKey,
   },
   {
     title: "Faster decisions",
     detail: "A clear feedback rhythm and honest market input keep candidates and hiring teams moving.",
-    icon: Gauge,
+    icon: "gauge" as ApproachKey,
   },
   {
     title: "Candidate-first representation",
     detail: "Your company is represented with care at every candidate touchpoint.",
-    icon: UserRoundCheck,
+    icon: "candidate" as ApproachKey,
   },
 ];
 
@@ -261,9 +256,9 @@ export default function Home() {
             <p>Flexible support for companies that need exceptional talent, a sharper hiring process, or both.</p>
           </header>
           <div className="offer-grid">
-            {services.map(({ title, icon: Icon, copy, points, cta, subject, placement }) => (
+            {services.map(({ title, icon, copy, points, cta, subject, placement }) => (
               <article className="offer" key={title}>
-                <h3><Icon size={22} aria-hidden="true" /> {title}</h3>
+                <h3><ServiceIcon name={icon} /> {title}</h3>
                 <p>{copy}</p>
                 <ul>
                   {points.map((point) => (
@@ -305,9 +300,9 @@ export default function Home() {
             </p>
           </div>
           <div className="approach-grid">
-            {approach.map(({ title, detail, icon: Icon }) => (
+            {approach.map(({ title, detail, icon }) => (
               <article key={title}>
-                <span className="approach-icon"><Icon size={24} aria-hidden="true" /></span>
+                <ApproachIcon name={icon} />
                 <h3>{title}</h3>
                 <p>{detail}</p>
               </article>
@@ -368,21 +363,23 @@ export default function Home() {
             <a className="button button-light" href="#contact" data-analytics-event="contact_click" data-contact-method="form" data-contact-placement="terms">
               Ask about your terms
             </a>
-            <svg className="terms-seal" viewBox="0 0 200 200" aria-hidden="true">
-              <defs>
-                <path id="terms-seal-path" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0" />
-              </defs>
-              <g className="terms-seal-ring">
+            <div className="terms-seal" aria-hidden="true">
+              <svg className="terms-seal-ring" viewBox="0 0 200 200">
+                <defs>
+                  <path id="terms-seal-path" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0" />
+                </defs>
                 <circle cx="100" cy="100" r="97" />
                 <text>
                   <textPath href="#terms-seal-path" textLength="474" lengthAdjust="spacing">
                     No hire, no fee · Three-month guarantee ·
                   </textPath>
                 </text>
-              </g>
-              <circle className="terms-seal-core" cx="100" cy="100" r="50" />
-              <path className="terms-seal-check" d="M78 101l15 15 30-32" />
-            </svg>
+              </svg>
+              <svg className="terms-seal-core" viewBox="0 0 200 200">
+                <circle cx="100" cy="100" r="50" />
+                <path d="M78 101l15 15 30-32" />
+              </svg>
+            </div>
           </div>
           <ul className="terms-list">
             {terms.map(({ title, detail, icon: Icon }) => (
@@ -415,22 +412,22 @@ export default function Home() {
               <span>IT Recruiter &amp; Talent Consultant</span>
             </p>
             <a href={`mailto:${EMAIL}`} data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="contact_card">
-              <Mail size={20} aria-hidden="true" />
-              <span><small>Email</small>{EMAIL}</span>
+              <ContactIcon name="mail" />
+              <span><small>Email</small>konrad@<wbr />craftspheretalent.com</span>
               <ArrowUpRight size={18} aria-hidden="true" />
             </a>
             <a href="tel:+48662073227" data-analytics-event="contact_click" data-contact-method="phone" data-contact-placement="contact_card">
-              <Phone size={20} aria-hidden="true" />
+              <ContactIcon name="phone" />
               <span><small>Phone</small>+48 662 073 227</span>
               <ArrowUpRight size={18} aria-hidden="true" />
             </a>
             <a href={WHATSAPP} target="_blank" rel="noreferrer" data-analytics-event="contact_click" data-contact-method="whatsapp" data-contact-placement="contact_card">
-              <MessageCircle size={20} aria-hidden="true" />
+              <ContactIcon name="whatsapp" />
               <span><small>WhatsApp</small>Start a conversation</span>
               <ArrowUpRight size={18} aria-hidden="true" />
             </a>
             <a href="https://www.linkedin.com/in/konrad-smuga-1265a3b4/" target="_blank" rel="noreferrer" data-analytics-event="contact_click" data-contact-method="linkedin" data-contact-placement="contact_card">
-              <ExternalLink size={20} aria-hidden="true" />
+              <ContactIcon name="linkedin" />
               <span><small>LinkedIn</small>View Konrad&apos;s profile</span>
               <ArrowUpRight size={18} aria-hidden="true" />
             </a>
