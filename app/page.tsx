@@ -1,5 +1,4 @@
 import {
-  ArrowDownRight,
   ArrowUpRight,
   BadgeCheck,
   BrainCircuit,
@@ -9,7 +8,6 @@ import {
   Database,
   ExternalLink,
   Gauge,
-  Globe2,
   Handshake,
   Layers3,
   Mail,
@@ -23,30 +21,71 @@ import {
   UserRoundCheck,
   Workflow,
 } from "lucide-react";
-import { BrandAmbient } from "./brand-ambient";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
-import { TestimonialGrid } from "./testimonial-grid";
 
-const expertise = [
-  { label: "Cloud", icon: Cloud, tone: "mint", span: 4 },
-  { label: "AI", icon: BrainCircuit, tone: "lilac", span: 3 },
-  { label: "Frontend", icon: Code2, tone: "peach", span: 2 },
-  { label: "Backend", icon: TerminalSquare, tone: "sky", span: 3 },
-  { label: "Data", icon: Database, tone: "butter", span: 3 },
-  { label: "Full Stack", icon: Layers3, tone: "rose", span: 4 },
-  { label: "DevOps", icon: Workflow, tone: "mint", span: 3 },
-  { label: "Web3", icon: Network, tone: "lilac", span: 2 },
+const EMAIL = "konrad@craftspheretalent.com";
+const WHATSAPP = "https://wa.me/48662073227?text=Hello%20Konrad%2C%20I%20would%20like%20to%20discuss%20a%20hiring%20need.";
+
+// Client-facing claims: keep these factual.
+const stats = [
+  { value: "10", label: "years in IT recruitment" },
+  { value: "160+", label: "technology hires" },
+  { value: "3", label: "markets: EMEA, the US and LATAM" },
 ];
 
-// Track record shown under the hero. Keep these numbers factual — they are client-facing claims.
-const trackRecord = [
-  { value: "10", unit: "years", label: "Hands-on IT recruitment", icon: BadgeCheck },
-  { value: "160+", unit: "hires", label: "Successful technology placements", icon: Gauge },
-  { value: "3", unit: "markets", label: "EMEA, the US and LATAM", icon: Globe2 },
-]
+const services = [
+  {
+    title: "Permanent IT recruitment",
+    icon: Network,
+    copy: "End-to-end search for specialist, senior and hard-to-find technology talent, from market mapping and outreach to offer acceptance.",
+    points: ["Targeted direct search", "High-quality, relevant shortlists", "Clear communication from brief to hire"],
+    cta: "Discuss a search",
+    subject: "Permanent IT recruitment",
+    placement: "service_permanent",
+  },
+  {
+    title: "Recruitment consulting",
+    icon: Sparkles,
+    copy: "Practical guidance that helps hiring teams make better decisions, improve their process and compete more effectively for talent.",
+    points: ["Hiring strategy and market insight", "Process and candidate journey design", "Interview and feedback optimisation"],
+    cta: "Improve the process",
+    subject: "Recruitment consulting",
+    placement: "service_consulting",
+  },
+  {
+    title: "Candidate experience",
+    icon: UserRoundCheck,
+    copy: "A clearer, faster and more human candidate journey that protects your employer brand and keeps strong candidates engaged.",
+    points: ["Faster, structured feedback", "Transparent candidate communication", "Stronger interview experience"],
+    cta: "Talk about candidate experience",
+    subject: "Candidate experience improvement",
+    placement: "service_candidate_experience",
+  },
+];
 
-const whyCraftsphere = [
+const testimonials = [
+  {
+    quote:
+      "Craftsphere Talent combines strong IT recruitment expertise with a quick understanding of complex technical requirements. The result is a focused search and highly relevant candidates.",
+    role: "Founder",
+    company: "AWS consultancy",
+  },
+  {
+    quote:
+      "An exceptional recruitment partner: responsive, committed and consistently professional. The level of ownership and energy brought to every search stands out.",
+    role: "HR leader",
+    company: "AWS consulting company",
+  },
+  {
+    quote:
+      "Professional, dedicated and highly responsive. The candidates presented closely matched the requirements, while communication remained clear and effective throughout.",
+    role: "AI & Data Architect",
+    company: "Technology consulting",
+  },
+];
+
+const approach = [
   {
     title: "Direct ownership",
     detail: "The person who understands the brief is the person running the search.",
@@ -69,418 +108,251 @@ const whyCraftsphere = [
   },
 ];
 
+const expertise = [
+  { label: "Cloud", icon: Cloud, tone: "indigo" },
+  { label: "AI", icon: BrainCircuit, tone: "blue" },
+  { label: "Frontend", icon: Code2, tone: "violet" },
+  { label: "Backend", icon: TerminalSquare, tone: "teal" },
+  { label: "Data", icon: Database, tone: "violet" },
+  { label: "Full Stack", icon: Layers3, tone: "teal" },
+  { label: "DevOps", icon: Workflow, tone: "indigo" },
+  { label: "Web3", icon: Network, tone: "blue" },
+];
+
 const markets = [
-  {
-    name: "EMEA",
-    detail: "Deep experience across European and international technology markets.",
-    accent: "01",
-  },
-  {
-    name: "United States",
-    detail: "Searches shaped around the pace, competition and nuance of US hiring.",
-    accent: "02",
-  },
-  {
-    name: "LATAM",
-    detail: "Access to high-calibre talent across fast-growing technology hubs.",
-    accent: "03",
-  },
+  { name: "EMEA", detail: "Deep experience across European and international technology markets." },
+  { name: "US", detail: "Searches shaped around the pace, competition and nuance of US hiring." },
+  { name: "LATAM", detail: "Access to high-calibre talent across fast-growing technology hubs." },
 ];
 
-const testimonials = [
-  {
-    quote:
-      "Craftsphere Talent combines strong IT recruitment expertise with a quick understanding of complex technical requirements. The result is a focused search and highly relevant candidates.",
-    role: "Founder",
-    company: "AWS consultancy",
-  },
-  {
-    quote:
-      "An exceptional recruitment partner — responsive, committed and consistently professional. The level of ownership and energy brought to every search stands out.",
-    role: "HR leader",
-    company: "AWS consulting company",
-  },
-  {
-    quote:
-      "Professional, dedicated and highly responsive. The candidates presented closely matched the requirements, while communication remained clear and effective throughout.",
-    role: "AI & Data Architect",
-    company: "Technology consulting",
-  },
+const terms = [
+  { title: "No hire, no fee", detail: "You only pay when a candidate successfully joins your company.", icon: ShieldCheck },
+  { title: "Three-month replacement guarantee", detail: "Additional protection after the successful placement.", icon: BadgeCheck },
+  { title: "Flexible multi-role terms", detail: "Adaptable cooperation for companies recruiting several positions.", icon: Layers3 },
 ];
 
-function BrandTransition({ direction = "forward" }: { direction?: "forward" | "reverse" }) {
-  return (
-    <div className={`brand-transition brand-transition-${direction}`} aria-hidden="true">
-      <span /><span /><span />
-      <i /><i /><i />
-    </div>
-  );
+function mailto(subject: string) {
+  return `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}`;
 }
 
 export default function Home() {
   return (
-    <main id="top">
-      <BrandAmbient />
+    <main id="top" className="home">
       <SiteHeader page="home" />
 
-      <section className="hero shell" aria-labelledby="hero-title">
-        <div className="hero-copy">
-          <div className="eyebrow reveal reveal-1">
-            <span className="eyebrow-dot" /> IT recruitment · Talent consulting
-          </div>
-          <h1 id="hero-title" className="reveal reveal-2">
-            Specialist IT recruitment for Cloud, Data &amp; AI teams
-          </h1>
-          <p className="hero-intro reveal reveal-3">
-            Craftsphere Talent helps technology companies hire difficult-to-find specialists,
-            improve recruitment processes and deliver a candidate experience that strengthens
-            employer brands across EMEA, the US and LATAM.
-          </p>
-          <div className="hero-benefits reveal reveal-4" aria-label="How Craftsphere Talent helps">
-            <span><Cloud size={15} /> Hard-to-find tech talent</span>
-            <span><Workflow size={15} /> Smarter hiring processes</span>
-            <span><MessageCircle size={15} /> Candidate-first communication</span>
-          </div>
-          <div className="hero-actions reveal reveal-5">
-            <a className="button button-primary" href="mailto:konrad@craftspheretalent.com?subject=Hiring%20support%20for%20our%20team" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="hero">
-              Discuss a hiring need <ArrowUpRight size={17} aria-hidden="true" />
-            </a>
-            <a className="button button-secondary" href="https://wa.me/48662073227?text=Hello%20Konrad%2C%20I%20would%20like%20to%20discuss%20a%20hiring%20need." target="_blank" rel="noreferrer" data-analytics-event="contact_click" data-contact-method="whatsapp" data-contact-placement="hero">
-              WhatsApp <MessageCircle size={17} aria-hidden="true" />
-            </a>
-          </div>
-          <p className="hero-response reveal reveal-5"><span /> Focused recruitment support from brief to hire.</p>
-        </div>
-
-        <div className="hero-visual reveal reveal-4 hero-art-entry">
-          <div className="visual-glow" />
-          <figure className="visual-image visual-image-editorial">
-            <picture>
-              <source srcSet="/craftsphere-ai-it-talent-hero.avif" type="image/avif" />
-              <source srcSet="/craftsphere-ai-it-talent-hero.webp" type="image/webp" />
-              <img
-                src="/craftsphere-ai-it-talent-hero.webp"
-                width="1536"
-                height="1024"
-                alt="Editorial illustration connecting people with cloud, data, artificial intelligence and engineering systems"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-              />
-            </picture>
-            <figcaption>
-              <span>Cloud · Data · AI · Engineering</span>
-              <span>Technology talent ecosystem</span>
-            </figcaption>
-          </figure>
-          <div className="value-bubble bubble-savings">
-            <span className="bubble-icon"><Sparkles size={17} /></span>
-            <div><strong>Lower recruitment costs</strong><p>You pay only when a candidate joins.</p></div>
-          </div>
-          <div className="value-bubble bubble-individual">
-            <span className="bubble-icon"><MessageCircle size={17} /></span>
-            <div><strong>Individual approach</strong><p>A search strategy shaped around every role.</p></div>
-          </div>
-          <div className="value-bubble bubble-efficiency">
-            <span className="bubble-icon"><Workflow size={17} /></span>
-            <div><strong>Efficiency</strong><p>Relevant shortlists and a clear feedback rhythm.</p></div>
-          </div>
-          <div className="value-bubble bubble-candidate">
-            <span className="bubble-icon"><UserRoundCheck size={17} /></span>
-            <div><strong>Great candidate experience</strong><p>Clear communication and respect at every stage.</p></div>
-          </div>
-        </div>
-      </section>
-
-      <section className="track-record" aria-labelledby="track-record-title">
-        <div className="shell track-record-shell">
-          <div className="record-intro">
-            <div className="record-brand-logo" aria-hidden="true"><i /><i /><i /></div>
-            <div>
-              <p>Craftsphere track record</p>
-              <h2 id="track-record-title">Experience measured in outcomes.</h2>
-            </div>
-          </div>
-
-          <div className="record-grid">
-            {trackRecord.map(({ value, unit, label, icon: Icon }, index) => (
-              <article className="record-card" key={label}>
-                <div className="record-card-top"><span><Icon size={18} /></span><small>{String(index + 1).padStart(2, "0")}</small></div>
-                <div className="record-value"><strong>{value}</strong><em>{unit}</em></div>
-                <p>{label}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="services" className="section shell">
-        <div className="section-heading">
-          <div>
-            <p className="kicker">Services / 01</p>
-            <h2>Three ways to strengthen your hiring.</h2>
-          </div>
-          <p>
-            Flexible support for companies that need exceptional talent, a sharper
-            hiring process, or both.
-          </p>
-        </div>
-
-        <div className="service-grid service-grid-three">
-          <article className="service-card service-card-featured">
-            <div className="service-number">01</div>
-            <div className="service-card-copy">
-              <div className="service-icon"><Network size={25} aria-hidden="true" /></div>
-              <h3>Permanent IT Recruitment</h3>
-              <p>
-                End-to-end search for specialist, senior and hard-to-find technology
-                talent — from market mapping and outreach to offer acceptance.
-              </p>
-            </div>
-            <ul>
-              <li><Check size={15} /> Targeted direct search</li>
-              <li><Check size={15} /> High-quality, relevant shortlists</li>
-              <li><Check size={15} /> Clear communication from brief to hire</li>
-            </ul>
-            <a className="card-cta" href="mailto:konrad@craftspheretalent.com?subject=Permanent%20IT%20recruitment" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="service_permanent">
-              Discuss a search <ArrowUpRight size={16} aria-hidden="true" />
-            </a>
-          </article>
-
-          <article className="service-card">
-            <div className="service-number">02</div>
-            <div className="service-card-copy">
-              <div className="service-icon"><Sparkles size={25} aria-hidden="true" /></div>
-              <h3>Recruitment Consulting</h3>
-              <p>
-                Practical guidance that helps hiring teams make better decisions,
-                improve their process and compete more effectively for talent.
-              </p>
-            </div>
-            <ul>
-              <li><Check size={15} /> Hiring strategy and market insight</li>
-              <li><Check size={15} /> Process and candidate journey design</li>
-              <li><Check size={15} /> Interview and feedback optimisation</li>
-            </ul>
-            <a className="card-cta" href="mailto:konrad@craftspheretalent.com?subject=Recruitment%20consulting" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="service_consulting">
-              Improve the process <ArrowUpRight size={16} aria-hidden="true" />
-            </a>
-          </article>
-
-          <article className="service-card service-card-candidate">
-            <div className="service-number">03</div>
-            <div className="service-card-copy">
-              <div className="service-icon"><UserRoundCheck size={25} aria-hidden="true" /></div>
-              <h3>Candidate Experience Improvement</h3>
-              <p>
-                A clearer, faster and more human candidate journey that protects your
-                employer brand and keeps strong candidates engaged.
-              </p>
-            </div>
-            <ul>
-              <li><Check size={15} /> Faster, structured feedback</li>
-              <li><Check size={15} /> Transparent candidate communication</li>
-              <li><Check size={15} /> Stronger interview experience</li>
-            </ul>
-            <a className="card-cta" href="mailto:konrad@craftspheretalent.com?subject=Candidate%20experience%20improvement" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="service_candidate_experience">
-              Talk about candidate experience <ArrowUpRight size={16} aria-hidden="true" />
-            </a>
-          </article>
-        </div>
-      </section>
-
-      <section className="testimonials-section" aria-labelledby="testimonials-title">
-        <div className="shell testimonials-heading">
-          <div>
-            <p className="kicker">Client feedback / 02</p>
-            <h2 id="testimonials-title">Trusted for complex technology hiring.</h2>
-          </div>
-          <p>
-            Three perspectives from leaders who worked directly with the recruitment
-            expertise behind Craftsphere Talent.
-          </p>
-        </div>
-        <TestimonialGrid testimonials={testimonials} />
-      </section>
-
-      <section id="why" className="section difference-section" aria-labelledby="difference-title">
-        <div className="shell difference-layout">
-          <div className="difference-copy">
-            <p className="kicker">Why Craftsphere / 03</p>
-            <h2 id="difference-title">Senior recruitment attention. <em>Without agency layers.</em></h2>
+      <section className="screen intro" aria-labelledby="intro-title">
+        <div className="shell intro-grid">
+          <div className="intro-copy">
+            <h1 id="intro-title">Specialist IT recruitment for Cloud, Data &amp; AI teams</h1>
             <p>
-              One experienced recruiter owns your search from brief to signed offer —
-              no account managers, no hand-offs, no junior sourcers in between.
+              Craftsphere Talent finds hard-to-reach engineers for technology companies across
+              EMEA, the US and LATAM. One senior recruiter runs every search, from brief to
+              signed offer.
             </p>
+            <div className="intro-actions">
+              <a className="button button-primary" href={mailto("Hiring support for our team")} data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="hero">
+                Discuss a hiring need
+              </a>
+              <a className="button button-secondary" href={WHATSAPP} target="_blank" rel="noreferrer" data-analytics-event="contact_click" data-contact-method="whatsapp" data-contact-placement="hero">
+                <MessageCircle size={17} aria-hidden="true" /> WhatsApp
+              </a>
+            </div>
           </div>
-          <div className="difference-grid">
-            {whyCraftsphere.map(({ title, detail, icon: Icon }) => (
-              <article key={title}><Icon size={22} /><h3>{title}</h3><p>{detail}</p></article>
+          <picture className="intro-image">
+            <source srcSet="/craftsphere-ai-it-talent-hero.avif" type="image/avif" />
+            <source srcSet="/craftsphere-ai-it-talent-hero.webp" type="image/webp" />
+            <img
+              src="/craftsphere-ai-it-talent-hero.webp"
+              width="1536"
+              height="1024"
+              alt="Illustration connecting people with cloud, data, artificial intelligence and engineering systems"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
+        </div>
+
+        <div className="shell stats" aria-labelledby="stats-title">
+          <h2 id="stats-title">Experience measured in outcomes.</h2>
+          <dl>
+            {stats.map(({ value, label }) => (
+              <div key={label}>
+                <dt>{label}</dt>
+                <dd>{value}</dd>
+              </div>
             ))}
-          </div>
+          </dl>
         </div>
       </section>
 
-
-      <section className="conversion-band shell" aria-label="Start a hiring conversation">
-        <div>
-          <p className="kicker">Have an active role?</p>
-          <h2>Get a clearer search strategy before you spend more on recruitment.</h2>
-        </div>
-        <div className="conversion-actions">
-          <a className="button button-light" href="mailto:konrad@craftspheretalent.com?subject=Hiring%20support%20for%20an%20active%20role" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="mid_page">
-            Email the role details <Mail size={17} aria-hidden="true" />
-          </a>
-          <a className="conversion-link" href="#contact">View all contact options <ArrowDownRight size={16} aria-hidden="true" /></a>
-        </div>
-      </section>
-
-      <BrandTransition />
-
-      <section id="expertise" className="section expertise-section">
+      <section id="services" className="screen" aria-labelledby="services-title">
         <div className="shell">
-          <div className="section-heading">
-            <div>
-            <p className="kicker">Expertise / 04</p>
-              <h2>Across the technology landscape.</h2>
-            </div>
-            <p>
-              A decade of recruiting across established engineering disciplines and
-              emerging technology — with the technical fluency to understand the brief.
-            </p>
-          </div>
-          <div className="expertise-grid">
-            {expertise.map(({ label, icon: Icon, tone, span }) => (
-              <article className={`expertise-card tone-${tone} span-${span}`} key={label}>
-                <Icon size={23} aria-hidden="true" />
-                <span>{label}</span>
-                <ArrowUpRight size={17} aria-hidden="true" />
+          <header className="screen-head">
+            <h2 id="services-title">Three ways to strengthen your hiring.</h2>
+            <p>Flexible support for companies that need exceptional talent, a sharper hiring process, or both.</p>
+          </header>
+          <div className="offer-grid">
+            {services.map(({ title, icon: Icon, copy, points, cta, subject, placement }) => (
+              <article className="offer" key={title}>
+                <h3><Icon size={22} aria-hidden="true" /> {title}</h3>
+                <p>{copy}</p>
+                <ul>
+                  {points.map((point) => (
+                    <li key={point}><Check size={16} aria-hidden="true" /> {point}</li>
+                  ))}
+                </ul>
+                <a href={mailto(subject)} data-analytics-event="contact_click" data-contact-method="email" data-contact-placement={placement}>
+                  {cta}
+                </a>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section shell markets-section">
-        <div className="markets-copy">
-          <p className="kicker">Global reach / 05</p>
-          <h2>International search. Local market awareness.</h2>
-          <p>
-            Hiring across borders takes more than a wider LinkedIn search. It takes
-            an understanding of how talent moves, communicates and makes decisions
-            in each market.
-          </p>
-          <div className="global-badge"><Globe2 size={19} /> EMEA · US · LATAM</div>
-        </div>
-        <div className="market-list">
-          {markets.map((market) => (
-            <article className="market-item" key={market.name}>
-              <span className="market-number">{market.accent}</span>
-              <div><h3>{market.name}</h3><p>{market.detail}</p></div>
-              <ArrowUpRight size={19} aria-hidden="true" />
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <BrandTransition direction="reverse" />
-
-      <section className="section shell terms-section" aria-labelledby="terms-title">
-        <div className="terms-intro">
-          <p className="kicker">Simple terms / 06</p>
-          <h2 id="terms-title">Clear commitment. Less hiring risk.</h2>
-          <p>Commercial terms designed to make specialist recruitment straightforward.</p>
-          <a className="text-link terms-link" href="#contact">Ask about terms <ArrowDownRight size={16} aria-hidden="true" /></a>
-        </div>
-        <div className="terms-grid">
-          <article><span><ShieldCheck size={23} /></span><div><h3>No hire - no fee</h3><p>You only pay when a candidate successfully joins your company.</p></div></article>
-          <article><span><BadgeCheck size={23} /></span><div><h3>Three-month replacement guarantee</h3><p>Additional protection after the successful placement.</p></div></article>
-          <article><span><Layers3 size={23} /></span><div><h3>Flexible multi-role terms</h3><p>Adaptable cooperation for companies recruiting several positions.</p></div></article>
-        </div>
-      </section>
-
-      <section id="contact" className="section shell contact-section">
-        <div className="contact-lead">
-          <p className="kicker kicker-light">Contact / 07</p>
-          <h2>Tell us what your team needs.</h2>
-          <p>
-            Share the role, market and hiring challenge. Craftsphere Talent will assess
-            the search and recommend a focused way forward.
-          </p>
-          <blockquote>“The right recruitment partner should make the entire hiring experience better.”</blockquote>
-        </div>
-
-        <div className="contact-card">
-          <div className="contact-person">
-            <span>Direct contact</span>
-            <strong>Konrad Smuga</strong>
-            <small>IT Recruiter &amp; Talent Consultant</small>
-          </div>
-          <div className="contact-links">
-              <a href="mailto:konrad@craftspheretalent.com" aria-label="Email Konrad Smuga" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="contact_card">
-                <span><Mail size={17} /></span>
-                <div><small>Email</small><strong>konrad@craftspheretalent.com</strong></div>
-                <ArrowUpRight size={17} />
-              </a>
-              <a href="tel:+48662073227" aria-label="Call Konrad Smuga" data-analytics-event="contact_click" data-contact-method="phone" data-contact-placement="contact_card">
-                <span><Phone size={17} /></span>
-                <div><small>Phone</small><strong>+48 662 073 227</strong></div>
-                <ArrowUpRight size={17} />
-              </a>
-              <a
-                href="https://wa.me/48662073227?text=Hello%20Konrad%2C%20I%20found%20Craftsphere%20Talent%20and%20would%20like%20to%20discuss%20a%20hiring%20need."
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Message Konrad Smuga on WhatsApp"
-                data-analytics-event="contact_click"
-                data-contact-method="whatsapp"
-                data-contact-placement="contact_card"
-              >
-                <span><MessageCircle size={17} /></span>
-                <div><small>WhatsApp</small><strong>Start a conversation</strong></div>
-                <ArrowUpRight size={17} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/konrad-smuga-1265a3b4/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="View Konrad Smuga on LinkedIn"
-                data-analytics-event="contact_click"
-                data-contact-method="linkedin"
-                data-contact-placement="contact_card"
-              >
-                <span><ExternalLink size={17} /></span>
-                <div><small>LinkedIn</small><strong>View Konrad&apos;s profile</strong></div>
-                <ArrowUpRight size={17} />
-              </a>
-          </div>
-          <div className="candidate-promise">
-            <div className="experience-icon"><Sparkles size={19} /></div>
-            <div>
-              <p className="kicker">Candidate experience</p>
-              <h3>Respect at every step.</h3>
-              <p>Clear expectations, fast feedback and human communication.</p>
-            </div>
+      <section id="feedback" className="screen" aria-labelledby="feedback-title">
+        <div className="shell">
+          <header className="screen-head">
+            <h2 id="feedback-title">Trusted for complex technology hiring.</h2>
+          </header>
+          <div className="voices">
+            {testimonials.map(({ quote, role, company }) => (
+              <figure className="voice" key={`${role}-${company}`}>
+                <blockquote>{quote}</blockquote>
+                <figcaption><strong>{role}</strong>, {company}</figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="closing shell" aria-label="Craftsphere Talent closing statement">
-        <span className="closing-shape" aria-hidden="true" />
-        <p className="kicker">Craftsphere Talent</p>
-        <h2>Build the team behind <em>what&apos;s next.</em></h2>
-        <div className="closing-actions">
-          <a className="button button-primary" href="/about">
-            About the approach <ArrowUpRight size={17} aria-hidden="true" />
-          </a>
+      <section id="approach" className="screen screen-dark" aria-labelledby="approach-title">
+        <div className="shell approach">
+          <div className="approach-copy">
+            <h2 id="approach-title">Senior recruitment attention, without agency layers.</h2>
+            <p>
+              One experienced recruiter owns your search from brief to signed offer. No account
+              managers, no hand-offs, no junior sourcers in between.
+            </p>
+          </div>
+          <div className="approach-grid">
+            {approach.map(({ title, detail, icon: Icon }) => (
+              <article key={title}>
+                <Icon size={24} aria-hidden="true" />
+                <h3>{title}</h3>
+                <p>{detail}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="expertise" className="screen" aria-labelledby="expertise-title">
+        <div className="shell">
+          <header className="screen-head">
+            <h2 id="expertise-title">Across the technology landscape.</h2>
+            <p>
+              A decade of recruiting across established engineering disciplines and emerging
+              technology, with the technical fluency to understand the brief.
+            </p>
+          </header>
+          <ul className="stack-grid">
+            {expertise.map(({ label, icon: Icon, tone }) => (
+              <li className={`stack-${tone}`} key={label}>
+                <Icon size={26} aria-hidden="true" />
+                {label}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section id="markets" className="screen" aria-labelledby="markets-title">
+        <div className="shell reach">
+          <div className="reach-copy">
+            <h2 id="markets-title">International search. Local market awareness.</h2>
+            <p>
+              Hiring across borders takes more than a wider LinkedIn search. It takes an
+              understanding of how talent moves, communicates and makes decisions in each market.
+            </p>
+          </div>
+          <dl className="reach-list">
+            {markets.map(({ name, detail }) => (
+              <div key={name}>
+                <dt>{name}</dt>
+                <dd>{detail}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <section id="terms" className="screen" aria-labelledby="terms-title">
+        <div className="shell terms-panel">
+          <div className="terms-copy">
+            <h2 id="terms-title">Clear commitment. Less hiring risk.</h2>
+            <p>Commercial terms designed to make specialist recruitment straightforward.</p>
+          </div>
+          <div className="terms-list">
+            {terms.map(({ title, detail, icon: Icon }) => (
+              <article key={title}>
+                <Icon size={24} aria-hidden="true" />
+                <div>
+                  <h3>{title}</h3>
+                  <p>{detail}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="screen" aria-labelledby="contact-title">
+        <div className="shell talk">
+          <div className="talk-lead">
+            <h2 id="contact-title">Tell us what your team needs.</h2>
+            <p>
+              Share the role, market and hiring challenge. Craftsphere Talent will assess the
+              search and recommend a focused way forward.
+            </p>
+            <blockquote>“The right recruitment partner should make the entire hiring experience better.”</blockquote>
+          </div>
+
+          <div className="talk-card">
+            <p className="talk-person">
+              <strong>Konrad Smuga</strong>
+              <span>IT Recruiter &amp; Talent Consultant</span>
+            </p>
+            <a href={`mailto:${EMAIL}`} data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="contact_card">
+              <Mail size={20} aria-hidden="true" />
+              <span><small>Email</small>{EMAIL}</span>
+              <ArrowUpRight size={18} aria-hidden="true" />
+            </a>
+            <a href="tel:+48662073227" data-analytics-event="contact_click" data-contact-method="phone" data-contact-placement="contact_card">
+              <Phone size={20} aria-hidden="true" />
+              <span><small>Phone</small>+48 662 073 227</span>
+              <ArrowUpRight size={18} aria-hidden="true" />
+            </a>
+            <a href={WHATSAPP} target="_blank" rel="noreferrer" data-analytics-event="contact_click" data-contact-method="whatsapp" data-contact-placement="contact_card">
+              <MessageCircle size={20} aria-hidden="true" />
+              <span><small>WhatsApp</small>Start a conversation</span>
+              <ArrowUpRight size={18} aria-hidden="true" />
+            </a>
+            <a href="https://www.linkedin.com/in/konrad-smuga-1265a3b4/" target="_blank" rel="noreferrer" data-analytics-event="contact_click" data-contact-method="linkedin" data-contact-placement="contact_card">
+              <ExternalLink size={20} aria-hidden="true" />
+              <span><small>LinkedIn</small>View Konrad&apos;s profile</span>
+              <ArrowUpRight size={18} aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </section>
 
       <nav className="mobile-quick-actions" aria-label="Quick contact">
-        <a href="mailto:konrad@craftspheretalent.com?subject=Hiring%20support%20for%20our%20team" data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="mobile_sticky">
+        <a href={mailto("Hiring support for our team")} data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="mobile_sticky">
           <Mail size={17} aria-hidden="true" /> Email
         </a>
-        <a href="https://wa.me/48662073227?text=Hello%20Konrad%2C%20I%20would%20like%20to%20discuss%20a%20hiring%20need." target="_blank" rel="noreferrer" data-analytics-event="contact_click" data-contact-method="whatsapp" data-contact-placement="mobile_sticky">
+        <a href={WHATSAPP} target="_blank" rel="noreferrer" data-analytics-event="contact_click" data-contact-method="whatsapp" data-contact-placement="mobile_sticky">
           <MessageCircle size={17} aria-hidden="true" /> WhatsApp
         </a>
       </nav>
