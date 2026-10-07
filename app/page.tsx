@@ -26,6 +26,7 @@ import { BrandAmbient } from "./brand-ambient";
 import { ScreenScroller } from "./screen-scroller";
 import { SiteHeader } from "./site-header";
 import { ContactForm } from "./site-forms";
+import { LocalTime } from "./local-time";
 
 const EMAIL = "konrad@craftspheretalent.com";
 const WHATSAPP = "https://wa.me/48662073227?text=Hello%20Konrad%2C%20I%20would%20like%20to%20discuss%20a%20hiring%20need.";
@@ -131,9 +132,9 @@ const expertise = [
 ];
 
 const markets = [
-  { name: "EMEA", detail: "Deep experience across European and international technology markets." },
-  { name: "US", detail: "Searches shaped around the pace, competition and nuance of US hiring." },
-  { name: "LATAM", detail: "Access to high-calibre talent across fast-growing technology hubs." },
+  { name: "EMEA", detail: "Deep experience across European and international technology markets.", city: "London", timeZone: "Europe/London" },
+  { name: "US", detail: "Searches shaped around the pace, competition and nuance of US hiring.", city: "New York", timeZone: "America/New_York" },
+  { name: "LATAM", detail: "Access to high-calibre talent across fast-growing technology hubs.", city: "São Paulo", timeZone: "America/Sao_Paulo" },
 ];
 
 const terms = [
@@ -141,6 +142,42 @@ const terms = [
   { title: "Three-month replacement guarantee", detail: "Additional protection after the successful placement.", icon: BadgeCheck },
   { title: "Flexible multi-role terms", detail: "Adaptable cooperation for companies recruiting several positions.", icon: Layers3 },
 ];
+
+/** Wireframe globe; meridians turn via CSS, pins mark the three markets. */
+function Globe() {
+  const meridians = [0, 1, 2, 3, 4, 5];
+  const parallels = [
+    { y: 120, rx: 100, ry: 13 },
+    { y: 82, rx: 92, ry: 11 },
+    { y: 158, rx: 92, ry: 11 },
+    { y: 50, rx: 71, ry: 8 },
+    { y: 190, rx: 71, ry: 8 },
+  ];
+  const pins = [
+    { label: "US", x: 74, y: 92 },
+    { label: "LATAM", x: 104, y: 166 },
+    { label: "EMEA", x: 156, y: 88 },
+  ];
+  return (
+    <svg className="globe" viewBox="0 0 240 240" aria-hidden="true">
+      <circle className="globe-fill" cx="120" cy="120" r="100" />
+      {parallels.map(({ y, rx, ry }) => (
+        <ellipse className="globe-line" key={y} cx="120" cy={y} rx={rx} ry={ry} />
+      ))}
+      {meridians.map((i) => (
+        <ellipse className="globe-meridian" key={i} cx="120" cy="120" rx="100" ry="100" style={{ animationDelay: `${-i * 2}s` }} />
+      ))}
+      <circle className="globe-outline" cx="120" cy="120" r="100" />
+      {pins.map(({ label, x, y }, i) => (
+        <g key={label}>
+          <circle className="globe-pulse" cx={x} cy={y} r="6" style={{ animationDelay: `${i * 0.8}s` }} />
+          <circle className="globe-pin" cx={x} cy={y} r="5" />
+          <text className="globe-label" x={x + 10} y={y + 4}>{label}</text>
+        </g>
+      ))}
+    </svg>
+  );
+}
 
 function mailto(subject: string) {
   return `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}`;
@@ -284,7 +321,7 @@ export default function Home() {
           </header>
           <ul className="stack-grid">
             {expertise.map(({ label, icon: Icon, tone }) => (
-              <li className={`stack-${tone}`} key={label}>
+              <li className={`stack-${tone} tech-${label.toLowerCase().replace(/\s+/g, "-")}`} key={label}>
                 <Icon size={26} aria-hidden="true" />
                 {label}
               </li>
@@ -301,12 +338,16 @@ export default function Home() {
               Hiring across borders takes more than a wider LinkedIn search. It takes an
               understanding of how talent moves, communicates and makes decisions in each market.
             </p>
+            <Globe />
           </div>
           <dl className="reach-list">
-            {markets.map(({ name, detail }) => (
+            {markets.map(({ name, detail, city, timeZone }) => (
               <div key={name}>
                 <dt>{name}</dt>
-                <dd>{detail}</dd>
+                <dd>
+                  {detail}
+                  <LocalTime city={city} timeZone={timeZone} />
+                </dd>
               </div>
             ))}
           </dl>

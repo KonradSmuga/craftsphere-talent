@@ -810,7 +810,6 @@ main { max-width: 100%; overflow-x: clip; }
   margin-right: auto;
   flex-shrink: 1;
 }
-.brand-lockup-image { display: block; width: 100%; height: auto; }
 @media (min-width: 651px) and (max-width: 1000px) {
   .site-header { gap: 16px; padding-inline: 18px; }
   .site-header .desktop-nav { gap: 18px; }
@@ -1126,11 +1125,87 @@ body { background: var(--c-paper); }
   gap: 24px;
   align-items: baseline;
   border-bottom: 1px solid var(--c-line);
-  transition: background-color .2s ease;
 }
-.reach-list > div:hover { background: rgba(59,46,145,.035); }
 .reach-list dt { color: var(--c-ink); font-family: Georgia, "Times New Roman", serif; font-size: 34px; line-height: 1; letter-spacing: -.02em; }
 .reach-list dd { margin: 0; color: var(--c-muted); font-size: 18px; line-height: 1.55; }
+
+/* Live local time per market */
+.local-time { margin-top: 10px; display: flex; align-items: center; gap: 8px; color: var(--c-indigo); font-size: 14px; font-weight: 650; }
+.local-time time { font-variant-numeric: tabular-nums; }
+.local-time i { width: 8px; height: 8px; border-radius: 50%; background: var(--c-teal); box-shadow: 0 0 0 0 rgba(14,110,122,.45); animation: liveDot 2.4s ease-out infinite; }
+@keyframes liveDot { 0% { box-shadow: 0 0 0 0 rgba(14,110,122,.45); } 70%, 100% { box-shadow: 0 0 0 8px rgba(14,110,122,0); } }
+
+/* Wireframe globe */
+.globe { width: 240px; height: 240px; margin-top: 36px; display: block; overflow: visible; }
+.globe-fill { fill: #efedfb; }
+.globe-outline { fill: none; stroke: var(--c-indigo); stroke-width: 1.5; }
+.globe-line, .globe-meridian { fill: none; stroke: rgba(59,46,145,.28); stroke-width: 1; }
+.globe-meridian { transform-box: fill-box; transform-origin: center; animation: globeTurn 12s linear infinite; }
+@keyframes globeTurn {
+  0% { transform: scaleX(1); }
+  25% { transform: scaleX(0); }
+  50% { transform: scaleX(-1); }
+  75% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+.globe-pin { fill: var(--c-teal); stroke: #fff; stroke-width: 2; }
+.globe-pulse { fill: var(--c-teal); transform-box: fill-box; transform-origin: center; animation: pinPulse 2.4s ease-out infinite; }
+@keyframes pinPulse { from { opacity: .45; transform: scale(1); } to { opacity: 0; transform: scale(3.2); } }
+.globe-label { fill: var(--c-ink); font-size: 11px; font-weight: 700; letter-spacing: .02em; }
+
+/* Expertise: tiles stay still; only the icons move, each in its own way. */
+.stack-grid li { cursor: default; }
+.stack-grid svg, .stack-grid svg * { transform-box: fill-box; transform-origin: center; }
+.tech-cloud svg { animation: iconDrift 5s ease-in-out infinite alternate; }
+.tech-ai svg { animation: iconPulse 2.6s ease-in-out infinite; }
+.tech-frontend svg { animation: iconWiggle 3.4s ease-in-out infinite; }
+.tech-backend svg path:last-of-type { animation: iconBlink 1.1s steps(1) infinite; }
+.tech-data svg { animation: iconBob 3s ease-in-out infinite; }
+.tech-full-stack svg path:nth-of-type(1) { animation: layerTop 3.2s ease-in-out infinite; }
+.tech-full-stack svg path:nth-of-type(3) { animation: layerBottom 3.2s ease-in-out infinite; }
+.tech-devops svg { animation: iconTilt 4s ease-in-out infinite; }
+.tech-web3 svg rect { animation: nodeGlow 2.4s ease-in-out infinite; }
+.tech-web3 svg rect:nth-of-type(2) { animation-delay: .8s; }
+.tech-web3 svg rect:nth-of-type(3) { animation-delay: 1.6s; }
+@keyframes iconDrift { from { transform: translateX(-3px); } to { transform: translateX(5px); } }
+@keyframes iconPulse { 0%, 100% { transform: scale(1); opacity: .85; } 50% { transform: scale(1.14); opacity: 1; } }
+@keyframes iconWiggle { 0%, 70%, 100% { transform: rotate(0); } 78% { transform: rotate(-10deg); } 86% { transform: rotate(9deg); } 93% { transform: rotate(-4deg); } }
+@keyframes iconBlink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@keyframes iconBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes layerTop { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2.5px); } }
+@keyframes layerBottom { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(2.5px); } }
+@keyframes iconTilt { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
+@keyframes nodeGlow { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+
+/* Logo: the mark spins and the wordmark catches a gleam on hover. */
+.site-header .brand-lockup { display: flex; align-items: center; }
+.logo-mark { width: 15.4%; flex: none; }
+.logo-word { width: 81.7%; margin-left: 2.9%; flex: none; position: relative; }
+.logo-mark img, .logo-word img { width: 100%; height: auto; display: block; }
+.logo-word::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 38%, rgba(140, 236, 248, .95) 48%, #fff 50%, rgba(167, 142, 255, .9) 52%, transparent 62%);
+  background-size: 300% 100%;
+  background-position: 120% 0;
+  -webkit-mask: url("/logo-wordmark.png") center / 100% 100% no-repeat;
+  mask: url("/logo-wordmark.png") center / 100% 100% no-repeat;
+  opacity: 0;
+  pointer-events: none;
+}
+.brand-lockup:hover .logo-mark img,
+.brand-lockup:focus-visible .logo-mark img { animation: logoSpin 1s cubic-bezier(.65, 0, .35, 1); }
+.brand-lockup:hover .logo-word::after,
+.brand-lockup:focus-visible .logo-word::after { animation: logoGleam 1.7s ease-in-out .1s; }
+@keyframes logoSpin { from { transform: rotate(0); } 60% { transform: rotate(380deg) scale(1.06); } to { transform: rotate(360deg) scale(1); } }
+@keyframes logoGleam { 0% { opacity: 1; background-position: 120% 0; } 85% { opacity: 1; } 100% { opacity: 0; background-position: -20% 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .globe-meridian, .globe-pulse, .local-time i,
+  .stack-grid svg, .stack-grid svg * { animation: none !important; }
+  .brand-lockup:hover .logo-mark img, .brand-lockup:hover .logo-word::after { animation: none; }
+}
 
 /* Terms */
 .screen-indigo { background: var(--c-indigo); color: #fff; }
@@ -1230,6 +1305,7 @@ body { background: var(--c-paper); }
   .reach-list > div { padding: 22px 4px; grid-template-columns: 1fr; gap: 8px; }
   .reach-list dt { font-size: 28px; }
   .reach-list dd { font-size: 16px; }
+  .globe { width: 180px; height: 180px; margin-top: 24px; }
   .terms-list li { padding: 22px 0; gap: 16px; }
   .terms-list li > span { width: 44px; height: 44px; }
   .home .terms-list h3 { font-size: 23px; }

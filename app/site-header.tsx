@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import type { CSSProperties } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 
 type HeaderPage = "home" | "about" | "privacy" | "candidates";
 type NavKey = "services" | "approach" | "expertise" | "candidates" | "about";
@@ -79,15 +78,13 @@ export function SiteHeader({ page }: { page: HeaderPage }) {
     <>
       <header className={`site-header${mobileOpen ? " mobile-menu-open" : ""}`}>
         <Link className="brand brand-lockup" href="/" aria-label="Craftsphere Talent home" onClick={closeMobileMenu}>
-          <Image
-            className="brand-lockup-image"
-            src="/craftsphere-talent-lockup.png"
-            alt="Craftsphere Talent | IT Recruitment"
-            width={1541}
-            height={250}
-            priority
-            unoptimized
-          />
+          {/* Two transparent pieces so the mark can spin and the wordmark can shine on hover. */}
+          <span className="logo-mark" aria-hidden="true">
+            <img src="/logo-mark.png" alt="" width={231} height={250} />
+          </span>
+          <span className="logo-word">
+            <img src="/logo-wordmark.png" alt="Craftsphere Talent | IT Recruitment" width={1229} height={250} />
+          </span>
         </Link>
         <nav className="desktop-nav" aria-label="Main navigation">
           {items.map(({ key, label, href }) => (
