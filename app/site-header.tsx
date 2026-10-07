@@ -81,10 +81,10 @@ export function SiteHeader({ page }: { page: HeaderPage }) {
         <Link className="brand brand-lockup" href="/" aria-label="Craftsphere Talent home" onClick={closeMobileMenu}>
           {/* Two transparent pieces so the mark can spin and the wordmark can shine on hover. */}
           <span className="logo-mark" aria-hidden="true">
-            <img src="/logo-mark.png" alt="" width={231} height={250} />
+            <img src="/logo-mark.png" alt="" width={120} height={130} decoding="async" />
           </span>
           <span className="logo-word">
-            <img src="/logo-wordmark.png" alt="Craftsphere Talent | IT Recruitment" width={1229} height={250} />
+            <img src="/logo-wordmark.png" alt="Craftsphere Talent | IT Recruitment" width={640} height={130} decoding="async" />
           </span>
         </Link>
         <nav className="desktop-nav" aria-label="Main navigation">
