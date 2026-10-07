@@ -1960,9 +1960,9 @@ main { max-width: 100%; overflow-x: clip; }
   .testimonial-static-card::before { transform: scaleX(1) !important; }
 }
 
-/* Supplied white brand lockup: prominent, readable and right-aligned. */
+/* Compact white brand lockup on the left, navigation on the right. */
 .site-header {
-  height: 116px;
+  height: 88px;
   gap: 28px;
   background: #fff;
 }
@@ -1970,9 +1970,9 @@ main { max-width: 100%; overflow-x: clip; }
 .site-header .desktop-nav { flex-shrink: 0; gap: 26px; }
 .site-header .header-cta { flex-shrink: 0; }
 .site-header .brand-lockup {
-  width: clamp(360px, 43vw, 560px);
+  width: clamp(260px, 30vw, 320px);
   min-width: 0;
-  margin-left: auto;
+  margin-right: auto;
   flex-shrink: 1;
 }
 .brand-lockup-image { display: block; width: 100%; height: auto; }
@@ -1982,9 +1982,9 @@ main { max-width: 100%; overflow-x: clip; }
   .site-header .header-cta { display: none; }
 }
 @media (max-width: 650px) {
-  .site-header { height: 90px; gap: 12px; padding-inline: 12px; }
-  .site-header .brand-lockup { width: min(480px, calc(100% - 54px)); }
-  .site-header .mobile-menu-toggle { order: -1; flex-shrink: 0; }
-  main { padding-top: calc(104px + env(safe-area-inset-top)); }
-  .mobile-navigation { max-height: calc(100dvh - 116px - env(safe-area-inset-top)); }
+  .site-header { height: 72px; gap: 12px; padding-inline: 12px; }
+  .site-header .brand-lockup { width: min(260px, calc(100% - 54px)); }
+  .site-header .mobile-menu-toggle { flex-shrink: 0; }
+  main { padding-top: calc(86px + env(safe-area-inset-top)); }
+  .mobile-navigation { max-height: calc(100dvh - 98px - env(safe-area-inset-top)); }
 }
