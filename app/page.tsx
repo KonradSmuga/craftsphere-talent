@@ -14,6 +14,7 @@ import {
 import { SiteFooter } from "./site-footer";
 import { BrandAmbient } from "./brand-ambient";
 import { ScreenScroller } from "./screen-scroller";
+import { OffscreenPause } from "./offscreen-pause";
 import { SiteHeader } from "./site-header";
 import { ContactForm } from "./site-forms";
 import { LocalTime } from "./local-time";
@@ -190,6 +191,7 @@ export default function Home() {
       <BrandAmbient />
       <SiteHeader page="home" />
       <ScreenScroller />
+      <OffscreenPause />
 
       <section className="screen intro" aria-labelledby="intro-title">
         <div className="shell intro-grid">
@@ -217,7 +219,9 @@ export default function Home() {
           <div className="intro-visual">
             <img
               className="intro-image"
-              src="/craftsphere-hero-recruiter.webp"
+              src="/craftsphere-hero-recruiter-960.webp"
+              srcSet="/craftsphere-hero-recruiter-640.webp 640w, /craftsphere-hero-recruiter-960.webp 960w, /craftsphere-hero-recruiter-1200.webp 1200w, /craftsphere-hero-recruiter.webp 1536w"
+              sizes="(max-width: 960px) calc(100vw - 32px), 560px"
               width="1536"
               height="1024"
               alt="Illustration of a recruiter at a laptop next to a verified candidate profile"

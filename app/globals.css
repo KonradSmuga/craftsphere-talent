@@ -1673,3 +1673,13 @@ body { background: var(--c-paper); }
 html.motion-paused *,
 html.motion-paused *::before,
 html.motion-paused *::after { animation-play-state: paused !important; }
+
+/* ==========================================================================
+   Performance
+   ========================================================================== */
+/* The header is opaque, so a backdrop blur only costs repaints while scrolling. */
+.site-header { -webkit-backdrop-filter: none; backdrop-filter: none; }
+/* Sections out of view stop animating (see app/offscreen-pause.tsx). */
+.screen[data-offscreen] *,
+.screen[data-offscreen] *::before,
+.screen[data-offscreen] *::after { animation-play-state: paused !important; }
