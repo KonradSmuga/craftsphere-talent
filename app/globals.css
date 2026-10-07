@@ -1707,22 +1707,15 @@ html.motion-paused *::after { animation-play-state: paused !important; }
 }
 .highlights li svg { margin-top: 2px; color: var(--c-teal); }
 
-.creds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; max-width: 760px; }
-.creds article { padding: 24px; border: 1px solid var(--c-line); border-radius: 18px; background: #fff; }
-.creds svg { color: var(--c-violet); }
-.home .creds h3 { margin: 14px 0 6px; color: var(--c-ink); font-size: 21px; line-height: 1.2; }
-.creds p { margin: 0; color: var(--c-muted); font-size: 15px; line-height: 1.5; }
-.home .tools-title { margin: 36px 0 14px; font-family: inherit; font-size: 15px; font-weight: 700; letter-spacing: 0; color: var(--c-ink); }
-
 .role-list { margin: 0 0 26px; padding: 0; display: grid; gap: 10px; list-style: none; }
 .role-list li { display: flex; align-items: flex-start; gap: 10px; color: #2f2e48; font-size: 17px; line-height: 1.45; }
 .role-list svg { flex: none; margin-top: 3px; color: var(--c-teal); }
 
 @media (max-width: 960px) {
   .highlights { grid-template-columns: 1fr; gap: 24px; }
-  .creds { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  
 }
 @media (max-width: 650px) {
-  .highlights ul, .creds { grid-template-columns: 1fr; }
+  .highlights ul { grid-template-columns: 1fr; }
   .highlights li { padding: 16px 18px; font-size: 15.5px; }
 }

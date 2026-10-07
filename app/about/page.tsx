@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Award, Building2, Check, ExternalLink, GraduationCap } from "lucide-react";
+import { Building2, Check, ExternalLink } from "lucide-react";
 import { BrandAmbient } from "../brand-ambient";
 import { SiteFooter } from "../site-footer";
 import { SiteHeader } from "../site-header";
@@ -44,13 +44,6 @@ const highlights = [
   "Closed three executive hires in my first month at ClearScale.",
   "Closed 30+ hires in my first year at Link Group, one of Poland's largest recruitment agencies.",
 ];
-
-const credentials = [
-  { title: "BSc Information Technology", detail: "University of Łódź, specialisation: IT in business", icon: GraduationCap },
-  { title: "AWS Certified Cloud Practitioner", detail: "Amazon Web Services, 2024", icon: Award },
-];
-
-const tools = ["LinkedIn Recruiter", "Greenhouse", "Loxo", "Recruitee", "Zoho Recruit", "Calendly", "Jira", "HeroHunt", "Hiretual", "ChatGPT, Claude, Gemini"];
 
 const roles = [
   "Backend, frontend and full stack engineers",
@@ -119,28 +112,6 @@ export default function AboutPage() {
             {highlights.map((item) => (
               <li key={item}><Check size={20} aria-hidden="true" /> {item}</li>
             ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="block" aria-labelledby="creds-title">
-        <div className="shell">
-          <header className="screen-head">
-            <h2 id="creds-title">Technical foundation.</h2>
-            <p>An IT degree and AWS certification: enough to read a stack, ask the right questions and assess technical fit early.</p>
-          </header>
-          <div className="creds">
-            {credentials.map(({ title, detail, icon: Icon }) => (
-              <article key={title}>
-                <Icon size={24} aria-hidden="true" />
-                <h3>{title}</h3>
-                <p>{detail}</p>
-              </article>
-            ))}
-          </div>
-          <h3 className="tools-title">Tools I work with</h3>
-          <ul className="tag-list">
-            {tools.map((tool) => <li key={tool}>{tool}</li>)}
           </ul>
         </div>
       </section>
