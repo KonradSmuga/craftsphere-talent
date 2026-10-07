@@ -14,6 +14,7 @@ import {
   MessageCircle,
   Network,
   Phone,
+  Plane,
   ShieldCheck,
   Sparkles,
   Target,
@@ -143,39 +144,49 @@ const terms = [
   { title: "Flexible multi-role terms", detail: "Adaptable cooperation for companies recruiting several positions.", icon: Layers3 },
 ];
 
-/** Wireframe globe; meridians turn via CSS, pins mark the three markets. */
-function Globe() {
-  const meridians = [0, 1, 2, 3, 4, 5];
-  const parallels = [
-    { y: 120, rx: 100, ry: 13 },
-    { y: 82, rx: 92, ry: 11 },
-    { y: 158, rx: 92, ry: 11 },
-    { y: 50, rx: 71, ry: 8 },
-    { y: 190, rx: 71, ry: 8 },
+/** One 400×200 tile of a cartoon world map; drawn twice so it can scroll seamlessly. */
+function WorldTile({ x }: { x: number }) {
+  const land = [
+    "M30 62 C45 40 95 38 118 52 C132 60 128 78 112 86 C102 92 100 104 88 110 C76 116 64 108 58 96 C50 84 30 82 30 62 Z",
+    "M128 34 C138 28 152 32 150 42 C148 50 134 50 128 44 Z",
+    "M96 118 C110 112 128 120 130 134 C132 150 120 170 110 184 C104 190 98 184 98 174 C98 160 88 146 90 132 C91 124 92 120 96 118 Z",
+    "M184 58 C192 48 214 46 226 54 C232 60 226 70 216 72 C206 74 196 80 188 76 C180 72 178 64 184 58 Z",
+    "M190 88 C204 82 230 86 240 96 C248 106 244 122 236 134 C228 150 220 166 210 168 C202 170 200 156 198 144 C196 132 184 124 184 108 C184 98 184 92 190 88 Z",
+    "M230 50 C252 38 300 36 330 48 C348 56 346 72 332 80 C318 88 312 100 296 104 C282 108 270 98 258 100 C246 102 236 92 234 80 C232 70 222 60 230 50 Z",
+    "M300 140 C312 132 336 134 344 144 C350 154 338 166 322 166 C308 166 296 154 300 140 Z",
   ];
   const pins = [
-    { label: "US", x: 74, y: 92 },
-    { label: "LATAM", x: 104, y: 166 },
-    { label: "EMEA", x: 156, y: 88 },
+    { label: "US", x: 76, y: 70 },
+    { label: "LATAM", x: 110, y: 146 },
+    { label: "EMEA", x: 206, y: 62 },
   ];
   return (
-    <svg className="globe" viewBox="0 0 240 240" aria-hidden="true">
-      <circle className="globe-fill" cx="120" cy="120" r="100" />
-      {parallels.map(({ y, rx, ry }) => (
-        <ellipse className="globe-line" key={y} cx="120" cy={y} rx={rx} ry={ry} />
-      ))}
-      {meridians.map((i) => (
-        <ellipse className="globe-meridian" key={i} cx="120" cy="120" rx="100" ry="100" style={{ animationDelay: `${-i * 2}s` }} />
-      ))}
-      <circle className="globe-outline" cx="120" cy="120" r="100" />
-      {pins.map(({ label, x, y }, i) => (
-        <g key={label}>
-          <circle className="globe-pulse" cx={x} cy={y} r="6" style={{ animationDelay: `${i * 0.8}s` }} />
-          <circle className="globe-pin" cx={x} cy={y} r="5" />
-          <text className="globe-label" x={x + 10} y={y + 4}>{label}</text>
+    <g transform={`translate(${x} 0)`}>
+      {land.map((d) => <path className="globe-land" key={d} d={d} />)}
+      {pins.map(({ label, x: px, y }) => (
+        <g className="globe-pin" key={label} transform={`translate(${px} ${y})`}>
+          <path d="M0 0 C-7 -9 -9 -13 -9 -17 A9 9 0 1 1 9 -17 C9 -13 7 -9 0 0 Z" />
+          <circle cx="0" cy="-17" r="3.4" />
+          <text x="13" y="-12">{label}</text>
         </g>
       ))}
-    </svg>
+    </g>
+  );
+}
+
+/** Cartoon globe: the world scrolls inside a circle while a small plane orbits it. */
+function Globe() {
+  return (
+    <div className="globe" aria-hidden="true">
+      <div className="globe-orbit"><span className="globe-plane"><Plane size={20} /></span></div>
+      <div className="globe-ball">
+        <svg className="globe-map" viewBox="0 0 800 200" preserveAspectRatio="none">
+          <WorldTile x={0} />
+          <WorldTile x={400} />
+        </svg>
+      </div>
+      <span className="globe-shadow" />
+    </div>
   );
 }
 
@@ -301,7 +312,7 @@ export default function Home() {
           <div className="approach-grid">
             {approach.map(({ title, detail, icon: Icon }) => (
               <article key={title}>
-                <Icon size={24} aria-hidden="true" />
+                <span className="approach-icon"><Icon size={24} aria-hidden="true" /></span>
                 <h3>{title}</h3>
                 <p>{detail}</p>
               </article>
@@ -322,7 +333,7 @@ export default function Home() {
           <ul className="stack-grid">
             {expertise.map(({ label, icon: Icon, tone }) => (
               <li className={`stack-${tone} tech-${label.toLowerCase().replace(/\s+/g, "-")}`} key={label}>
-                <Icon size={26} aria-hidden="true" />
+                <span className="tech-icon"><Icon size={26} aria-hidden="true" /></span>
                 {label}
               </li>
             ))}
