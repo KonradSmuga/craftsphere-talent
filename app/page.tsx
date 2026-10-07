@@ -42,10 +42,9 @@ const expertise = [
 // Track record shown under the hero. Keep these numbers factual — they are client-facing claims.
 const trackRecord = [
   { value: "10", unit: "years", label: "Hands-on IT recruitment", icon: BadgeCheck },
-  { value: "TODO", unit: "hires", label: "Successful technology placements", icon: Gauge },
-  { value: "TODO", unit: "to shortlist", label: "Average time to first shortlist", icon: Target },
-  { value: "TODO", unit: "retention", label: "Hires who passed probation", icon: ShieldCheck },
-];
+  { value: "160+", unit: "hires", label: "Successful technology placements", icon: Gauge },
+  { value: "3", unit: "markets", label: "EMEA, the US and LATAM", icon: Globe2 },
+]
 
 const whyCraftsphere = [
   {
