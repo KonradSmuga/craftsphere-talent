@@ -81,9 +81,9 @@ export function SiteHeader({ page }: { page: HeaderPage }) {
         <Link className="brand brand-lockup" href="/" aria-label="Craftsphere Talent home" onClick={closeMobileMenu}>
           <Image
             className="brand-lockup-image"
-            src="/craftsphere-talent-lockup-white.png"
+            src="/craftsphere-talent-lockup.png"
             alt="Craftsphere Talent | IT Recruitment"
-            width={1340}
+            width={1541}
             height={250}
             priority
             unoptimized

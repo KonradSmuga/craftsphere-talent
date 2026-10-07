@@ -12,6 +12,7 @@ import {
   UserRoundCheck,
 } from "lucide-react";
 import { SiteFooter } from "../site-footer";
+import { BrandAmbient } from "../brand-ambient";
 import { SiteHeader } from "../site-header";
 import { SOCIAL_IMAGE } from "../site-config";
 
@@ -61,6 +62,7 @@ const technologyAreas = ["Cloud", "AI", "Frontend", "Backend", "Data", "Full Sta
 export default function AboutPage() {
   return (
     <main id="top" className="about-page">
+      <BrandAmbient />
       <SiteHeader page="about" />
 
       <section className="about-hero shell" aria-labelledby="about-title">
