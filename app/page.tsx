@@ -162,9 +162,9 @@ export default function Home() {
               signed offer.
             </p>
             <ul className="intro-benefits" aria-label="How Craftsphere Talent helps">
-              <li><Cloud size={18} aria-hidden="true" /> Hard-to-find tech talent</li>
-              <li><Workflow size={18} aria-hidden="true" /> Smarter hiring processes</li>
-              <li><MessageCircle size={18} aria-hidden="true" /> Candidate-first communication</li>
+              <li><Cloud size={15} aria-hidden="true" /> Hard-to-find tech talent</li>
+              <li><Workflow size={15} aria-hidden="true" /> Smarter hiring processes</li>
+              <li><MessageCircle size={15} aria-hidden="true" /> Candidate-first communication</li>
             </ul>
             <div className="intro-actions">
               <a className="button button-primary" href={mailto("Hiring support for our team")} data-analytics-event="contact_click" data-contact-method="email" data-contact-placement="hero">

@@ -1100,61 +1100,64 @@ body { background: var(--c-paper); }
 .intro-copy > p { max-width: 34em; margin: 0 0 30px; color: var(--c-muted); font-size: 19px; line-height: 1.6; }
 .intro-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .intro-benefits {
-  max-width: 640px;
-  margin: 0 0 28px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 26px;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
   list-style: none;
   border: 1px solid var(--c-line);
-  border-radius: 18px;
+  border-radius: 12px;
   background: #fff;
 }
 .intro-benefits li {
-  padding: 13px 16px;
+  padding: 7px 9px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
   border-right: 1px solid var(--c-line);
-  color: #3b3a55;
-  font-size: 14.5px;
-  font-weight: 650;
+  color: #4a4964;
+  font-size: 12px;
+  font-weight: 600;
   line-height: 1.3;
+  white-space: nowrap;
 }
 .intro-benefits li:last-child { border-right: 0; }
 .intro-benefits svg { flex: none; color: var(--c-violet); }
+@media (min-width: 961px) and (max-width: 1260px) {
+  .intro-benefits li { white-space: normal; }
+}
 
 /* Role chips drifting in the page margins, behind content. */
 .ambient-backdrop { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
 .ambient-tech {
-  min-width: 150px;
-  padding: 11px 14px;
+  padding: 9px 12px;
   display: grid;
   grid-template-columns: auto 1fr;
-  column-gap: 10px;
+  column-gap: 9px;
   align-items: center;
   position: absolute;
-  border: 1px solid var(--c-line);
-  border-radius: 14px;
-  background: rgba(255,255,255,.82);
-  box-shadow: 0 10px 26px rgba(28,27,51,.07);
+  border: 1px solid rgba(91,69,201,.14);
+  border-radius: 12px;
+  background: rgba(255,255,255,.6);
   color: var(--c-ink);
-  opacity: .78;
+  opacity: .32;
 }
 .ambient-tech svg { grid-row: 1 / 3; color: var(--c-violet); }
-.ambient-tech b { font-size: 13px; line-height: 1.15; }
-.ambient-tech small { margin-top: 2px; color: var(--c-muted); font-size: 11px; }
-.ambient-tech-cloud { top: 15%; right: calc(50% + 590px); animation: ambientDriftA 14s ease-in-out infinite alternate; }
-.ambient-tech-ai { top: 38%; right: calc(50% + 640px); animation: ambientDriftB 17s ease-in-out -6s infinite alternate; }
-.ambient-tech-java { top: 60%; right: calc(50% + 600px); animation: ambientDriftC 19s ease-in-out -3s infinite alternate; }
-.ambient-tech-frontend { top: 82%; right: calc(50% + 650px); animation: ambientDriftA 21s ease-in-out -9s infinite alternate; }
-.ambient-tech-data { top: 24%; left: calc(50% + 620px); animation: ambientDriftB 18s ease-in-out -4s infinite alternate; }
-.ambient-tech-devops { top: 47%; left: calc(50% + 590px); animation: ambientDriftC 16s ease-in-out -7s infinite alternate; }
-.ambient-tech-engineering { top: 69%; left: calc(50% + 640px); animation: ambientDriftA 20s ease-in-out -2s infinite alternate; }
-.ambient-tech-security { top: 88%; left: calc(50% + 600px); animation: ambientDriftB 22s ease-in-out -11s infinite alternate; }
-@keyframes ambientDriftA { from { transform: translate3d(0, -26px, 0) rotate(-1.5deg); } to { transform: translate3d(10px, 34px, 0) rotate(1.5deg); } }
-@keyframes ambientDriftB { from { transform: translate3d(-8px, 30px, 0) rotate(1deg); } to { transform: translate3d(6px, -32px, 0) rotate(-2deg); } }
-@keyframes ambientDriftC { from { transform: translate3d(6px, -18px, 0); } to { transform: translate3d(-10px, 40px, 0) rotate(1.5deg); } }
+.ambient-tech b { font-size: 12px; line-height: 1.15; }
+.ambient-tech small { margin-top: 1px; color: var(--c-muted); font-size: 10.5px; }
+/* Hand-scattered: uneven heights and distances from the content column (which ends 560px from centre). */
+.ambient-tech-cloud { top: 14%; right: calc(50% + 612px); scale: .92; animation: ambientDriftA 23s ease-in-out infinite alternate; }
+.ambient-tech-ai { top: 33%; right: calc(50% + 745px); scale: 1.04; animation: ambientDriftC 29s ease-in-out -8s infinite alternate; }
+.ambient-tech-java { top: 46%; right: calc(50% + 640px); scale: .86; animation: ambientDriftB 26s ease-in-out -15s infinite alternate; }
+.ambient-tech-frontend { top: 79%; right: calc(50% + 700px); scale: .95; animation: ambientDriftA 31s ease-in-out -4s infinite alternate; }
+.ambient-tech-data { top: 19%; left: calc(50% + 690px); scale: .9; animation: ambientDriftB 27s ease-in-out -11s infinite alternate; }
+.ambient-tech-devops { top: 37%; left: calc(50% + 618px); scale: 1; animation: ambientDriftC 24s ease-in-out -19s infinite alternate; }
+.ambient-tech-engineering { top: 64%; left: calc(50% + 760px); scale: .88; animation: ambientDriftA 33s ease-in-out -6s infinite alternate; }
+.ambient-tech-security { top: 91%; left: calc(50% + 655px); scale: .97; animation: ambientDriftB 28s ease-in-out -13s infinite alternate; }
+@keyframes ambientDriftA { from { transform: translate3d(0, -26px, 0) rotate(-2deg); } to { transform: translate3d(12px, 34px, 0) rotate(1.5deg); } }
+@keyframes ambientDriftB { from { transform: translate3d(-10px, 30px, 0) rotate(1.5deg); } to { transform: translate3d(6px, -36px, 0) rotate(-2.5deg); } }
+@keyframes ambientDriftC { from { transform: translate3d(8px, -18px, 0) rotate(-1deg); } to { transform: translate3d(-12px, 42px, 0) rotate(2deg); } }
 /* Narrow margins: hide rather than let the chips slide under the content. */
 @media (max-width: 1280px) { .ambient-backdrop { display: none; } }
 @media (prefers-reduced-motion: reduce) { .ambient-tech { animation: none; } }
@@ -1379,8 +1382,8 @@ body { background: var(--c-paper); }
   .intro-copy > p { font-size: 17px; }
   .intro-actions .button { flex: 1 1 auto; white-space: nowrap; }
   .intro-note { padding: 12px 14px; }
-  .intro-benefits { grid-template-columns: 1fr; }
-  .intro-benefits li { padding: 11px 14px; border-right: 0; border-bottom: 1px solid var(--c-line); }
+  .intro-benefits { width: 100%; flex-direction: column; }
+  .intro-benefits li { padding: 9px 12px; border-right: 0; border-bottom: 1px solid var(--c-line); }
   .intro-benefits li:last-child { border-bottom: 0; }
   .intro-note > span { display: none; }
   .intro-note strong { font-size: 14px; }
