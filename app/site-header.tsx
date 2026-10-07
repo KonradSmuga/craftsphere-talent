@@ -2,17 +2,18 @@
 
 import { useEffect, useState } from "react";
 import type { CSSProperties } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
 type HeaderPage = "home" | "about" | "privacy";
-type NavKey = "services" | "expertise" | "about";
+type NavKey = "services" | "approach" | "expertise" | "terms" | "about";
 
 const observedSections: Array<{ id: string; nav: NavKey }> = [
   { id: "services", nav: "services" },
+  { id: "approach", nav: "approach" },
   { id: "expertise", nav: "expertise" },
-  { id: "contact", nav: "about" },
+  { id: "terms", nav: "terms" },
 ];
 
 export function SiteHeader({ page }: { page: HeaderPage }) {
@@ -66,7 +67,9 @@ export function SiteHeader({ page }: { page: HeaderPage }) {
 
   const items: Array<{ key: NavKey; label: string; href: string }> = [
     { key: "services", label: "Services", href: `${homePrefix}#services` },
+    { key: "approach", label: "Approach", href: `${homePrefix}#approach` },
     { key: "expertise", label: "Expertise", href: `${homePrefix}#expertise` },
+    { key: "terms", label: "Terms", href: `${homePrefix}#terms` },
     { key: "about", label: "About", href: "/about" },
   ];
 
@@ -106,7 +109,7 @@ export function SiteHeader({ page }: { page: HeaderPage }) {
           ))}
         </nav>
         <a className="header-cta" href={contactHref} data-analytics-event="contact_navigation" data-contact-method="contact_section" data-contact-placement={`${page}_header`}>
-          Contact <ArrowUpRight size={16} aria-hidden="true" />
+          Contact
         </a>
         <button
           className="mobile-menu-toggle"
@@ -125,7 +128,6 @@ export function SiteHeader({ page }: { page: HeaderPage }) {
           aria-label="Mobile navigation"
           aria-hidden={!mobileOpen}
         >
-          <span className="mobile-nav-kicker">Explore Craftsphere</span>
           {items.map(({ key, label, href }, index) => (
             <a
               className={activeItem === key ? "nav-active" : undefined}
@@ -134,9 +136,7 @@ export function SiteHeader({ page }: { page: HeaderPage }) {
               onClick={closeMobileMenu}
               style={{ "--menu-delay": `${70 + index * 55}ms` } as CSSProperties}
             >
-              <span>0{index + 1}</span>
               {label}
-              <ArrowUpRight size={17} aria-hidden="true" />
             </a>
           ))}
           <a
@@ -147,7 +147,7 @@ export function SiteHeader({ page }: { page: HeaderPage }) {
             data-contact-method="contact_section"
             data-contact-placement={`${page}_mobile_menu`}
           >
-            Contact <ArrowUpRight size={17} aria-hidden="true" />
+            Contact
           </a>
         </nav>
       </header>

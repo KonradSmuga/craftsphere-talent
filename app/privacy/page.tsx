@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Mail, ShieldCheck } from "lucide-react";
-import { BrandAmbient } from "../brand-ambient";
 import { SiteFooter } from "../site-footer";
 import { SiteHeader } from "../site-header";
 import { SOCIAL_IMAGE } from "../site-config";
@@ -22,7 +21,6 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <main id="top" className="privacy-page">
-      <BrandAmbient />
       <SiteHeader page="privacy" />
 
       <section className="privacy-hero shell" aria-labelledby="privacy-title">
