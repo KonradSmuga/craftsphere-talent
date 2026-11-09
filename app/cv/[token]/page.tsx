@@ -54,7 +54,7 @@ function SectionHead({ kicker, title, id, lead }: { kicker: string; title: strin
 
 function CompanyLogo({ job }: { job: Job }) {
   return (
-    <span className={`cv-logo${job.logo ? " cv-logo-img" : ""}`} aria-hidden="true">
+    <span className={`cv-logo${job.logo ? " cv-logo-img" : ""}${job.logoWide ? " cv-logo-wide" : ""}`} aria-hidden="true">
       {job.logo ? <img src={job.logo} alt="" loading="lazy" /> : job.monogram}
     </span>
   );

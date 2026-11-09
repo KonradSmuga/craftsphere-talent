@@ -2,7 +2,7 @@
  * Everything shown on the private CV page. Edit here; the layout is in app/cv/[token]/page.tsx.
  *
  * Company logos: drop a file into public/cv-logos/ and set `logo` on the job, e.g.
- *   logo: "/cv-logos/clearscale.svg"
+ *   logo: "/cv-logos/clearscale.png"
  * Without a logo the page shows a monogram tile instead.
  */
 import type { HireKey, SideKey } from "../_components/cv-icons";
@@ -87,6 +87,8 @@ export type Job = {
   years: string;
   monogram: string;
   logo?: string;
+  /** Wide marks get less padding so they read at a similar size to square ones. */
+  logoWide?: boolean;
   roles: Role[];
 };
 
@@ -95,6 +97,7 @@ export const currentJob: Job = {
   place: "Remote, San Francisco",
   years: "2021 – present",
   monogram: "CS",
+  logo: "/cv-logos/clearscale.png",
   roles: [
     {
       title: "Lead IT Technical Recruiter",
@@ -127,6 +130,8 @@ export const emagineJob: Job = {
   place: "Warsaw",
   years: "2017 – 2021",
   monogram: "e",
+  logo: "/cv-logos/emagine.png",
+  logoWide: true,
   roles: [
     {
       title: "Recruitment Manager",
@@ -164,6 +169,7 @@ export const earlyJobs: Job[] = [
     place: "Warsaw",
     years: "2016 – 2017",
     monogram: "LG",
+    logo: "/cv-logos/linkgroup.png",
     roles: [
       {
         title: "IT Research Consultant",
@@ -182,6 +188,8 @@ export const earlyJobs: Job[] = [
     place: "Warsaw",
     years: "2016",
     monogram: "DN",
+    logo: "/cv-logos/diebold-nixdorf.png",
+    logoWide: true,
     roles: [
       {
         title: "IT Helpdesk Analyst",
