@@ -99,6 +99,9 @@ export function SiteAnalytics({ measurementId }: { measurementId: string }) {
   const [consent, setConsent] = useState<ConsentChoice | "loading" | "unset">("loading");
 
   useEffect(() => {
+    // The private CV page (/cv/<token>) has no analytics: no banner, and the token never reaches GA.
+    if (window.location.pathname.startsWith("/cv/")) return;
+
     const savedChoice = window.localStorage.getItem(CONSENT_KEY) as ConsentChoice | null;
     queueMicrotask(() => setConsent(savedChoice ?? "unset"));
 
