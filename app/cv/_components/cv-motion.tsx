@@ -6,7 +6,8 @@ import { useEffect } from "react";
  * Small motion layer for the private CV page:
  *  - [data-reveal] elements fade up as they scroll into view (staggered by --reveal-i),
  *  - [data-count] numbers count up once when the stats band appears,
- *  - sections out of view pause their looping icon animations.
+ *  - sections out of view pause their looping icon animations,
+ *  - the top bar link of the section in view is highlighted.
  * Without JavaScript, or with reduced motion / paused animations, everything is shown as is.
  */
 export function CvMotion() {
@@ -14,17 +15,37 @@ export function CvMotion() {
     const main = document.querySelector<HTMLElement>("main.cv");
     if (!main || !("IntersectionObserver" in window)) return;
 
-    const sections = main.querySelectorAll<HTMLElement>(".block");
+    const sections = Array.from(main.querySelectorAll<HTMLElement>(".screen"));
     const pauser = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.target.toggleAttribute("data-offscreen", !e.isIntersecting)),
       { rootMargin: "200px 0px" },
     );
     sections.forEach((section) => pauser.observe(section));
 
+    // Highlight the section in view in the top bar.
+    const links = Array.from(main.querySelectorAll<HTMLAnchorElement>(".cv-nav a"));
+    const setActive = (nav: string | undefined) =>
+      links.forEach((link) => {
+        const active = link.getAttribute("href") === `#${nav}`;
+        link.classList.toggle("nav-active", active);
+        if (active) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    const spy = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive((entry.target as HTMLElement).dataset.nav);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    sections.forEach((section) => spy.observe(section));
+    const stopSpy = () => spy.disconnect();
+
     const reduced =
       window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
       document.documentElement.classList.contains("motion-paused");
-    if (reduced) return () => pauser.disconnect();
+    if (reduced) return () => { pauser.disconnect(); stopSpy(); };
 
     const items = Array.from(main.querySelectorAll<HTMLElement>("[data-reveal]"));
     const counters = Array.from(main.querySelectorAll<HTMLElement>("[data-count]"));
@@ -75,6 +96,7 @@ export function CvMotion() {
 
     return () => {
       pauser.disconnect();
+      stopSpy();
       revealer.disconnect();
       counter.disconnect();
     };
