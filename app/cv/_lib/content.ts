@@ -49,7 +49,6 @@ export const hiring: { icon: HireKey; title: string; detail: string; roles: stri
       "Mechanical engineers",
       "Electronic engineers",
       "Embedded software engineers",
-      "AI engineers",
       "Research scientists (incl. talent engaged from NVIDIA)",
     ],
   },

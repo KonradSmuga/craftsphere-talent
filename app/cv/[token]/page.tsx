@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { CSSProperties } from "react";
-import { ArrowRight, ArrowUpRight, Check, Download, Mail, MapPin, Phone, UserRound } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, Clock, Download, Mail, MapPin, Phone, UserRound } from "lucide-react";
 import { BrandAmbient } from "../../brand-ambient";
 import { MotionToggle } from "../../motion-toggle";
 import { HireIcon, SideIcon } from "../_components/cv-icons";
@@ -52,6 +52,43 @@ function SectionHead({ kicker, title, id, lead }: { kicker: string; title?: stri
   );
 }
 
+const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+
+/** "Dec 2021" → months since year 0; "present" → the current month. */
+function monthIndex(value: string): number | null {
+  const text = value.trim().toLowerCase();
+  if (text === "present") {
+    const now = new Date();
+    return now.getUTCFullYear() * 12 + now.getUTCMonth();
+  }
+  const match = /^([a-z]{3})[a-z]*\s+(\d{4})$/.exec(text);
+  if (!match || !MONTHS.includes(match[1])) return null;
+  return Number(match[2]) * 12 + MONTHS.indexOf(match[1]);
+}
+
+/** Total time at a company, counted LinkedIn-style from the first to the last month (inclusive). */
+function tenure(job: Job): string | null {
+  const periods = job.roles.flatMap((role) => [role.period, ...(role.previously ? [role.previously.period] : [])]);
+  let first = Infinity;
+  let last = -Infinity;
+  for (const period of periods) {
+    const [from, to] = period.split(/\s+[–-]\s+/);
+    const start = from ? monthIndex(from) : null;
+    const end = to ? monthIndex(to) : null;
+    if (start === null || end === null) return null;
+    first = Math.min(first, start);
+    last = Math.max(last, end);
+  }
+  const months = last - first + 1;
+  if (!Number.isFinite(months) || months <= 0) return null;
+  const years = Math.floor(months / 12);
+  const rest = months % 12;
+  const parts = [];
+  if (years) parts.push(`${years} ${years === 1 ? "yr" : "yrs"}`);
+  if (rest) parts.push(`${rest} ${rest === 1 ? "mo" : "mos"}`);
+  return parts.join(" ");
+}
+
 function CompanyLogo({ job }: { job: Job }) {
   return (
     <span className={`cv-logo${job.logo ? " cv-logo-img" : ""}${job.logoWide ? " cv-logo-wide" : ""}`} aria-hidden="true">
@@ -70,7 +107,14 @@ function JobBlock({ job, current = false }: { job: Job; current?: boolean }) {
             {job.company}
             {job.note && <span className="cv-job-note">{job.note}</span>}
           </h3>
-          <p>{job.place} · {job.years}</p>
+          <p>
+            {job.place} · {job.years}
+            {tenure(job) && (
+              <span className="cv-tenure" title="Total time at the company">
+                <Clock size={13} aria-hidden="true" /> {tenure(job)} in total
+              </span>
+            )}
+          </p>
         </div>
       </header>
       <div className="cv-roles">
@@ -220,7 +264,7 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
       {/* 2. Who I hire */}
       <section id="hiring" className="screen" data-nav="hiring" aria-labelledby="cv-hiring-title">
         <div className="shell">
-          <SectionHead kicker="Hiring scope" title="Who I hire." id="cv-hiring-title" />
+          <SectionHead kicker="Hiring scope" title="Who I hire" id="cv-hiring-title" />
           <div className="cv-hiring">
             {hiring.map(({ icon, title, detail, roles }, i) => (
               <article className="offer cv-lift" key={title} data-reveal="" style={stagger(i)}>
@@ -248,7 +292,7 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
         <div className="shell highlights">
           <div className="cv-section-head" data-reveal="">
             <p className="kicker">Highlights</p>
-            <h2 id="cv-record-title">Track record.</h2>
+            <h2 id="cv-record-title">Track record</h2>
           </div>
           <ul>
             {highlights.map((item, i) => (
@@ -294,7 +338,7 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
       {/* 5. Skills */}
       <section id="skills" className="screen" data-nav="skills" aria-labelledby="cv-skills-title">
         <div className="shell">
-          <SectionHead kicker="Tools, strengths & languages" title="Skills." id="cv-skills-title" />
+          <SectionHead kicker="Tools, strengths & languages" title="Skills" id="cv-skills-title" />
           <div className="cv-skills">
             {skills.map((card, i) => <SkillCard key={card.title} card={card} index={i} />)}
           </div>
@@ -304,7 +348,7 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
       {/* 6. Education & certificates */}
       <section id="education" className="screen" data-nav="education" aria-labelledby="cv-education-title">
         <div className="shell">
-          <SectionHead kicker="Background" title="Education & certificates." id="cv-education-title" />
+          <SectionHead kicker="Background" title="Education & certificates" id="cv-education-title" />
           <div className="cv-background">
             {background.map((card, i) => <SkillCard key={card.title} card={card} index={i} />)}
           </div>
@@ -317,7 +361,7 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
           <div className="cv-cta" data-reveal="">
             <div>
               <p className="kicker">Contact</p>
-              <h2 id="cv-contact-title">Let&apos;s talk.</h2>
+              <h2 id="cv-contact-title">Let&apos;s talk</h2>
               <p>Happy to walk you through any of the above, or to talk about the team you&apos;re hiring for.</p>
             </div>
             <ul className="cv-cta-links">
