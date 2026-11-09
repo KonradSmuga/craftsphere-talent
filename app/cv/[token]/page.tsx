@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ArrowUpRight, Check, Cpu, Download, Mail, MapPin, Phone, Server, TrendingUp } from "lucide-react";
+import type { CSSProperties } from "react";
+import { ArrowUpRight, Check, Download, Mail, MapPin, Phone } from "lucide-react";
+import { BrandAmbient } from "../../brand-ambient";
+import { MotionToggle } from "../../motion-toggle";
+import { HireIcon, SideIcon, type HireKey } from "../_components/cv-icons";
+import { CvMotion } from "../_components/cv-motion";
 import { isValidCvToken } from "../_lib/access";
 
 // Private page: rendered per request, never listed, never indexed.
@@ -22,14 +27,17 @@ const PHONE_DISPLAY = "+48 662 073 227";
 const PHONE_LINK = "+48662073227";
 
 const stats = [
-  { value: "10", label: "years in tech recruitment" },
-  { value: "160+", label: "candidates hired" },
-  { value: "9", label: "hires in a single month, personal best" },
+  { value: 10, suffix: "", label: "years in tech recruitment" },
+  { value: 160, suffix: "+", label: "candidates hired" },
+  { value: 9, suffix: "", label: "hires in a single month, personal best" },
 ];
 
-const hiring = [
+/** Stagger index for the scroll reveal (see cv-motion.tsx). */
+const stagger = (i: number) => ({ "--reveal-i": i }) as CSSProperties;
+
+const hiring: { icon: HireKey; title: string; detail: string; roles: string[] }[] = [
   {
-    icon: Server,
+    icon: "software",
     title: "Software, cloud & data",
     detail: "The core of my work, from individual contributors to C-level, perm and contract.",
     roles: [
@@ -43,7 +51,7 @@ const hiring = [
     ],
   },
   {
-    icon: Cpu,
+    icon: "hardware",
     title: "Hardware & deep tech",
     detail: "Engineering and research profiles where the candidate pool is small and global.",
     roles: [
@@ -55,7 +63,7 @@ const hiring = [
     ],
   },
   {
-    icon: TrendingUp,
+    icon: "gtm",
     title: "Go-to-market",
     detail:
       "Beyond engineering, I've hired go-to-market (GTM) roles for technology companies, so I understand both the product teams and the people who take the product to market.",
@@ -196,46 +204,61 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
 
   return (
     <main className="home page cv">
-      <header className="cv-bar shell">
+      <BrandAmbient />
+      <CvMotion />
+
+      <header className="cv-bar">
         <span className="cv-mark" aria-hidden="true">KS</span>
-        <span className="cv-bar-name">Konrad Smuga <span>Curriculum vitae</span></span>
-        <a className="cv-bar-download" href={pdfHref} download>
-          <Download size={16} aria-hidden="true" /> PDF
-        </a>
+        <span className="cv-bar-name">Konrad Smuga <span>Senior Tech Recruiter</span></span>
+        <nav className="cv-bar-actions" aria-label="CV actions">
+          <a className="cv-bar-link" href={`mailto:${EMAIL}`}>
+            <Mail size={16} aria-hidden="true" /> <span>Contact</span>
+          </a>
+          <a className="cv-bar-download" href={pdfHref} download>
+            <Download size={16} aria-hidden="true" /> <span>PDF</span>
+          </a>
+        </nav>
       </header>
 
       <section className="block cv-hero" aria-labelledby="cv-title">
         <div className="shell cv-hero-grid">
-          <div>
-            <p className="kicker">Senior Tech Recruiter · Talent Partner · AWS</p>
-            <h1 id="cv-title">Konrad Smuga</h1>
-            <p className="page-lead">
+          <div className="cv-hero-copy">
+            <p className="eyebrow cv-enter" style={stagger(0)}>
+              <span className="eyebrow-dot" aria-hidden="true" /> Senior Tech Recruiter · Talent Partner · AWS
+            </p>
+            <h1 id="cv-title" className="cv-enter" style={stagger(1)}>
+              Konrad <em>Smuga</em>
+            </h1>
+            <p className="page-lead cv-enter" style={stagger(2)}>
               Senior and lead tech recruiter with ten years on both the agency and the in-house side.
               I&apos;ve hired for global financial institutions, FinTechs, AWS consultancies and startups,
               permanent and contract, from individual contributors to C-level, across EMEA, the US and
               LATAM. My background is in IT, so I speak the language of the people I hire, now including
               hardware, research and go-to-market teams.
             </p>
-            <ul className="cv-contact">
+            <ul className="cv-contact cv-enter" style={stagger(3)}>
               <li><MapPin size={17} aria-hidden="true" /> Warsaw, Poland</li>
               <li><Phone size={17} aria-hidden="true" /> <a href={`tel:${PHONE_LINK}`}>{PHONE_DISPLAY}</a></li>
               <li><Mail size={17} aria-hidden="true" /> <a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
             </ul>
-            <div className="intro-actions">
+            <div className="intro-actions cv-enter" style={stagger(4)}>
               <a className="button button-primary" href={`mailto:${EMAIL}`}>
                 <Mail size={17} aria-hidden="true" /> Get in touch
               </a>
-              <a className="button button-secondary" href={LINKEDIN} target="_blank" rel="noreferrer noopener">
+              <a className="button button-secondary cv-btn-out" href={LINKEDIN} target="_blank" rel="noreferrer noopener">
                 LinkedIn profile <ArrowUpRight size={16} aria-hidden="true" />
               </a>
-              <a className="button button-secondary" href={pdfHref} download>
+              <a className="button button-secondary cv-btn-down" href={pdfHref} download>
                 <Download size={16} aria-hidden="true" /> Download PDF
               </a>
             </div>
           </div>
 
-          <aside className="profile cv-profile" aria-label="Konrad Smuga">
-            <img className="profile-photo" src="/konrad-smuga.webp" width="800" height="840" alt="Konrad Smuga" />
+          <aside className="profile cv-profile cv-enter" style={stagger(2)} aria-label="Konrad Smuga">
+            <div className="cv-photo-wrap">
+              <img className="profile-photo" src="/konrad-smuga.webp" width="800" height="840" alt="Konrad Smuga" />
+              <span className="cv-photo-tag"><i aria-hidden="true" /> Warsaw · hiring EMEA, US &amp; LATAM</span>
+            </div>
             <div className="profile-body">
               <ul>
                 <li><Check size={16} aria-hidden="true" /> Polish, native · English, C1</li>
@@ -246,13 +269,13 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
           </aside>
         </div>
 
-        <div className="shell stats" aria-labelledby="cv-stats-title">
+        <div className="shell stats cv-stats" aria-labelledby="cv-stats-title" data-reveal="">
           <h2 id="cv-stats-title">A decade of technology hiring.</h2>
           <dl>
-            {stats.map(({ value, label }) => (
+            {stats.map(({ value, suffix, label }) => (
               <div key={label}>
                 <dt>{label}</dt>
-                <dd>{value}</dd>
+                <dd data-count={value} data-suffix={suffix}>{value}{suffix}</dd>
               </div>
             ))}
           </dl>
@@ -261,11 +284,14 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
 
       <section className="block" aria-labelledby="cv-hiring-title">
         <div className="shell">
-          <h2 id="cv-hiring-title" className="cv-section-title">Who I hire.</h2>
+          <div className="cv-section-head" data-reveal="">
+            <p className="kicker">Hiring scope</p>
+            <h2 id="cv-hiring-title">Who I hire.</h2>
+          </div>
           <div className="cv-hiring">
-            {hiring.map(({ icon: Icon, title, detail, roles }) => (
-              <article className="offer" key={title}>
-                <h3><Icon size={26} aria-hidden="true" /> {title}</h3>
+            {hiring.map(({ icon, title, detail, roles }, i) => (
+              <article className="offer cv-lift" key={title} data-reveal="" style={stagger(i)}>
+                <h3><HireIcon name={icon} /> {title}</h3>
                 <p>{detail}</p>
                 {roles.length > 0 && (
                   <ul>
@@ -275,18 +301,30 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
               </article>
             ))}
           </div>
-          <ul className="tag-list tag-list-strong cv-markets" aria-label="Markets">
-            {["EMEA", "United States", "LATAM"].map((market) => <li key={market}>{market}</li>)}
-          </ul>
+          <div className="cv-markets" data-reveal="">
+            <span>Markets</span>
+            <ul className="tag-list tag-list-strong" aria-label="Markets">
+              {["EMEA", "United States", "LATAM"].map((market) => <li key={market}>{market}</li>)}
+            </ul>
+          </div>
         </div>
       </section>
 
       <section className="block" aria-labelledby="cv-record-title">
         <div className="shell highlights">
-          <h2 id="cv-record-title">Track record.</h2>
+          <div className="cv-section-head cv-sticky-head" data-reveal="">
+            <p className="kicker">Highlights</p>
+            <h2 id="cv-record-title">Track record.</h2>
+          </div>
           <ul>
-            {highlights.map((item) => (
-              <li key={item}><Check size={20} aria-hidden="true" /> {item}</li>
+            {highlights.map((item, i) => (
+              <li key={item} className="cv-lift" data-reveal="" style={stagger(i % 2)}>
+                <svg className="cv-check" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <path pathLength={100} d="M7.5 12.3l3 3 6-6.3" />
+                </svg>
+                {item}
+              </li>
             ))}
           </ul>
         </div>
@@ -295,18 +333,24 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
       <section className="block" aria-labelledby="cv-experience-title">
         <div className="shell cv-columns">
           <div>
-            <h2 id="cv-experience-title" className="cv-section-title">Experience.</h2>
+            <div className="cv-section-head" data-reveal="">
+              <p className="kicker">Career</p>
+              <h2 id="cv-experience-title">Experience.</h2>
+            </div>
             <ol className="cv-jobs">
-              {experience.map((job) => (
-                <li className="cv-job" key={job.company}>
+              {experience.map((job, jobIndex) => (
+                <li className={`cv-job${jobIndex === 0 ? " cv-job-current" : ""}`} key={job.company} data-reveal="">
                   <div className="cv-job-head">
                     <h3>{job.company}</h3>
                     <span>{job.place} · {job.years}</span>
                   </div>
                   {job.roles.map((role) => (
-                    <div className="cv-role" key={role.title}>
+                    <div className="cv-role cv-lift" key={role.title}>
                       <p className="cv-role-title">
-                        <strong>{role.title}</strong>
+                        <strong>
+                          {role.title}
+                          {role.period.endsWith("present") && <span className="cv-now"><i aria-hidden="true" /> Now</span>}
+                        </strong>
                         <time>{role.period}</time>
                       </p>
                       {role.points.length > 0 && (
@@ -320,16 +364,16 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
           </div>
 
           <aside className="cv-side" aria-label="Skills, education and more">
-            <div className="cv-card">
-              <h3>Tools</h3>
+            <div className="cv-card cv-lift" data-reveal="" style={stagger(0)}>
+              <h3><span className="cv-ico"><SideIcon name="tools" /></span> Tools</h3>
               <ul className="tag-list">{tools.map((t) => <li key={t}>{t}</li>)}</ul>
             </div>
-            <div className="cv-card">
-              <h3>Strengths</h3>
+            <div className="cv-card cv-lift" data-reveal="" style={stagger(1)}>
+              <h3><span className="cv-ico"><SideIcon name="strengths" /></span> Strengths</h3>
               <ul className="tag-list">{strengths.map((s) => <li key={s}>{s}</li>)}</ul>
             </div>
-            <div className="cv-card">
-              <h3>Education</h3>
+            <div className="cv-card cv-lift" data-reveal="" style={stagger(0)}>
+              <h3><span className="cv-ico"><SideIcon name="education" /></span> Education</h3>
               <dl className="cv-facts">
                 <div>
                   <dt>2010 – 2015</dt>
@@ -341,8 +385,8 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
                 </div>
               </dl>
             </div>
-            <div className="cv-card">
-              <h3>Certificates</h3>
+            <div className="cv-card cv-lift" data-reveal="" style={stagger(1)}>
+              <h3><span className="cv-ico"><SideIcon name="certificates" /></span> Certificates</h3>
               <dl className="cv-facts">
                 <div>
                   <dt>2024</dt>
@@ -354,15 +398,21 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
                 </div>
               </dl>
             </div>
-            <div className="cv-card">
-              <h3>Languages</h3>
-              <dl className="cv-facts">
-                <div><dt>Polish</dt><dd>Native</dd></div>
-                <div><dt>English</dt><dd>Advanced (C1)</dd></div>
+            <div className="cv-card cv-lift" data-reveal="" style={stagger(0)}>
+              <h3><span className="cv-ico"><SideIcon name="languages" /></span> Languages</h3>
+              <dl className="cv-langs">
+                <div>
+                  <dt>Polish</dt>
+                  <dd><span className="cv-meter" style={{ "--level": 1 } as CSSProperties} /> Native</dd>
+                </div>
+                <div>
+                  <dt>English</dt>
+                  <dd><span className="cv-meter" style={{ "--level": 0.84 } as CSSProperties} /> C1, advanced</dd>
+                </div>
               </dl>
             </div>
-            <div className="cv-card">
-              <h3>Outside work</h3>
+            <div className="cv-card cv-lift" data-reveal="" style={stagger(1)}>
+              <h3><span className="cv-ico"><SideIcon name="outside" /></span> Outside work</h3>
               <ul className="tag-list">
                 {["Eastern cultures", "AI & new tech", "Playing drums", "Board games"].map((i) => <li key={i}>{i}</li>)}
               </ul>
@@ -372,11 +422,12 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
       </section>
 
       <footer className="cv-footer">
-        <div className="shell">
-          <p>
-            I consent to the processing of my personal data for the purpose of the recruitment process.
-          </p>
-          <p>Shared privately. Please don&apos;t forward this link.</p>
+        <div className="shell cv-footer-inner">
+          <div>
+            <p>I consent to the processing of my personal data for the purpose of the recruitment process.</p>
+            <p>Shared privately. Please don&apos;t forward this link.</p>
+          </div>
+          <MotionToggle />
         </div>
       </footer>
     </main>
