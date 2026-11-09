@@ -4,7 +4,6 @@ import type { CSSProperties } from "react";
 import { ArrowRight, ArrowUpRight, Check, Download, Mail, MapPin, Phone, UserRound } from "lucide-react";
 import { BrandAmbient } from "../../brand-ambient";
 import { MotionToggle } from "../../motion-toggle";
-import { ScreenScroller } from "../../screen-scroller";
 import { HireIcon, SideIcon } from "../_components/cv-icons";
 import { CvMotion } from "../_components/cv-motion";
 import { isValidCvToken } from "../_lib/access";
@@ -13,6 +12,7 @@ import {
   LINKEDIN,
   PHONE_DISPLAY,
   PHONE_LINK,
+  background,
   currentJob,
   earlyJobs,
   emagineJob,
@@ -42,11 +42,11 @@ export const metadata: Metadata = {
 /** Stagger index for the reveal animations (see cv-motion.tsx). */
 const stagger = (i: number) => ({ "--reveal-i": i }) as CSSProperties;
 
-function SectionHead({ kicker, title, id, lead }: { kicker: string; title: string; id: string; lead?: string }) {
+function SectionHead({ kicker, title, id, lead }: { kicker: string; title?: string; id: string; lead?: string }) {
   return (
-    <div className="cv-section-head" data-reveal="">
-      <p className="kicker">{kicker}</p>
-      <h2 id={id}>{title}</h2>
+    <div className={`cv-section-head${title ? "" : " cv-section-head-kicker"}`} data-reveal="">
+      {title ? <p className="kicker">{kicker}</p> : <h2 className="kicker" id={id}>{kicker}</h2>}
+      {title && <h2 id={id}>{title}</h2>}
       {lead && <p className="cv-section-lead">{lead}</p>}
     </div>
   );
@@ -140,7 +140,6 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
     <main className="home page cv">
       <BrandAmbient />
       <CvMotion />
-      <ScreenScroller />
 
       <header className="cv-bar">
         <a className="cv-bar-brand" href="#profile" aria-label="Back to top">
@@ -265,36 +264,49 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
         </div>
       </section>
 
-      {/* 4–6. Experience, one screen per chapter */}
-      <section id="experience" className="screen" data-nav="experience" aria-labelledby="cv-experience-title">
+      {/* 4. Experience: one section per company */}
+      <section id="experience" className="screen cv-exp" data-nav="experience" aria-labelledby="cv-experience-title">
         <div className="shell">
-          <SectionHead kicker="Experience · 2021 – present" title="Leading recruitment at ClearScale." id="cv-experience-title" />
+          <SectionHead kicker="Experience · 2021 – present" id="cv-experience-title" />
           <JobBlock job={currentJob} current />
         </div>
       </section>
 
-      <section id="experience-emagine" className="screen" data-nav="experience" aria-labelledby="cv-emagine-title">
+      <section id="experience-emagine" className="screen cv-exp" data-nav="experience" aria-labelledby="cv-emagine-title">
         <div className="shell">
-          <SectionHead kicker="Experience · 2017 – 2021" title="Four years at emagine." id="cv-emagine-title" />
+          <SectionHead kicker="Experience · 2017 – 2021" id="cv-emagine-title" />
           <JobBlock job={emagineJob} />
         </div>
       </section>
 
-      <section id="experience-early" className="screen" data-nav="experience" aria-labelledby="cv-early-title">
+      {earlyJobs.map((job) => {
+        const slug = job.company.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+        return (
+          <section key={job.company} id={`experience-${slug}`} className="screen cv-exp" data-nav="experience" aria-labelledby={`cv-${slug}-title`}>
+            <div className="shell">
+              <SectionHead kicker={`Experience · ${job.years}`} id={`cv-${slug}-title`} />
+              <JobBlock job={job} />
+            </div>
+          </section>
+        );
+      })}
+
+      {/* 5. Skills */}
+      <section id="skills" className="screen" data-nav="skills" aria-labelledby="cv-skills-title">
         <div className="shell">
-          <SectionHead kicker="Experience · 2016 – 2017" title="Where it started." id="cv-early-title" />
-          <div className="cv-early">
-            {earlyJobs.map((job) => <JobBlock key={job.company} job={job} />)}
+          <SectionHead kicker="Tools, strengths & languages" title="Skills." id="cv-skills-title" />
+          <div className="cv-skills">
+            {skills.map((card, i) => <SkillCard key={card.title} card={card} index={i} />)}
           </div>
         </div>
       </section>
 
-      {/* 7. Skills & background */}
-      <section id="skills" className="screen" data-nav="skills" aria-labelledby="cv-skills-title">
+      {/* 6. Education & certificates */}
+      <section id="education" className="screen" data-nav="education" aria-labelledby="cv-education-title">
         <div className="shell">
-          <SectionHead kicker="Skills & background" title="What I bring." id="cv-skills-title" />
-          <div className="cv-skills">
-            {skills.map((card, i) => <SkillCard key={card.title} card={card} index={i} />)}
+          <SectionHead kicker="Background" title="Education & certificates." id="cv-education-title" />
+          <div className="cv-background">
+            {background.map((card, i) => <SkillCard key={card.title} card={card} index={i} />)}
           </div>
         </div>
       </section>

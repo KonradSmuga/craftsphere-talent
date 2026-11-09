@@ -1788,7 +1788,16 @@ html.motion-paused *::after { animation-play-state: paused !important; }
 
 /* Screens */
 .cv .screen { position: relative; }
-@media (min-width: 1024px) { .home.cv .screen { padding-block: 52px; } }
+/* Normal scrolling: sections take their natural height (only the first fills the window). */
+.home.cv .screen { padding-block: 64px; }
+@media (min-width: 1024px) and (min-height: 700px) {
+  .home.cv .screen:not(.cv-hero) { min-height: 0; display: block; }
+}
+.home.cv .screen.cv-exp { padding-block: 28px; }
+.home.cv #experience { padding-top: 64px; }
+.home.cv .cv-exp + .screen:not(.cv-exp) { padding-top: 72px; }
+.home .cv-section-head-kicker { margin-bottom: 18px; }
+.home .cv-section-head h2.kicker { margin: 0; color: var(--c-violet); font-family: inherit; font-size: 11px; font-weight: 750; line-height: 1.4; letter-spacing: .17em; }
 .home .cv-section-head h2 { font-size: clamp(32px, 2.4vw + 10px, 46px); }
 .cv-section-head { margin-bottom: 26px; }
 .cv-section-head .kicker { margin: 0 0 12px; display: flex; align-items: center; gap: 10px; color: var(--c-violet); }
@@ -1963,14 +1972,23 @@ html.motion-paused *::after { animation-play-state: paused !important; }
 @media (min-width: 1024px) {
   .cv-role ul.cv-points-split { display: block; columns: 2; column-gap: 40px; }
   .cv-role ul.cv-points-split li { margin-bottom: 8px; break-inside: avoid; }
-  .cv-early { display: grid; grid-template-columns: .85fr 1.15fr; gap: 28px; align-items: start; }
-  .cv-early .cv-role ul.cv-points-split { columns: 1; }
-  .cv-early .cv-job + .cv-job { margin-top: 0; }
 }
 .cv-job + .cv-job { margin-top: 32px; }
 
 /* 7. Skills */
 .cv-skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; }
+@media (min-width: 1025px) {
+  .cv-skills > :nth-child(1) { grid-column: 1; grid-row: 1 / span 2; }
+  .cv-skills > :nth-child(2) { grid-column: 2; grid-row: 1 / span 2; }
+  .cv-skills > :nth-child(3) { grid-column: 3; grid-row: 1; }
+  .cv-skills > :nth-child(4) { grid-column: 3; grid-row: 2; }
+}
+.cv-background { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+.cv-background .cv-card { padding: 28px; }
+.cv-background .cv-facts { gap: 20px; }
+.cv-background .cv-facts > div { grid-template-columns: 150px 1fr; }
+.cv-background .cv-facts dd { font-size: 15.5px; }
+.cv-background .cv-facts dd strong { font-family: Georgia, "Times New Roman", serif; font-size: 20px; font-weight: 500; letter-spacing: -.01em; margin-bottom: 4px; }
 .cv-card { padding: 24px; border: 1px solid var(--c-line); border-radius: 20px; background: #fff; }
 .home .cv-card h3 { margin: 0 0 16px; display: flex; align-items: center; gap: 12px; color: var(--c-ink); font-family: inherit; font-size: 13px; font-weight: 750; letter-spacing: .14em; text-transform: uppercase; }
 .cv-ico { width: 42px; height: 42px; flex: none; display: grid; place-items: center; border-radius: 13px; background: #eeeafc; color: var(--c-violet); transition: transform .35s cubic-bezier(.2,.8,.2,1), background .35s ease; }
@@ -2139,7 +2157,10 @@ html.motion-paused .cv-roles::before { animation: none !important; opacity: 1; t
   .cv .screen.cv-hero { padding-top: 28px; }
   .cv .cv-hero .eyebrow { font-size: 9.5px; letter-spacing: .12em; }
   .cv-stats > div { flex: 1 1 auto; }
-  .cv-hiring, .cv-skills { grid-template-columns: 1fr; }
+  .cv-hiring, .cv-skills, .cv-background { grid-template-columns: 1fr; }
+  .cv-background .cv-facts > div { grid-template-columns: 96px 1fr; }
+  .home.cv .screen { padding-block: 44px; }
+  .home.cv .screen.cv-exp { padding-block: 22px; }
   .cv-hiring .offer { padding: 22px 20px; }
   .cv-job-head { gap: 14px; }
   .cv-logo { width: 48px; height: 48px; border-radius: 14px; font-size: 18px; }

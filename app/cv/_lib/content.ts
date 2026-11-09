@@ -256,6 +256,24 @@ export const skills: SideCard[] = [
     ],
   },
   {
+    icon: "languages",
+    title: "Languages",
+    kind: "langs",
+    items: [
+      { name: "Polish", level: 1, label: "Native" },
+      { name: "English", level: 0.84, label: "C1" },
+    ],
+  },
+  {
+    icon: "outside",
+    title: "Outside work",
+    kind: "tags",
+    items: ["Eastern cultures", "AI & new technologies", "Playing drums", "Board games"],
+  },
+];
+
+export const background: SideCard[] = [
+  {
     icon: "education",
     title: "Education",
     kind: "facts",
@@ -281,21 +299,6 @@ export const skills: SideCard[] = [
       },
     ],
   },
-  {
-    icon: "languages",
-    title: "Languages",
-    kind: "langs",
-    items: [
-      { name: "Polish", level: 1, label: "Native" },
-      { name: "English", level: 0.84, label: "C1" },
-    ],
-  },
-  {
-    icon: "outside",
-    title: "Outside work",
-    kind: "tags",
-    items: ["Eastern cultures", "AI & new technologies", "Playing drums", "Board games"],
-  },
 ];
 
 export const sections = [
@@ -304,5 +307,6 @@ export const sections = [
   { id: "record", label: "Track record" },
   { id: "experience", label: "Experience" },
   { id: "skills", label: "Skills" },
+  { id: "education", label: "Education" },
   { id: "contact", label: "Contact" },
 ];
