@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { CSSProperties } from "react";
-import { ArrowRight, ArrowUpRight, Check, Clock, Download, Mail, MapPin, Phone, UserRound } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, Download, Mail, MapPin, Phone, UserRound } from "lucide-react";
 import { BrandAmbient } from "../../brand-ambient";
 import { MotionToggle } from "../../motion-toggle";
 import { HireIcon, SideIcon } from "../_components/cv-icons";
@@ -89,6 +89,12 @@ function tenure(job: Job): string | null {
   return parts.join(" ");
 }
 
+/** The small label above each company, e.g. "Experience · 2017 – 2021 · 4 yrs 2 mos in total". */
+function experienceLabel(job: Job): string {
+  const total = tenure(job);
+  return `Experience · ${job.years}${total ? ` · ${total} in total` : ""}`;
+}
+
 function CompanyLogo({ job }: { job: Job }) {
   return (
     <span className={`cv-logo${job.logo ? " cv-logo-img" : ""}${job.logoWide ? " cv-logo-wide" : ""}`} aria-hidden="true">
@@ -107,14 +113,7 @@ function JobBlock({ job, current = false }: { job: Job; current?: boolean }) {
             {job.company}
             {job.note && <span className="cv-job-note">{job.note}</span>}
           </h3>
-          <p>
-            {job.place} · {job.years}
-            {tenure(job) && (
-              <span className="cv-tenure" title="Total time at the company">
-                <Clock size={13} aria-hidden="true" /> {tenure(job)} in total
-              </span>
-            )}
-          </p>
+          <p>{job.place} · {job.years}</p>
         </div>
       </header>
       <div className="cv-roles">
@@ -311,14 +310,14 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
       {/* 4. Experience: one section per company */}
       <section id="experience" className="screen cv-exp" data-nav="experience" aria-labelledby="cv-experience-title">
         <div className="shell">
-          <SectionHead kicker="Experience · 2021 – present" id="cv-experience-title" />
+          <SectionHead kicker={experienceLabel(currentJob)} id="cv-experience-title" />
           <JobBlock job={currentJob} current />
         </div>
       </section>
 
       <section id="experience-emagine" className="screen cv-exp" data-nav="experience" aria-labelledby="cv-emagine-title">
         <div className="shell">
-          <SectionHead kicker="Experience · 2017 – 2021" id="cv-emagine-title" />
+          <SectionHead kicker={experienceLabel(emagineJob)} id="cv-emagine-title" />
           <JobBlock job={emagineJob} />
         </div>
       </section>
@@ -328,7 +327,7 @@ export default async function CvPage({ params }: { params: Promise<{ token: stri
         return (
           <section key={job.company} id={`experience-${slug}`} className="screen cv-exp" data-nav="experience" aria-labelledby={`cv-${slug}-title`}>
             <div className="shell">
-              <SectionHead kicker={`Experience · ${job.years}`} id={`cv-${slug}-title`} />
+              <SectionHead kicker={experienceLabel(job)} id={`cv-${slug}-title`} />
               <JobBlock job={job} />
             </div>
           </section>
